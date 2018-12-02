@@ -1,0 +1,7 @@
+Καταθέτουμε 3 έγγραφα StRS τα οποία υπογράφονται από:
+
+StRS_01.pdf : motherhackers dev. team
+
+StRS_02.pdf : Ομοσπονδία Βενζινοπωλών Ελλάδος
+
+StRS_02.pdf : crowdsourcing team
