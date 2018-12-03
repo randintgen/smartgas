@@ -4,4 +4,4 @@ StRS_01.pdf : motherhackers dev. team
 
 StRS_02.pdf : Ομοσπονδία Βενζινοπωλών Ελλάδος
 
-StRS_02.pdf : crowdsourcing team
+StRS_03.pdf : crowdsourcing team
