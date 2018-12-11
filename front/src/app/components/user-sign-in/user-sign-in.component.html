@@ -1,3 +1,7 @@
-<p>
-  user-sign-in works!
-</p>
+<h1>User SignIn</h1>
+<form [formGroup]="signInForm" (ngSubmit)="validateAndSend()">
+  Username: <input type="text" formControlName="username" required>
+  <br>
+  Password: <input type="password" formControlName="password" required><br>
+  <button type="submit">Sing In</button>
+</form>
