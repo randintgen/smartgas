@@ -9,5 +9,17 @@ import { Users } from '../classes/mock-users';
 })
 export class UserActionsService {
 
+  private users: User[] = Users;
+
+  signInUser(someUser: User){
+    for(let a of this.users){
+      if(a.username === someUser.username){
+        if(a.password === someUser.password){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
   constructor() { }
 }

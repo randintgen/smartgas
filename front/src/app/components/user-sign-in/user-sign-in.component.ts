@@ -12,6 +12,7 @@ import { User } from '../../classes/user';
 
 // import the users service
 import { UserActionsService } from '../../services/user-actions.service';
+import { access } from 'fs';
 
 @Component({
   selector: 'app-user-sign-in',
@@ -24,7 +25,7 @@ export class UserSignInComponent implements OnInit {
   // private user that wants to sign in
   private userToSignIn: User;
 
-  accessOk: boolean;
+  private accessOk: boolean;
 
   // declaring the form structure, we only need username and password
   signInForm = this.form.group({
@@ -59,12 +60,7 @@ export class UserSignInComponent implements OnInit {
     email: ''
     }
     console.log(this.userToSignIn);
-
-    // check if password was given
-    if(this.userToSignIn.username !== '' && this.userToSignIn.password !== ''){
-      this.accessOk = true;
-    }else{
-      this.accessOk = false;
-    }
+    this.accessOk = this.userService.signInUser(this.userToSignIn);
+    console.log(this.accessOk);
   }
 }
