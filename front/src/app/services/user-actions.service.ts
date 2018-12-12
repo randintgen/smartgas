@@ -11,7 +11,7 @@ export class UserActionsService {
 
   private users: User[] = Users;
 
-  signInUser(someUser: User){
+  signInUser(someUser: User): boolean{
     for(let a of this.users){
       if(a.username === someUser.username){
         if(a.password === someUser.password){
@@ -20,6 +20,10 @@ export class UserActionsService {
       }
     }
     return false;
+  }
+
+  signUpUser(someUser: User): void{
+    this.users.push(someUser);
   }
   constructor() { }
 }
