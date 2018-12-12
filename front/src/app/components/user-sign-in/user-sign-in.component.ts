@@ -12,7 +12,6 @@ import { User } from '../../classes/user';
 
 // import the users service
 import { UserActionsService } from '../../services/user-actions.service';
-import { access } from 'fs';
 
 @Component({
   selector: 'app-user-sign-in',
