@@ -1,0 +1,10 @@
+<div *ngIf="!connected">
+  <form [formGroup]="register">
+      <input type="text" formControlName="username">username
+      <input type="text" formControlName="password">password
+      <input type="text" formControlName="email">email
+      <button (click)="registerAttempt()">Register</button>
+  </form>
+</div>
+
+<button (click)="reset()">Reset</button>
