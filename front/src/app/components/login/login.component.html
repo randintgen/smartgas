@@ -1,0 +1,11 @@
+<div *ngIf="!connected">
+  <form [formGroup]="login">
+    <input type="text" formControlName="username">Name 
+    <input type="text" formControlName="password">Password
+    <button (click)="loginAttempt()">Login</button>
+  </form>
+</div>
+<div *ngIf="connected">{{username}}</div>
+<div *ngIf="!connected">'Not connected</div>
+
+<button (click)="logoutAttempt()">Logout</button>
