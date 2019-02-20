@@ -52,4 +52,32 @@ export class HttpService {
     var httpRequest = this.http.post<HttpRequestInterface>(registerUrl, registerJSON, httpOptions);
     return httpRequest;
   };
+
+  // should change to find shops, not products
+  getShops(start?: number, count?: number, status?: string, sort?: string): Observable<HttpRequestInterface> {
+    var getShopsUrl = this.baseUrl + 'products?';
+    if(start == undefined){
+      getShopsUrl += 'start=0';
+    }else{
+      getShopsUrl += 'start=' + start;
+    }
+    if(count == undefined){
+      getShopsUrl += '&count=20';
+    }else{
+      getShopsUrl += '&count=' + count;
+    }
+    if(status == undefined){
+      getShopsUrl += '&status=ACTIVE';
+    }else{
+      getShopsUrl += '&status=' + status;
+    }
+    if(sort == undefined){
+      getShopsUrl += '&sort=id|ASC';
+    }else{
+      getShopsUrl += '&sort=' + 'sort';
+    }
+
+    var httpRequest = this.http.get<HttpRequestInterface>(getShopsUrl, httpOptions);
+    return httpRequest;
+  };
 }
