@@ -54,4 +54,12 @@ export class ShopsListComponent implements OnInit {
     }
   };
 
+  prevShops(): void {
+    this.startingIdx -= this.countIdx;
+    this.current -=5;
+    if(this.current < 0) {
+      this.current = 0;
+    }
+  };
+
 }
