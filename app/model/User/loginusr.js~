@@ -31,24 +31,23 @@ login = function(username,pswd,flag,result) {
   					console.log('Something went wrong ', err)
 				});
 
-				//client.get('counter', function(error, res2) {
+				client.get('counter', function(error, res2) {
 
-  					//if (error) console.log(error);
+  					if (error) console.log(error);
 
-					//counter = res2;
-				client.incr('counter', function(er3,res3) {
+					counter = res2;
+					client.incr('counter', function(er3,res3) {
 
-					if(er3) console.log(er3);
-					//console.log("The result is "+res3+" !");
-					counter = res3;
-					console.log("Counter is "+counter+" !");
-					client.quit(redis.print);
-					const body = {_id : resp[0].userid , jwtid:counter};
-					const token = jwt.sign({user : body},'top_secret',{expiresIn: '2h'});
+						if(er3) console.log(er3);
+						console.log("The result is "+res3+" !");
+						console.log("Counter is "+counter+" !");
+						client.quit(redis.print);
+						const body = {_id : resp[0].userid , jwtid:counter};
+						const token = jwt.sign({user : body},'top_secret',{expiresIn: '2h'});
 
-					result(null,{'success': true,'message':"User "+username+" succesfully logged in !",'token':token});
+						result(null,{'success': true,'message':"User "+username+" succesfully logged in !",'token':token});
+					});
 				});
-				//});
 
 			}
 
