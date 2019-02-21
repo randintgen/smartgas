@@ -23,6 +23,7 @@ module.exports = function(app) {
 	const get_the_shopid = require('../controller/Shops/getShopidController.js');
 	const put_the_shopid = require('../controller/Shops/putShopidController.js');
     const patch_the_shopid = require('../controller/Shops/patchShopidController.js');
+    const delete_the_shopid = require('../controller/Shops/deleteShopidController.js');
 	// todoList Routes
 
 	app.route(url+'/users/signup')
@@ -81,4 +82,7 @@ module.exports = function(app) {
 
 	app.route(url+'/shops/:id')
 		.patch(patch_the_shopid.patch_a_shop)
+		
+	app.route(url+'/shops/:id')
+	.delete(delete_the_shopid.delete_a_shop)
 };
