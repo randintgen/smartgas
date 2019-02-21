@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import { StoreElementsService } from '../../services/store-elements.service';
@@ -16,7 +17,9 @@ export class RegisterComponent implements OnInit {
   constructor(
     private registerForm: FormBuilder,
     private storeElement: StoreElementsService,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private modalService: NgbModal
+
   ) { }
 
   ngOnInit() {
@@ -58,5 +61,10 @@ export class RegisterComponent implements OnInit {
     console.log(this.storeElement.getElement('username'));
     this.storeElement.removeElement('username');
     this.storeElement.removeElement('token');
+  }
+
+  open(content) {
+    this.modalService.dismissAll(content);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 }

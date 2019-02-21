@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { HttpService } from '../../services/http.service';
 import { HttpRequestInterface } from '../../interfaces/http-request';
 import { CacheSearch } from '../../interfaces/cache-search';
@@ -15,11 +16,13 @@ export class LoginComponent implements OnInit {
 
   private username: string;
   private connected: boolean;
+  private closeResult: string;
 
   constructor(
     private loginForm: FormBuilder,
     private httpService: HttpService,
-    private storeElement: StoreElementsService
+    private storeElement: StoreElementsService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -67,4 +70,10 @@ export class LoginComponent implements OnInit {
     this.connected = false;
     this.username = undefined;
   }
+
+  open(content) {
+    this.modalService.dismissAll(content);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
+  
 }
