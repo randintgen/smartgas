@@ -17,6 +17,12 @@ module.exports = function(app) {
 	const delete_a_product = require('../controller/Products/delproductController.js');
 	const put_a_product = require('../controller/Products/putProductController.js');
 	const patch_a_product = require('../controller/Products/patchProductController.js');
+	
+	const get_the_shops = require('../controller/Shops/getShopsController.js');
+	const create_shop = require('../controller/Shops/createShopController.js');
+	const get_the_shopid = require('../controller/Shops/getShopidController.js');
+	const put_the_shopid = require('../controller/Shops/putShopidController.js');
+    const patch_the_shopid = require('../controller/Shops/patchShopidController.js');
 	// todoList Routes
 
 	app.route(url+'/users/signup')
@@ -60,4 +66,19 @@ module.exports = function(app) {
 
 	app.route(url+'/products/:id')
 		.patch(patch_a_product.patch_a_product)
+		
+	app.route(url+'/shops')
+        .get(get_the_shops.view_shops)
+
+	app.route(url+'/shops')
+		.post(create_shop.create_a_shop)
+
+	app.route(url+'/shops/:id')
+		.get(get_the_shopid.view_shopid)
+
+	app.route(url+'/shops/:id')
+		.put(put_the_shopid.update_a_shop)
+
+	app.route(url+'/shops/:id')
+		.patch(patch_the_shopid.patch_a_shop)
 };
