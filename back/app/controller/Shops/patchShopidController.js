@@ -10,12 +10,16 @@ exports.patch_a_shop = function(req, res) {
 	else if(Object.keys(req.body).length!=1) res.status(400).json({"success":false,"message":"Only one field can be updated at a time,consider using put !"});
 	else if(isNaN(req.params.id)) res.status(400).json({"success":false,"message":"Product id given is not an integer !"});
 	else {
+
 		var query="UPDATE shops set ";
 		var where=" WHERE shopid="+req.params.id+" ;";
 		var newfield;
 		var final;
 		var error2=0;
     var error3=0;
+
+		console.log(typeof req.body.tags!='undefined');
+		console.log(Array.isArray(req.body.tags));
 		if(req.body.name) {
 			newfield=req.body.name;
 			final=query+"name='"+newfield+"'"+where;
@@ -37,7 +41,15 @@ exports.patch_a_shop = function(req, res) {
         error3=1;
       }
 		}
-		else if(req.body.withdrawn!='undefined') {
+		else if(req.body.address) {
+			console.log("aa");
+			newfield=req.body.address;
+			final=query+"address='"+newfield+"'"+where;
+      if(typeof newfield!='string'){
+        error3=1;
+      }
+		}
+		else if(typeof req.body.withdrawn!='undefined') {
 
       if(req.body.withdrawn) newfield=1;
       else newfield=0;
@@ -47,7 +59,8 @@ exports.patch_a_shop = function(req, res) {
         error3=1;
       }
 		}
-		else if(req.body.tags && Array.isArray(req.body.tags)) {
+		else if(typeof req.body.tags!='undefined' && Array.isArray(req.body.tags)) {
+			console.log("23132");
 			var i=0;
 			var temp="";
 			for(var j=0 ; j<req.body.tags.length ; j++) {
@@ -64,6 +77,7 @@ exports.patch_a_shop = function(req, res) {
 
 			req.body.tags=temp;
 			newfield=req.body.tags;
+			console.log(temp);
       if(typeof newfield!='string'){
         error3=1;
       }
