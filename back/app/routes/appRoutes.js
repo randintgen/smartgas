@@ -40,8 +40,8 @@ module.exports = function(app) {
 	app.route(url+'/users/:username')
 		.get(gusr.get_profile)
 
-	app.route(url+'/users/profile/logout')
-		.get(logoutusr.logout_profile)
+	app.route(url+'/users/logout')
+		.post(logoutusr.logout_profile)
 
 	app.route(url+'/products')
 		.get(get_the_products.view_products)
