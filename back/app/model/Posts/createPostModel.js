@@ -2,16 +2,7 @@
 
 const sql = require('../db.js');
 
-//Task object constructor
-var Post = function(post) {
-    this.price = post.price;
-    this.dateFrom = post.dateFrom;
-    this.dateTo = post.dateTo;
-    this.productId = post.productId;
-    this.shopId = post.shopId;
-};
-
-Post.createpost = function createPost(newPost, userid, result) {
+createpost = function createPost(newPost, userid, result) {
 
     sql.query("SELECT fuelid, tags, type, description FROM fuel WHERE fuelid = ? LIMIT 1", newPost.productId, function (err, res) {
         if (!res[0]) {
@@ -35,7 +26,7 @@ Post.createpost = function createPost(newPost, userid, result) {
                             console.log("INSERT OK");
                             result(null, {
                                 "success": true,
-                                "postId": res3.insertId,
+                                "postId": res3.insertId,    // not sure if need postId
                                 "price": newPost.price,
                                 "dateFrom": newPost.dateFrom,
                                 "dateTo": newPost.dateTo,
@@ -56,5 +47,4 @@ Post.createpost = function createPost(newPost, userid, result) {
 
 };
 
-
-module.exports= Post;
+module.exports = createpost;

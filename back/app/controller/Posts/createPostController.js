@@ -1,6 +1,6 @@
 'use strict';
 
-var Post = require('../../model/Posts/createPostModel.js');
+var createpost = require('../../model/Posts/createPostModel.js');
 var authenticate = require('../../auth/auth.js')
 
 // check input is a positive integer number with length less than 11
@@ -27,74 +27,66 @@ function compDate(from, to) {
 
 exports.create_post = function(req, res) {
 
-  // console.log(req.body);
-  // console.log(req.params.username);
-
-  if (req.query.format && req.query.format != "json") {
-    res.status(400).json({
-      "success": false,
-      "message": "Unsupported format !"
-    });
-  }
-  else if (!req.body.price || !req.body.dateFrom || !req.body.dateTo || !req.body.productId || !req.body.shopId) {
-    res.status(400).json({
-      "success": false,
-      "message": "Please complete all the mandatory fields !"
-    });
-  }
-  else if (typeof req.body.price != "number" || (req.body.price <= 0) || checkInt(req.body.productId) || checkInt(req.body.shopId)) {
-    res.status(400).json({
-      "success": false,
-      "message": "One or more fields are not valid !"
-    });
-  }
-  else if (checkDate(req.body.dateFrom) || checkDate(req.body.dateTo)) {
-    res.status(400).json({
-      "success": false,
-      "message": "Date must be in a valid form (YYYY-MM-DD) !"
-    });
-  }
-  else if (compDate(req.body.dateFrom, req.body.dateTo)) {
-    res.status(400).json({
-      "success": false,
-      "message": "dateFrom must not be later than dateTo !"
-    });
-  }
-  else {
-
-      // has passed checks, continue to sql queries and authenticate check
-      authenticate(req,function(error,result,usrid) {
-
-        if (error) {
-          res.status(400).json({
+    if (req.query.format && req.query.format != "json") {
+        res.status(400).json({
             "success": false,
-            "message": "Please provide a valid authentication token !"
-          });
-        }
-        else {
-          if (!result) {
-            res.status(403).json({
-              "success": false,
-              "message": "Authentication failed !"
-            });
-          }
-          else {
+            "message": "Unsupported format !"
+        });
+    }
+    else if (!req.body.price || !req.body.dateFrom || !req.body.dateTo || !req.body.productId || !req.body.shopId) {
+        res.status(400).json({
+            "success": false,
+            "message": "Please complete all the mandatory fields !"
+        });
+    }
+    else if (typeof req.body.price != "number" || (req.body.price <= 0) || checkInt(req.body.productId) || checkInt(req.body.shopId)) {
+        res.status(400).json({
+            "success": false,
+            "message": "One or more fields are not valid !"
+        });
+    }
+    else if (checkDate(req.body.dateFrom) || checkDate(req.body.dateTo)) {
+        res.status(400).json({
+            "success": false,
+            "message": "Date must be in a valid form (YYYY-MM-DD) !"
+        });
+    }
+    else if (compDate(req.body.dateFrom, req.body.dateTo)) {
+        res.status(400).json({
+            "success": false,
+            "message": "dateFrom must not be later than dateTo !"
+        });
+    }
+    else {
 
-            var new_post = new Post(req.body);
-            Post.createpost(new_post, usrid, function(err, post) {
+        // has passed checks, continue to sql queries and authenticate check
+        authenticate(req,function(error,result,usrid) {
 
-              // console.log(err);
-              // console.log(post);
-              if (err) res.status(400).json(post);
-              else {
-                if (post.success == true) res.json(post);
-                else res.status(400).json(post);
-              }
-            });
-          }
-        }
-      });
-  }
+            if (error) {
+                res.status(400).json({
+                    "success": false,
+                    "message": "Please provide a valid authentication token !"
+                });
+            }
+            else if (!result) {
+                res.status(403).json({
+                  "success": false,
+                  "message": "Authentication failed !"
+                });
+            }
+            else {
+
+                createpost(req.body, usrid, function(err, post) {
+
+                  if (err) res.status(400).json(post);
+                  else {
+                    if (post.success == true) res.json(post);
+                    else res.status(400).json(post);
+                  }
+                });
+            }
+        });
+    }
 };
 
 /*
