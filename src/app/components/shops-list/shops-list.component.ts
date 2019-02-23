@@ -21,7 +21,7 @@ export class ShopsListComponent implements OnInit {
     this.userService.loginUser("o", "o").subscribe(
       (response) => {
         localStorage.setItem('token', response.token);
-        this.shopService.createShop('alex', 'kjdvns', false, 0.43, 0.67, ['alex']).subscribe(
+        this.shopService.createShop('alex', 'kjdvns', ['alex']).subscribe(
           (response) => {
             console.log(response);
           });

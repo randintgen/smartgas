@@ -76,7 +76,6 @@ export class ShopService {
       var lng = 0.54;
     }
 
-    console.log(tags);
     var createResponse = this.http.post<CreateShopResponse>(createUrl,
       JSON.stringify({
         name: name,
@@ -88,5 +87,17 @@ export class ShopService {
       }), newHeaders);
 
     return createResponse;
+  };
+
+  getShop(id: number): Observable<ShopResponse>{
+    
+    var getShopUrl = this.baseUrl + 'shops/' + id;
+
+    var shopTaken = this.http.get<ShopResponse>(
+      getShopUrl,
+      httpOptions
+    );
+
+    return shopTaken;
   };
 }
