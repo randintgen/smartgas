@@ -4,12 +4,11 @@ const sql = require('../db.js');
 
 updpost = function(req,postId,usrid,result){
 
-
     // check post exists
     sql.query("SELECT userid FROM post WHERE postid = ? LIMIT 1", postId, function(err,res) {
 
         if (!res[0]) {
-            console.log("Post not found!");
+            //console.log("Post not found!");
             result(null,{"success":false,"message":"Post not found !"});
         }
 
@@ -19,11 +18,10 @@ updpost = function(req,postId,usrid,result){
             if (res[0].userid !== usrid) {
                     //console.log("You have no access to edit this post!");
                     result(true, {"success":false,"message":"You have no access to edit this post!"});
-                }
+            }
             else {
 
                 // all checks done
-
                 var flag = 0;
                 var inp = "UPDATE post SET "
                 if (req.productId) {
