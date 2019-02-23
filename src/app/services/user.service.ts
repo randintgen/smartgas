@@ -39,4 +39,22 @@ export class UserService {
     );
     return RegisterResponse
   };
+
+  loginUser(username: string, password: string): Observable<LogRegResponse> {
+    
+    var loginUrl = this.baseUrl + 'login';
+
+    var userToLogin = {
+      username: username,
+      password: password
+    };
+
+    var loginResponse = this.http.post<LogRegResponse>(
+      loginUrl,
+      JSON.stringify(userToLogin),
+      httpOptions
+    );
+    
+    return loginResponse;
+  };
 }

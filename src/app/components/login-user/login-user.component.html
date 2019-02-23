@@ -1,0 +1,7 @@
+<h1 *ngIf="username">{{username}}</h1>
+
+<form [formGroup]="loginForm">
+  username: <input type="text" formControlName="username"><br>
+  password: <input type="text" formControlName="password"><br>
+  <button (click)="loginAttempt()">Login</button>
+</form>
