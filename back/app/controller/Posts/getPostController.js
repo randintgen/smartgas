@@ -54,16 +54,16 @@ exports.my_post_list = function(req, res) {
     var geoDist;
     var geoLng;
     var geoLat;
-    var dateflag = false;
     var dateFrom;
     var dateTo;
+
     // shop, products = (shop1,shop2,...,shop_last)
     var shop_flag = false;
     var shops = "(";
     var product_flag = false;
     var products = "(";
     var tag_flag = 0;
-    var tags = [];  // tags = [tag1, tag2, ...]
+    var tags_str;   // tags = "val1|val2|...|valn"
     var sort = [0];   // price|ASC -> 0, price|DESC -> 1, date|ASC -> 3, date|DESC -> 4, geo.dist|ASC -> 6, geo.dist|DESC -> 7
     var sort2 = " ORDER BY price ASC";
 
@@ -112,7 +112,6 @@ exports.my_post_list = function(req, res) {
     }
     if (flag == false) {
         if (!req.query.dateFrom && !req.query.dateTo) {
-            dateflag = false;
             tempdate = new Date();
             tempstr = tempdate.toLocaleDateString().split("/");
             dateFrom = tempstr[2] + "-" + tempstr[0] + "-" + tempstr[1];
@@ -128,7 +127,6 @@ exports.my_post_list = function(req, res) {
                 error = "dateFrom must not be later than dateTo !";
             }
             else {
-                dateflag = true;
                 dateFrom = req.query.dateFrom;
                 dateTo = req.query.dateTo;
             }
@@ -172,7 +170,8 @@ exports.my_post_list = function(req, res) {
                 error = "Variable tag is of type String !";
                 break;
             }
-            else tags.push(req.query.tags[i]);
+            else if (i == 0) tags_str = req.query.tags[i];
+            else tags_str += "|" + req.query.tags[i];
         }
     }
     if (flag == false && req.query.sort) {
@@ -202,7 +201,7 @@ exports.my_post_list = function(req, res) {
                 }
                 else if (req.query.sort.length[i] == "geo.dist|ASC") {
                     temp = 6;
-                    temp2 = "dist ASC";
+                    temp2 = "shopDist ASC";
                     if (geoflag == false) {
                         flag = true;
                         error = "Cannot sort by distance. Current location not provided.";
@@ -211,7 +210,7 @@ exports.my_post_list = function(req, res) {
                 }
                 else if (req.query.sort.length[i] == "geo.dist|DESC") {
                     temp = 7;
-                    temp2 = "dist DESC";
+                    temp2 = "shopDist DESC";
                     if (geoflag == false) {
                         flag = true;
                         error = "Cannot sort by distance. Current location not provided.";
@@ -226,7 +225,7 @@ exports.my_post_list = function(req, res) {
                 if (checkPrev(sort, temp)) {
                     sort.push(temp);
                     if (i == 0) sort2 += temp2;
-                    else sort2 = sort2 + ", " + temp2;
+                    else sort2 += ", " + temp2;
                 }
                 else {
                     flag = true;
@@ -246,7 +245,7 @@ exports.my_post_list = function(req, res) {
     }
     else {
 
-        Postlist(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, dateTo, shop_flag, shops, product_flag, products, tag_flag, tags, sort2, function(err, result) {
+        Postlist(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, dateTo, shop_flag, shops, product_flag, products, tag_flag, tags_str, sort2, function(err, result) {
             if (err) res.status(400).json(result);
             else {
                 if (result.success == true) res.json(result);
