@@ -11,8 +11,6 @@ function checkInt(input) {
 
 exports.delete_post = function(req, res){
 
-    console.log(req.body);
-
     if (req.query.format && req.query.format != "json") {
         res.status(400).json({
             "success": false,
@@ -35,25 +33,22 @@ exports.delete_post = function(req, res){
                 });
             }
 
+            else if(!result) {
+                res.status(400).json({
+                    "success": false,
+                    "message": "Authentication failed !"
+                });
+            }
             else {
 
-                if(!result) {
-                    res.status(400).json({
-                        "success": false,
-                        "message": "Authentication failed !"
-                    });
-                }
-                else {
-
-                    // check OK
-                    del_post(Number(req.params.id), usrid, function (err1,res1) {
-                        if(err1) res.status(400).json(res1);    // forbidden action
-                        else {
-                            if (res1.success == true) res.json(res1);
-                            else res.status(400).json(res1);
-                        }
-                    });
-                }
+                // check OK
+                del_post(Number(req.params.id), usrid, function (err1,res1) {
+                    if(err1) res.status(400).json(res1);    // forbidden action
+                    else {
+                        if (res1.success == true) res.json(res1);
+                        else res.status(400).json(res1);
+                    }
+                });
             }
         });
     }
