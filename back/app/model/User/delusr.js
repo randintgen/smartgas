@@ -28,7 +28,7 @@ remove = function(username,pswd,result){
 				}); 
 			}
 
-			else result(null,{"success":false,"message":"Invalid password !"});
+			else result(null,{"success":true,"message":"Invalid password !"});
 		}
 	});
 };

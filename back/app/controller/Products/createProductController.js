@@ -36,8 +36,8 @@ exports.create_a_product = function(req, res) {
 		if(!(new_product.type && new_product.description && new_product.tags && new_product.category)) { 
 			res.status(400).json({"success":false,"message":"Please complete all the mandatory fields !"});
 		}
-		else if(new_product.type.length>255 || new_product.description.length>255 || new_product.category.length>255 ||new_product.tags.length>255) {
-			res.status(400).json({"success":false,"message":"Please provide compatible input,maximu length exceeded !"});
+		else if(new_product.type.length>255 || new_product.description.length>255 || new_product.category.length>255 ||new_product.tags.length>2000) {
+			res.status(400).json({"success":false,"message":"Please provide compatible input,maximum length exceeded !"});
 		}
 		else if(typeof new_product.type!='string' || typeof new_product.description!='string' || typeof new_product.category!='string' 
 			|| typeof new_product.tags!='string') {
@@ -65,7 +65,10 @@ exports.create_a_product = function(req, res) {
 
     							if (err) res.status(400).json(product);
 							else {
-								if(product.success==true) res.json(product);
+								if(product.success==true) {
+									//console.log(product.product);
+									res.json(product.product);
+								}
 								else res.status(400).json(product);
 							}
 

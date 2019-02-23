@@ -34,23 +34,23 @@ User.createusr = function createUser(newUser, result) {
 
 			if(resu[0].username==newUser.username && resu[0].mail==newUser.mail) {
 				console.log("Email and username are already in use!");
-				result(true,{"success":false,"message":"Email and username are already in use."});
+				result(null,{"success":false,"message":"Email and username are already in use."});
 			}
 
 			else if(resu[0].username==newUser.username){
 				console.log("Username already exists!");
-				result(true,{"success":false,"message":"Username is already in use."});
+				result(null,{"success":false,"message":"Username is already in use."});
 			}
 
 			else {
 				console.log("Email already exists!");
-				result(true,{"success":false,"message":"Email is already in use."});
+				result(null,{"success":false,"message":"Email is already in use."});
 			}
 		}
 
 		else if (resu.length==2) {
 			console.log("Email and username are already in use!");
-			result(true,{"success":false,"message":"Email and username are already in use."});
+			result(null,{"success":false,"message":"Email and username are already in use."});
 		}
 
 		else {
@@ -64,7 +64,7 @@ User.createusr = function createUser(newUser, result) {
                	 
 	                	if(err) {
 	                    		console.log("error: ", err);
-	                    		result(err,{"success":false,"message":"An error occured"});
+	                    		result(true,{"success":false,"message":"An error occured"});
 	                	}
 
 	                	else {

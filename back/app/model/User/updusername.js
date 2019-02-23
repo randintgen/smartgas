@@ -9,7 +9,7 @@ updatename = function(newusr,usrid,result){
 
 		if (resu[0]) {
 
-			result(true,{"success":false,"message":"Username already in use !"});
+			result(null,{"success":false,"message":"Username already in use !"});
 
 		}
 		
@@ -22,7 +22,7 @@ updatename = function(newusr,usrid,result){
 				if(err) {
 
 					console.log("error: ", err);
-					result(null, {"success":false,"message":err});
+					result(true, {"success":false,"message":err});
 				}
 
 				else {

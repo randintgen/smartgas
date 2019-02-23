@@ -23,7 +23,7 @@ logout = function(decoded,token,result) {
 		else { 	
 			console.log("Jwtid "+decoded.user.jwtid+" Blacklisted!");
 			client.quit();
-			result(null,{"success":true,"message":"Kicking users out is always fun !"});
+			result(null,{"success":true,"message":"OK"});
 		}
 	});	
 	

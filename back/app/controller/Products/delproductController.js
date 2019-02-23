@@ -9,7 +9,7 @@ exports.delete_products = function(req, res) {
 
 	else {
 
-		if(isNaN(req.params.id)) res.status(400).json({"success":false,"message":"Product id given is not an integer !"});
+		if(!((parseFloat(req.params.id)%1)===0)) res.status(400).json({"success":false,"message":"Product id given is not an integer !"});
 		else if(req.params.id.length > 11) res.status(400).json({"success":false,"message":"Variable product id has exceeded maximum length !"});
 		else {
 
@@ -27,8 +27,8 @@ exports.delete_products = function(req, res) {
    	
     							if (err) res.status(400).json(usr);
 							else {
-								if(usr.success==true)res.json(usr);
-								else res.status(400).json(usr);
+								if(usr.success==true) res.json({"message":usr.message});
+								else res.status(404).json(usr);
 							}
 
   						}); 

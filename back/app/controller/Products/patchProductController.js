@@ -8,7 +8,7 @@ exports.patch_a_product = function(req, res) {
 
 	if(req.query.format=="xml") res.status(400).json({"success":false,"message":"XML"});               // check for xml
 	else if(Object.keys(req.body).length!=1) res.status(400).json({"success":false,"message":"Only one field can be updated at a time,consider using put !"});
-	else if(isNaN(req.params.id)) res.status(400).json({"success":false,"message":"Product id given is not an integer !"});
+	else if(!((parseFloat(req.params.id)%1)===0)) res.status(400).json({"success":false,"message":"Product id given is not an integer !"});
 	else {
 		var query="UPDATE fuel set ";
 		var where=" WHERE fuelid="+req.params.id+" ;";
@@ -55,7 +55,10 @@ exports.patch_a_product = function(req, res) {
 		if(error2) {
 			res.status(400).json({"success":false,"message":"Tags must be a list of strings"});
 		}
-		else if(newfield.length>255) {
+		else if(req.body.tags && newfield.length>2000) {
+			res.status(400).json({"success":false,"message":"Please provide compatible input,maximu length exceeded !"});
+		}
+		else if(!req.body.tags && newfield.length>255) {
 			res.status(400).json({"success":false,"message":"Please provide compatible input,maximu length exceeded !"});
 		}
 		else if(typeof newfield!='string') {

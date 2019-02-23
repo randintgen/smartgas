@@ -8,7 +8,7 @@ const redis = require('redis');
 
 login = function(username,pswd,flag,result) {
 
-	var query = "SELECT psswd,userid FROM users WHERE "  ;
+	var query = "SELECT psswd,userid,admin FROM users WHERE "  ;
 	var counter=0;
 	if(!flag) query +="username='"+username+"' LIMIT 1 ;";
 	else query +="mail='"+username+"' LIMIT 1 ;";
@@ -42,8 +42,9 @@ login = function(username,pswd,flag,result) {
 					//console.log("The result is "+res3+" !");
 					counter = res3;
 					console.log("Counter is "+counter+" !");
+					//console.log("Admin "+resp[0].admin );
 					client.quit(redis.print);
-					const body = {_id : resp[0].userid , jwtid:counter};
+					const body = {_id :resp[0].userid,jwtid:counter,admin:resp[0].admin};
 					const token = jwt.sign({user : body},'top_secret',{expiresIn: '2h'});
 
 					result(null,{'success': true,'message':"User "+username+" succesfully logged in !",'token':token});
