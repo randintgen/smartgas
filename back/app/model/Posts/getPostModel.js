@@ -10,26 +10,22 @@ Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, da
     var wh = " WHERE (post.dateFrom BETWEEN CAST('" + dateFrom + "' AS DATE) AND CAST('" + dateTo + "' AS DATE))";
     if (shop_flag) wh += " AND (shops.shopid IN " + shops + ")";
     if (product_flag) wh += " AND (fuel.fuelid IN " + products + ")";
-    if (tag_flag) {
-        wh += " AND ( FIND_IN_SET('" + tags[0] + "', fuel.tags) OR FIND_IN_SET('" + tags[0] + "', shops.tags)";
-        for (var i = 1; i < tags.length; i++) {
-            wh += " OR FIND_IN_SET('" + tags[i] + "', fuel.tags) OR FIND_IN_SET('" + tags[i] + "', shops.tags)";
-        }
-        wh += " )";
-    }
+    if (tag_flag) wh += " AND CONCAT(',', fuel.tags, ',', shops.tags, ',') REGEXP ',(" + tags + "),'";
     if (geoflag) {
         //final += ", (6371 * acos (cos ( radians(" + geoLat + ") )* cos( radians( shops.lat ) )* cos( radians( shops.lng ) - radians(" + geoLng + ") )+ sin ( radians(" + geoLat + ") )* sin( radians( shops.lat ) ))) AS shopDist";
+        //final += ", ST_Distance(ST_GeomFromText('POINT(" + geoLng + " " + geoLat + ")', 4326), ST_GeomFromText('POINT(shops.lng shops.lat)', 4326))/1000 AS shopDist";
         // POINT(lon, lat)
         final += ", ST_Distance_Sphere(POINT(" + geoLng + ", " + geoLat + "), POINT(shops.lng, shops.lat))/1000 AS shopDist";
-        //final += ", ST_Distance(ST_GeomFromText('POINT(" + geoLng + " " + geoLat + ")', 4326), ST_GeomFromText('POINT(shops.lng shops.lat)', 4326))/1000 AS shopDist";
         wh += " HAVING shopDist < " + geoDist;
     }
     final += fr + wh;
     f1 = final + sort + " LIMIT " + count + " OFFSET " + start + " ;";
     sql.query(f1, function (err, res) {
 
-//        if (err) result(true, {"success": false, "message": "Something went wrong,please try again later !"});
-        if (err) result(true, {"success": false, "message": err});
+        if (err) {
+            //console.log("ERROR ON SEARCH : " + err);
+            result(true, {"success": false, "message": "Something went wrong,please try again later !"});
+        }
         else {
             var prices = [];
             for(var i=0 ; i<res.length ; i++) {
@@ -41,8 +37,10 @@ Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, da
 
             var f2 = final + " ;";
             sql.query(f2, function (err2, res2) {
-                if (err2 || !res2) result(true,{"success": false, "message": "Something went wrong,please try again later !"});
-  //              if (err2 || !res2) result(true,{"success": false, "message": err2});
+                if (err2 || !res2) {
+                    //console.log("ERROR ON SEARCH TOTAL : " + err2);
+                    result(true,{"success": false, "message": "Something went wrong,please try again later !"});
+                }
                 else {
                     result(null, {"start": parseInt(start), "count": prices.length, "total": res2.length, "prices": prices});
                 }
