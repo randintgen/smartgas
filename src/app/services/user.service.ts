@@ -62,9 +62,14 @@ export class UserService {
 
     var logoutUrl = this.baseUrl + 'logout';
 
-    var newHeaders = new HttpHeaders();
-    newHeaders.append('Content-Type', 'application/json');
-    newHeaders.append('X-OBSERVATORY-AUTH', 'alex');
+    var newHeaders = {
+      headers: new HttpHeaders({
+        'Content-Type': 'applications/json',
+        'X-OBSERVATORY-AUTH': localStorage.getItem('token')
+      })
+    };
+
+    console.log(localStorage.getItem('token'));
 
     var LogoutResponse = this.http.post<LogRegResponse>(
       logoutUrl,

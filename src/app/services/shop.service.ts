@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ShopResponse } from '../interfaces/shop-response';
+import { CreateShopResponse } from '../interfaces/create-shop-response';
+
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -53,5 +55,38 @@ export class ShopService {
     var shopsResponse = this.http.get<ShopResponse>(shopsUrl, httpOptions);
 
     return shopsResponse;
+  };
+
+  createShop(name: string, address: string, tags?: string[], lng?: number, lat?: number): Observable<CreateShopResponse>{
+    
+    var createUrl = this.baseUrl + 'shops';
+    
+    var newHeaders = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-OBSERVATORY-AUTH': localStorage.getItem('token')
+      })
+    };
+
+    if(lat == undefined){
+      var lat = 0.23;
+    }
+
+    if(lng == undefined){
+      var lng = 0.54;
+    }
+
+    console.log(tags);
+    var createResponse = this.http.post<CreateShopResponse>(createUrl,
+      JSON.stringify({
+        name: name,
+        address: address,
+        lng: lng,
+        lat: lat,
+        tags: tags,
+        withdrawn: false
+      }), newHeaders);
+
+    return createResponse;
   };
 }

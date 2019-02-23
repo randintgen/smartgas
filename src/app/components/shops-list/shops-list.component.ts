@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ShopService } from '../../services/shop.service';
+import { UserService } from '../../services/user.service';
+
 @Component({
   selector: 'app-shops-list',
   templateUrl: './shops-list.component.html',
@@ -9,19 +11,22 @@ import { ShopService } from '../../services/shop.service';
 export class ShopsListComponent implements OnInit {
 
   constructor(
-    private shopService: ShopService
+    private shopService: ShopService,
+    private userService: UserService
   ) { }
 
   private allShops;
 
-  ngOnInit() {
-    this.shopService.getShops().subscribe(
+  ngOnInit() {    
+    this.userService.loginUser("o", "o").subscribe(
       (response) => {
-        console.log(response);
-        // should change!
-        this.allShops = response.products;
+        localStorage.setItem('token', response.token);
+        this.shopService.createShop('alex', 'kjdvns', false, 0.43, 0.67, ['alex']).subscribe(
+          (response) => {
+            console.log(response);
+          });
       }
-    )
+    );
   }
 
 }

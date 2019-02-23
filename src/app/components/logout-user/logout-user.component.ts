@@ -22,7 +22,7 @@ export class LogoutUserComponent implements OnInit {
         console.log(response);
       },
       (error) => {
-        console.log(error);
+        console.log(error.error.message);
       }
     );
   }

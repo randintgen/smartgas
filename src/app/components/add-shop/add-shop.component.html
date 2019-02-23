@@ -1,0 +1,6 @@
+<form [formGroup]="addShopForm">
+  shop name: <input type="text" formControlName="name"><br>
+  shop address: <input type="text" formControlName="address"><br>
+  tags: <input type="text" formControlName="tags"><br>
+  <button (click)="addShopAttempt()">Add Shop</button>
+</form>
