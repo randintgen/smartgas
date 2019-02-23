@@ -14,7 +14,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 
-export class UserServiceService {
+export class UserService {
 
   private baseUrl = 'https://localhost:8765/observatory/api/';
 
@@ -28,7 +28,7 @@ export class UserServiceService {
 
     var userToRegister = {
       username: username,
-      password: password,
+      psswd: password,
       mail: mail
     };
 
