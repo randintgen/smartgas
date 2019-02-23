@@ -1,3 +1,8 @@
-<p>
-  register-user works!
-</p>
+<form [formGroup]="registerForm">
+  username: <input type="text" formControlName="username"><br>
+  pass1: <input type="text" formControlName="password"><br>
+  pass2: <input type="text" formControlName="pass-repeat"><br>
+  mail: <input type="text" formControlName="email"><br>
+  <button (click)="registerAttempt()">Register</button>
+</form>
+<h1 *ngIf="errorMessage; else accept">{{errorMessage}}</h1>
