@@ -10,13 +10,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { LogoutUserComponent } from './components/logout-user/logout-user.component';
+import { ShopsListComponent } from './components/shops-list/shops-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterUserComponent,
     LoginUserComponent,
-    LogoutUserComponent
+    LogoutUserComponent,
+    ShopsListComponent
   ],
   imports: [
     BrowserModule,
