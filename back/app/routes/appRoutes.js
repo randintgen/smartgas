@@ -25,6 +25,13 @@ module.exports = function(app) {
     const patch_the_shopid = require('../controller/Shops/patchShopidController.js');
     const delete_the_shopid = require('../controller/Shops/deleteShopidController.js');
 	// todoList Routes
+	
+	// added posts routes ------------------------------------------------------------
+    	const newpost = require('../controller/Posts/createPostController.js');
+    	const delete_my_old_post = require('../controller/Posts/deletePostController.js');
+    	const upd_old_post = require('../controller/Posts/updatePostController.js');
+    	const post_search = require('../controller/Posts/getPostController.js');
+	// -------------------------------------------------------------------------------
 
 	app.route(url+'/users/signup')
 		.post(cusr.create_a_user);
@@ -85,4 +92,16 @@ module.exports = function(app) {
 		
 	app.route(url+'/shops/:id')
 	.delete(delete_the_shopid.delete_a_shop)
+	
+	//---------------------------------------
+	app.route(url+'/prices')
+        	.post(newpost.create_post)
+        	.get(post_search.my_post_list);
+
+    	app.route(url+'/prices/:id')
+        	.delete(delete_my_old_post.delete_post)
+        	.put(upd_old_post.update_post);
+	//---------------------------------------
+	
+	
 };
