@@ -10,7 +10,7 @@ del_post = function(postId, usrid, result){
         sql.query(inp, function(err, res) {
             if (err) {
                 console.log("ERROR ON DELETE POST :", err);
-                result(null, {"success":false,"message":"Delete failed !"}); // add sthhh
+                result(null, {"success":false,"message":"Delete failed !"});
             }
             else if (res.affectedRows == 0) result(null, {"success":false,"message":"Please provide a valid postId !"});
             else {
