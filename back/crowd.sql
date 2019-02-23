@@ -58,7 +58,7 @@ CREATE TABLE shops (
 
 INSERT INTO shops
 
-	(name,address,lng,lat,withdrawn,tags,imgpath)
+	(name,address,lat,lng,withdrawn,tags,imgpath)
 
 VALUES
 	('Shell','Νέο Ηράκλειο,Λεωφόρος Ηρακλείου 409,14122','38.05369','23.76812',0,'απλό,απλή,fuelsave','/home/fnp'),
