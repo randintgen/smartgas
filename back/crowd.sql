@@ -8,7 +8,7 @@ SET NAMES 'utf8';
 
 -- let's create the users table
 
-DROP TABLE IF EXISTS users; 
+DROP TABLE IF EXISTS users;
 
 -- nvarchar is used for unicode support
 CREATE TABLE users (
@@ -24,11 +24,11 @@ CREATE TABLE users (
 
 	PRIMARY KEY(userid),
 	INDEX(mail),
-	INDEX(username) 
+	INDEX(username)
 
 
 
-) ENGINE = INNODB;	
+) ENGINE = INNODB;
 
 
 -- input form ->
@@ -36,6 +36,7 @@ CREATE TABLE users (
 
 
 -- let's create the shops table
+
 
 DROP TABLE IF EXISTS shops;
 
@@ -58,11 +59,11 @@ CREATE TABLE shops (
 
 -- input form ->
 
-INSERT INTO shops 
+INSERT INTO shops
 
 	(name ,  address ,lng,lat,withdrawn,tags,imgpath)
 
-VALUES 
+VALUES
 	('Shell','Νέο Ηράκλειο,Λεωφόρος Ηρακλείου 409,14122','38.05369','23.76812',0,'απλό,απλή,fuelsave','/home/fnp'),
 	('Shell','Νέο Ηράκλειο, Λεωφόρος Ηρακλείου 442, 14122','38.055173','23.769653',0,'απλή αμόλυβδη,απλή,fuelsave','/home/fnp'),
 	('Shell','Μεταμόρφωση, Τατοΐου 2 ,14451','38.050819','23.750162',0,'απλή αμόλυβδη,απλή,fuelsave','/home/fnp'),
@@ -99,7 +100,7 @@ CREATE TABLE fuel (
 	category varchar(255) NOT NULL,
 	withdrawn tinyint(1) NOT NULL,
 	tags varchar(255),
-	
+
 	PRIMARY KEY(fuelid)
 
 ) ENGINE = INNODB;
@@ -107,10 +108,10 @@ CREATE TABLE fuel (
 -- now let's populate our fuel's table
 -- we have three types of fuels Βενζίνη,Πετρέλαιο και Αέριο
 
-INSERT INTO fuel 
+INSERT INTO fuel
 
 	(type , description , imgpath , category , withdrawn , tags)
-VALUES 
+VALUES
 	('Βενζίνη','95 οκτανίων','/home/fnp','Καύσιμο κίνησης',0,'απλή αμόλυβδη,απλή,fuelsave'),
 	('Βενζίνη','97 οκτανίων','/home/fnp','Καύσιμο κίνησης',0,'Vpower'),
 	('Βενζίνη','100 οκτανίων','/home/fnp','Καύσιμο κίνησης',0,'Racing,Κατοστάρα'),
@@ -130,8 +131,9 @@ CREATE TABLE post (
 	userid int(11) NOT NULL ,
 	fuelid int(11) NOT NULL,
 	price float NOT NULL,
-	datetimestamp datetime NOT NULL,
-	
+	dateFrom date NOT NULL,
+	dateTo date NOT NULL,
+
 	PRIMARY KEY(postid , shopid , userid , fuelid ),
 
 	FOREIGN KEY (shopid) REFERENCES shops(shopid)
@@ -178,12 +180,3 @@ BEGIN
 
 END$$
 DELIMITER ;
-
-
-
-
-
-
-	
-	
-	
