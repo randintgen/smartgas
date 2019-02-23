@@ -1,5 +1,5 @@
 export class LogRegResponse {
-    success: boolean;
+    success?: boolean;
     message: string;
     token?: string;
 }

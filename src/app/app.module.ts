@@ -9,12 +9,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LoginUserComponent } from './components/login-user/login-user.component';
+import { LogoutUserComponent } from './components/logout-user/logout-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterUserComponent,
-    LoginUserComponent
+    LoginUserComponent,
+    LogoutUserComponent
   ],
   imports: [
     BrowserModule,

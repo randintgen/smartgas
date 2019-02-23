@@ -57,4 +57,20 @@ export class UserService {
     
     return loginResponse;
   };
+
+  logoutUser(): Observable<LogRegResponse> {
+
+    var logoutUrl = this.baseUrl + 'logout';
+
+    var newHeaders = new HttpHeaders();
+    newHeaders.append('Content-Type', 'application/json');
+    newHeaders.append('X-OBSERVATORY-AUTH', 'alex');
+
+    var LogoutResponse = this.http.post<LogRegResponse>(
+      logoutUrl,
+      newHeaders
+    );
+
+    return LogoutResponse;
+  };
 }
