@@ -183,23 +183,23 @@ exports.my_post_list = function(req, res) {
         }
         else {
             for (var i=0; i<req.query.sort.length; i++) {
-                if (req.query.sort.length[i] == "price|ASC") {
+                if (req.query.sort[i] == "price|ASC") {
                     temp = 0;
                     temp2 = "price ASC";
                 }
-                else if (req.query.sort.length[i] == "price|DESC") {
+                else if (req.query.sort[i] == "price|DESC") {
                     temp = 1;
                     temp2 = "price DESC";
                 }
-                else if (req.query.sort.length[i] == "date|ASC") {
+                else if (req.query.sort[i] == "date|ASC") {
                     temp = 3;
                     temp2 = "dateFrom ASC";
                 }
-                else if (req.query.sort.length[i] == "date|DESC") {
+                else if (req.query.sort[i] == "date|DESC") {
                     temp = 4;
                     temp2 = "dateFrom DESC"
                 }
-                else if (req.query.sort.length[i] == "geo.dist|ASC") {
+                else if (req.query.sort[i] == "geo.dist|ASC") {
                     temp = 6;
                     temp2 = "shopDist ASC";
                     if (geoflag == false) {
@@ -208,7 +208,7 @@ exports.my_post_list = function(req, res) {
                         break;
                     }
                 }
-                else if (req.query.sort.length[i] == "geo.dist|DESC") {
+                else if (req.query.sort[i] == "geo.dist|DESC") {
                     temp = 7;
                     temp2 = "shopDist DESC";
                     if (geoflag == false) {
