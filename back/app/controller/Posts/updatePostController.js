@@ -11,8 +11,6 @@ function checkInt(input) {
 
 exports.update_post = function(req, res) {
 
-    // ypotheto oti gnorizo to postId mesa sto req.body | allages mono sta price, fuelid, shopid
-
     if (req.query.format && req.query.format != "json") {
         res.status(400).json({
             "success": false,
@@ -31,11 +29,12 @@ exports.update_post = function(req, res) {
             "message": "postId is not valid !"
         });
     }
-    else if (!req.body.productId && !req.body.shopId && !req.body.price)
+    else if (!req.body.productId && !req.body.shopId && !req.body.price) {
         res.status(400).json({
             "success": false,
             "message": "Please complete at least one field !"
         });
+    }
     else if (req.body.productId && checkInt(req.body.productId)) {
         res.status(400).json({
             "success": false,
@@ -62,27 +61,22 @@ exports.update_post = function(req, res) {
                     "message": "Please provide a valid authentication token !"
                 });
             }
-
+            else if(!result) {
+                res.status(403).json({
+                    "success": false,
+                    "message": "Authentication failed !"
+                });
+            }
             else {
 
-                if(!result) {
-                    res.status(403).json({
-                        "success": false,
-                        "message": "Authentication failed !"
-                    });
-                }
-                else {
-
-                    // check OK
-                    updpost(req.body, Number(req.params.id), usrid, function(err1,res1) {
-
-                        if(err1) res.status(403).json(res1);    // forbidden action
-                        else {
-                            if (res1.success == true) res.json(res1);
-                            else res.status(400).json(res1);
-                        }
-                    });
-                }
+                // check OK
+                updpost(req.body, Number(req.params.id), usrid, function(err1,res1) {
+                    if(err1) res.status(403).json(res1);    // forbidden action
+                    else {
+                        if (res1.success == true) res.json(res1);
+                        else res.status(400).json(res1);
+                    }
+                });
             }
         });
     }
