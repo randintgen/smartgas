@@ -30,8 +30,7 @@ exports.update_name_user = function(req, res) {
    	
     						if (err) res.status(404).json(usr);
 						else {
-							if(usr.success==true) res.json(usr);
-							else res.status(400).json(usr);
+							res.json(usr);
 						}
 
   					});

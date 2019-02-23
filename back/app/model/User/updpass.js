@@ -8,7 +8,7 @@ updatepass = function(oldpsswd,newpsswd,usr,result){
 
 	sql.query("SELECT psswd FROM users WHERE username = ? LIMIT 1" , usr , function (erru,resu) {
 
-		if(!resu[0]) result(true,{"success":false,"message":"Invalid username!"});
+		if(!resu[0]) result(null,{"success":false,"message":"Invalid username!"});
 		
 		else {
 
@@ -23,7 +23,7 @@ updatepass = function(oldpsswd,newpsswd,usr,result){
 					if(err) {
 
 						console.log("error: ", err);
-						result(null,{"success":false,"message":err});
+						result(true,{"success":false,"message":err});
 					}
 
 					else {

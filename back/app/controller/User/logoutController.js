@@ -16,13 +16,13 @@ exports.logout_profile = function(req, res) {
 
 		jwt.verify(token, 'top_secret', (err, decoded) => {
 
-      			if (err) res.status(403).json({"success":false,"message":"Authentication failed (if token is valid don't worry) !"});
+      			if (err) res.status(403).json({"success":false,"message":"Authentication failed !"});
 
       			else {
 				//console.log(decoded);
 				kickout(decoded,token,function(error2,result2) {
 					if(error2) res.status(400).json(result2);
-					else res.json(result2);
+					else res.json({"message":"OK"});
 				});
 			}
 

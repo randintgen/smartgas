@@ -39,7 +39,7 @@ exports.update_a_product = function(req, res) {
 		}
 
 		// check for fields length
-		else if(new_product.type.length>255 || new_product.description.length>255 || new_product.category.length>255 ||new_product.tags.length>255) {
+		else if(new_product.type.length>255 || new_product.description.length>255 || new_product.category.length>255 ||new_product.tags.length>2000) {
 			res.status(400).json({"success":false,"message":"Please provide compatible input,maximu length exceeded !"});
 		}
 
@@ -51,7 +51,7 @@ exports.update_a_product = function(req, res) {
 
 		}
 		// check for id's type
-		else if(isNaN(req.params.id)) res.status(400).json({"success":false,"message":"Product id given is not an integer !"});
+		else if(!((parseFloat(req.params.id)%1)===0)) res.status(400).json({"success":false,"message":"Product id given is not an integer !"});
 		else if(req.body.withdrawn && typeof new_product.withdrawn!='boolean') res.status(400).json({"success":false,"message":"Please provide valid fields !"});
 		else {
 

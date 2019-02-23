@@ -15,10 +15,9 @@ exports.update_pass_user = function(req, res) {
 
 			//console.log(usr);
    	
-    			if (err) res.status(404).json(usr);
+    			if (err) res.status(400).json(usr);
 			else {
-				if(usr.success==true) res.json(usr);
-				else res.status(400).json(usr);
+				res.json(usr);
 			}
   		});
 
