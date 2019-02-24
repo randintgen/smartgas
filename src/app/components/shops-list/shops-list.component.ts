@@ -18,15 +18,11 @@ export class ShopsListComponent implements OnInit {
   private allShops;
 
   ngOnInit() {    
-    this.userService.loginUser("o", "o").subscribe(
+    this.shopService.getShops().subscribe(
       (response) => {
-        localStorage.setItem('token', response.token);
-        this.shopService.createShop('alex', 'kjdvns', ['alex']).subscribe(
-          (response) => {
-            console.log(response);
-          });
+        this.allShops=response.products;
       }
-    );
-  }
+    )
+  };
 
 }

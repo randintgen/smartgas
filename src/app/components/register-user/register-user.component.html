@@ -1,8 +1,35 @@
-<form [formGroup]="registerForm">
-  username: <input type="text" formControlName="username"><br>
-  pass1: <input type="text" formControlName="password"><br>
-  pass2: <input type="text" formControlName="pass-repeat"><br>
-  mail: <input type="text" formControlName="email"><br>
-  <button (click)="registerAttempt()">Register</button>
-</form>
-<h1 *ngIf="errorMessage; else accept">{{errorMessage}}</h1>
+
+
+<ng-template #content let-modal>
+
+    <div class="modal-body">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <form [formGroup]="registerForm" class="form-group" >
+              <div class="container">
+                <h1>Register</h1>
+                <p>Please fill in this form to create an account.</p>
+               
+               <hr>
+                <label for="email"><b>Email</b></label>
+                <input type="email" class="form-control" placeholder="Enter Email" formControlName="email" required>
+      
+                <label for="username"><b>Username</b></label>
+                <input type="text" class="form-control" placeholder="Enter Username" formControlName="username" required>
+      
+                <label for="psw"><b>Password</b></label>
+                <input type="password" class="form-control" placeholder="Enter Password" formControlName="password" required>
+      
+                <label for="psw-repeat"><b>Repeat Password</b></label>
+                <input type="password" class="form-control" placeholder="Repeat Password" formControlName="pass-repeat" required>
+      
+                  <button type="submit" class="btn btn-primary" (click)="registerAttempt()">Register</button>
+               
+              </div>
+            </form>     
+    </div>
+   
+  </ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Register</button>
