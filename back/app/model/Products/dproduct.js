@@ -24,8 +24,15 @@ removeprod = function(userid,fuelid,result) {
 						result(null,{"sucess":false,"message":"Product id does not exist in database !"});
 					 }
 					 else {
-						console.log("Product with id "+fuelid+" has been deleted !");
-					 	result(null,{"success":true,"message":"OK"});
+						console.log(res2);
+						if(!res2.message=='' && !res2.changedRows) {
+							console.log("Product with id "+fuelid+" is already withdrawn !");
+					 		result(null,{"success":true,"message":"Product is already withdrawn"});
+						}
+						else {
+							console.log("Product with id "+fuelid+" has been deleted !");
+					 		result(null,{"success":true,"message":"OK"});
+						}
 					}
 				}
 			});
