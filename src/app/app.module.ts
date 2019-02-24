@@ -13,6 +13,7 @@ import { LogoutUserComponent } from './components/logout-user/logout-user.compon
 import { ShopsListComponent } from './components/shops-list/shops-list.component';
 import { AddShopComponent } from './components/add-shop/add-shop.component';
 import { ShopDetailsComponent } from './components/shop-details/shop-details.component';
+import { TesterComponent } from './components/tester/tester.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ShopDetailsComponent } from './components/shop-details/shop-details.com
     LogoutUserComponent,
     ShopsListComponent,
     AddShopComponent,
-    ShopDetailsComponent
+    ShopDetailsComponent,
+    TesterComponent
   ],
   imports: [
     BrowserModule,

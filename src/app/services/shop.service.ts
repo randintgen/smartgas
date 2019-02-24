@@ -4,6 +4,8 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ShopResponse } from '../interfaces/shop-response';
 import { CreateShopResponse } from '../interfaces/create-shop-response';
 
+import { StandardResponse } from '../interfaces/standard-response';
+
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -99,5 +101,21 @@ export class ShopService {
     );
 
     return shopTaken;
+  };
+
+  deleteShop(id: number): Observable<StandardResponse> {
+
+    var deleteShopUrl = this.baseUrl + 'shops/' + id;
+
+    var deleteShopRequest = this.http.delete<StandardResponse>(
+      deleteShopUrl,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-OBSERVATORY-AUTH': localStorage.getItem('token')
+        })
+      });
+
+    return deleteShopRequest;
   };
 }
