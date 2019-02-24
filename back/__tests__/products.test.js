@@ -700,10 +700,18 @@ describe('DELETE products test', () => {
 	});
 
 	// delete product with name = abc  description = abc category = abc tags = ["a"]
- 	test('delete product with name = abc  description = abc category = abc tags = ["a"] notadmin1 ', async () => {
+ 	test('delete product with name = abc  description = abc category = abc tags = ["a"] notadmin1 first ', async () => {
 	 	const response = await request(server).delete('/observatory/api/products/'+id).set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
 	 	expect(response.status).toEqual(200);
 		expect(response.text).toContain('{"message":"OK"}');
+
+	});
+
+	// delete product with name = abc  description = abc category = abc tags = ["a"]
+ 	test('delete product with name = abc  description = abc category = abc tags = ["a"] notadmin1 second', async () => {
+	 	const response = await request(server).delete('/observatory/api/products/'+id).set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
+	 	expect(response.status).toEqual(200);
+		expect(response.text).toContain('{"message":"Product is already withdrawn"}');
 
 	});
 	
@@ -725,6 +733,22 @@ describe('DELETE products test', () => {
 	 	const response = await request(server).delete('/observatory/api/products/'+id).set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token2);
 	 	expect(response.status).toEqual(200);
 		expect(response.text).toContain('{"message":"OK"}');
+
+	});
+
+	// delete product with name = abc  description = abc category = abc tags = ["a"]
+ 	test('delete product with name = abc  description = abc category = abc tags = ["a"] notadmin1 AFTER ADMIN', async () => {
+	 	const response = await request(server).delete('/observatory/api/products/'+id).set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
+	 	expect(response.status).toEqual(404);
+		expect(response.text).toContain('{"sucess":false,"message":"Product id does not exist in database !"}');
+
+	});
+
+	// delete product with name = abc  description = abc category = abc tags = ["a"] ADMIN
+ 	test('delete product with name = abc  description = abc category = abc tags = ["a"] ADMIN AFTER ADMIN', async () => {
+	 	const response = await request(server).delete('/observatory/api/products/'+id).set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token2);
+	 	expect(response.status).toEqual(404);
+		expect(response.text).toContain('{"sucess":false,"message":"Product id does not exist in database !"}');
 
 	});
 
