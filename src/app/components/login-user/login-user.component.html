@@ -1,3 +1,4 @@
+<!--
 <h1 *ngIf="username">{{username}}</h1>
 
 <ng-template #content let-modal>
@@ -7,7 +8,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       <div class="imgcontainer">
-          <!--<img src="" alt="Avatar" class="avatar">-->
+          <--<img src="" alt="Avatar" class="avatar">--
         </div>
    
         <form [formGroup]="loginForm" class="form-group">
@@ -26,4 +27,23 @@
  
 </ng-template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Login</button>
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Login</button> -->
+
+<form [formGroup]="loginForm">
+
+<div class="example-container">
+  <mat-form-field>
+    <input matInput placeholder="Input">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Textarea"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+</form>
