@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+
 
 import { UserService } from '../../services/user.service';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login-user',
@@ -12,7 +14,8 @@ export class LoginUserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private form: FormBuilder
+    private form: FormBuilder,
+    private modalService: NgbModal
   ) { } 
 
   private loginForm = this.form.group({
@@ -23,7 +26,7 @@ export class LoginUserComponent implements OnInit {
   private username: string;
 
   ngOnInit() {
-    this.username = localStorage.getItem('usernae');
+    this.username = localStorage.getItem('username');
   }
 
   private loginAttempt(): void {
@@ -41,5 +44,10 @@ export class LoginUserComponent implements OnInit {
       }
     );
   };
+
+  open(content) {
+    this.modalService.dismissAll(content);
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+  }
 
 }

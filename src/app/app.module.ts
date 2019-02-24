@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { ShopsListComponent } from './components/shops-list/shops-list.component
 import { AddShopComponent } from './components/add-shop/add-shop.component';
 import { ShopDetailsComponent } from './components/shop-details/shop-details.component';
 import { TesterComponent } from './components/tester/tester.component';
+import { FiltersSearchComponent } from './components/filters-search/filters-search.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { TesterComponent } from './components/tester/tester.component';
     ShopsListComponent,
     AddShopComponent,
     ShopDetailsComponent,
-    TesterComponent
+    TesterComponent,
+    FiltersSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
