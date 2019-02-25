@@ -1,4 +1,4 @@
-<!---->
+<!--
 <ng-template #content let-modal>
 
     <div class="modal-body">
@@ -33,3 +33,18 @@
 
 <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Register</button>
 -->
+
+<form [formGroup]="registerForm">
+  <mat-form-field>
+    <input matInput placeholder="Username" formControlName="username">
+  </mat-form-field><br>
+  <mat-form-field>
+    <input matInput placeholder="Password" formControlName="password">
+  </mat-form-field><br>
+  <mat-form-field>
+    <input matInput placeholder="Verify Password" formControlName="pass-repeat">
+  </mat-form-field><br>
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email">
+  </mat-form-field><br>
+</form>
