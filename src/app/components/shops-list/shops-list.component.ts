@@ -21,7 +21,7 @@ export class ShopsListComponent implements OnInit {
     /* 
     this.shopService.getShops().subscribe(
       (response) => {
-        this.allShops=response.products;
+        this.allShops=response.shops;
       }
     )
   };*/
