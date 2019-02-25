@@ -45,9 +45,10 @@ export class LoginUserComponent implements OnInit {
     );
   };
 
+  /*
   open(content) {
     this.modalService.dismissAll(content);
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
-
+  */
 }

@@ -30,20 +30,13 @@
 <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Login</button> -->
 
 <form [formGroup]="loginForm">
-
-<div class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Input">
+    <input matInput type="text" placeholder="Input" formControlName="username">
   </mat-form-field>
-
+  <br>
   <mat-form-field>
-    <textarea matInput placeholder="Textarea"></textarea>
+    <input matInput type="password" placeholder="Password" formControlName="password">
   </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="Select">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+  <br>
+  <button mat-raised-button (click)="loginAttempt()">Log in</button>
 </form>
