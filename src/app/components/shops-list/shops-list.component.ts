@@ -17,12 +17,13 @@ export class ShopsListComponent implements OnInit {
 
   private allShops;
 
-  ngOnInit() {    
+  ngOnInit() {   
+    /* 
     this.shopService.getShops().subscribe(
       (response) => {
         this.allShops=response.shops;
       }
     )
-  };
-
+  };*/
+  }
 }
