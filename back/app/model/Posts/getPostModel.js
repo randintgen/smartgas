@@ -5,7 +5,7 @@ const sql = require('../db.js');
 Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, dateTo, shop_flag, shops, product_flag, products, tag_flag, tags, sort, result) {
 
     var f1;
-    var final = "SELECT post.price, post.dateFrom as date, fuel.type, fuel.description, fuel.fuelid as productId, fuel.tags as productTags, shops.shopid as shopId, shops.name as shopName, shops.tags as shopTags, shops.address as shopAddress";
+    var final = "SELECT post.price, post.dateFrom as date, post.dateTo as date2, fuel.type, fuel.description, fuel.fuelid as productId, fuel.tags as productTags, shops.shopid as shopId, shops.name as shopName, shops.tags as shopTags, shops.address as shopAddress";
     var fr = " FROM ((post INNER JOIN fuel ON fuel.fuelid = post.fuelid) INNER JOIN shops ON shops.shopid = post.shopid)";
     var wh = " WHERE (post.dateFrom <= '" + dateFrom + "') AND (post.dateTo >= '" + dateTo + "')";  // assume we want only posts valid for whole duration
     if (shop_flag) wh += " AND (shops.shopid IN " + shops + ")";
@@ -34,18 +34,19 @@ Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, da
                 if (!geoflag) res[i].shopDist = null;
                 prices.push(res[i]);
             }
-
-            var f2 = final + " ;";
-            sql.query(f2, function (err2, res2) {
-                if (err2 || !res2) {
-                    //console.log("ERROR ON SEARCH TOTAL : " + err2);
-                    result(true,{"success": false, "message": "Something went wrong,please try again later !"});
-                }
-                else {
-                    result(null, {"start": parseInt(start), "count": prices.length, "total": res2.length, "prices": prices});
-                }
-            });
-
+            if (prices.length < count) result(null, {"start": parseInt(start), "count": prices.length, "total": prices.length, "prices": prices});
+            else {
+                var f2 = final + " ;";
+                sql.query(f2, function (err2, res2) {
+                    if (err2) {
+                        //console.log("ERROR ON SEARCH TOTAL : " + err2);
+                        result(true,{"success": false, "message": "Something went wrong,please try again later !"});
+                    }
+                    else {
+                        result(null, {"start": parseInt(start), "count": prices.length, "total": res2.length, "prices": prices});
+                    }
+                });
+            }
         }
     });
 }
