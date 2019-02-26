@@ -18,18 +18,6 @@ export class TesterComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.loginUser("o", "o").subscribe(
-      (response) => {
-        if(response.success){
-          localStorage.setItem('token', response.token);
-          this.shopsService.deleteShop(10).subscribe(
-            (response) => {
-              console.log(response);
-            }
-          );
-        }
-      }
-    )
   }
 
 }

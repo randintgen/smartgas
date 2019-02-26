@@ -1,0 +1,24 @@
+<mat-grid-list cols="8" rowHeight="100px">
+  <mat-grid-tile>Logo</mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile></mat-grid-tile>
+  <mat-grid-tile *ngIf="!isConnected">
+    <button mat-raised-button (click)="openLogin()">
+      Log in
+    </button>
+    <button mat-raised-button (click)="openRegister()">
+      Register
+    </button>
+  </mat-grid-tile>
+  <mat-grid-tile *ngIf="isConnected">
+    {{usernameConnected}}
+  </mat-grid-tile>
+  <mat-grid-tile *ngIf="isConnected">
+    <button mat-raised-button (click)="logoutUser()">
+      Log out
+    </button>
+  </mat-grid-tile>
+</mat-grid-list>

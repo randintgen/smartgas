@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { StorageServiceModule } from 'ngx-webstorage-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
@@ -16,6 +16,9 @@ import { ShopDetailsComponent } from './components/shop-details/shop-details.com
 import { TesterComponent } from './components/tester/tester.component';
 import { FiltersSearchComponent, Types } from './components/filters-search/filters-search.component';
 import { MaterialModule } from './modules/material/material.module';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { UserService } from './services/user.service';
+import { LocalStorageService } from './services/local-storage.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,8 @@ import { MaterialModule } from './modules/material/material.module';
     AddShopComponent,
     ShopDetailsComponent,
     TesterComponent,
-    FiltersSearchComponent
+    FiltersSearchComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +40,20 @@ import { MaterialModule } from './modules/material/material.module';
     ReactiveFormsModule,
     MaterialModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    StorageServiceModule
   ],
-  providers: [],
+  providers: [
+    LocalStorageService
+  ],
+  entryComponents: [
+    LoginUserComponent,
+    RegisterUserComponent
+  ],
+  exports: [
+    LoginUserComponent,
+    RegisterUserComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
