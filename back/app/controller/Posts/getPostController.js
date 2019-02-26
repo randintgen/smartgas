@@ -26,9 +26,9 @@ function compDate(from, to) {
     return (df.getTime() > dt.getTime()); // probably works, should test
 }
 
-// true if inp not a positive integer
+// true if inp not a positive integer or bigger than maximum possible value
 function checkInt2(inp) {
-    return (!Number.isInteger(Number(inp)) || Number(inp) < 1);
+    return (!Number.isInteger(Number(inp)) || Number(inp) < 1 || Number(inp) > 2147483647);
 }
 
 // false if |list[i] - value| = 1 for some i, else true
