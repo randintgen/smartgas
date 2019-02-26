@@ -7,7 +7,7 @@ Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, da
     var f1;
     var final = "SELECT post.price, post.dateFrom as date, fuel.type, fuel.description, fuel.fuelid as productId, fuel.tags as productTags, shops.shopid as shopId, shops.name as shopName, shops.tags as shopTags, shops.address as shopAddress";
     var fr = " FROM ((post INNER JOIN fuel ON fuel.fuelid = post.fuelid) INNER JOIN shops ON shops.shopid = post.shopid)";
-    var wh = " WHERE (post.dateFrom BETWEEN CAST('" + dateFrom + "' AS DATE) AND CAST('" + dateTo + "' AS DATE))";
+    var wh = " WHERE (post.dateFrom <= '" + dateFrom + "') AND (post.dateTo >= '" + dateTo + "')";  // assume we want only posts valid for whole duration
     if (shop_flag) wh += " AND (shops.shopid IN " + shops + ")";
     if (product_flag) wh += " AND (fuel.fuelid IN " + products + ")";
     if (tag_flag) wh += " AND CONCAT(',', fuel.tags, ',', shops.tags, ',') REGEXP ',(" + tags + "),'";
@@ -23,8 +23,8 @@ Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, da
     sql.query(f1, function (err, res) {
 
         if (err) {
-            //console.log("ERROR ON SEARCH : " + err);
-            result(true, {"success": false, "message": "Something went wrong,please try again later !"});
+            console.log("ERROR ON SEARCH : " + err);
+            result(true, {"success": false, "message": "Something went wrong,please try again later !" + err});
         }
         else {
             var prices = [];
