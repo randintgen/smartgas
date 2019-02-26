@@ -1,3 +1,5 @@
+// should fix issue here or with trigger
+
 'user strict';
 
 const sql = require('../db.js');
