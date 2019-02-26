@@ -3,10 +3,10 @@
 var updpost = require('../../model/Posts/updatePostModel.js');
 var authenticate = require('../../auth/auth.js')
 
-// check input is a positive integer number with length less than 11
+// check input is a positive integer number with value less than maximum
 function checkInt(input) {
-    if (input.length > 11 || !Number.isInteger(input)) return true;
-    else return (input < 1);
+    if (!Number.isInteger(input) || input > 2147483647 || input < 1) return true;
+    else return false;
 }
 
 exports.update_post = function(req, res) {
