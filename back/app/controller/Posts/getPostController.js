@@ -43,8 +43,6 @@ exports.my_post_list = function(req, res) {
 
     var flag = false;
     var error;
-    var tempstr;
-    var tempdate;
     var temp;
     var temp2;
 
@@ -112,9 +110,7 @@ exports.my_post_list = function(req, res) {
     }
     if (flag == false) {
         if (!req.query.dateFrom && !req.query.dateTo) {
-            tempdate = new Date();
-            tempstr = tempdate.toLocaleDateString().split("/");
-            dateFrom = tempstr[2] + "-" + tempstr[0] + "-" + tempstr[1];
+            dateFrom = new Date().toJSON().substr(0,10);
             dateTo = dateFrom;
         }
         else if (req.query.dateFrom && req.query.dateTo) {
