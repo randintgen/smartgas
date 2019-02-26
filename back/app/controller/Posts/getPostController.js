@@ -138,40 +138,61 @@ exports.my_post_list = function(req, res) {
     }
     if (flag == false && req.query.shops) {
         shop_flag = true;
-        for (var i=0; i<req.query.shops.length; i++) {
-            if (checkInt2(req.query.shops[i])) {
+        if (typeof req.query.shops == "string") {
+            if (checkInt2(req.query.shops)) {
                 flag = true;
                 error = "Variable shopId is a String of type Integer and should be positive !";
-                break;
-            }
-            else if (i == 0) shops += req.query.shops[i];
-            else shops += "," + req.query.shops[i];
+            } else shops += req.query.shops + ")";
         }
-        shops += ")";
+        else {
+            for (var i=0; i<req.query.shops.length; i++) {
+                if (checkInt2(req.query.shops[i])) {
+                    flag = true;
+                    error = "Variable shopId is a String of type Integer and should be positive !";
+                    break;
+                }
+                else if (i == 0) shops += req.query.shops[i];
+                else shops += "," + req.query.shops[i];
+            }
+            shops += ")";
+        }
     }
     if (flag == false && req.query.products) {
         product_flag = true;
-        for (var i=0; i<req.query.products.length; i++) {
-            if (checkInt2(req.query.products[i])) {
+        if (typeof req.query.products == "string") {
+            if (checkInt2(req.query.products)) {
                 flag = true;
-                error = "Variable productId is a String of type Integer and should be positive !";
-                break;
-            }
-            else if (i == 0) products += req.query.products[i];
-            else products += "," + req.query.products[i];
+                error = "Variable shopId is a String of type Integer and should be positive !";
+            } else products += req.query.products + ")";
         }
-        products += ")";
+        else {
+            for (var i=0; i<req.query.products.length; i++) {
+                if (checkInt2(req.query.products[i])) {
+                    flag = true;
+                    error = "Variable productId is a String of type Integer and should be positive !";
+                    break;
+                }
+                else if (i == 0) products += req.query.products[i];
+                else products += "," + req.query.products[i];
+            }
+            products += ")";
+        }
     }
     if (flag == false && req.query.tags) {
         tag_flag = true;
-        for (var i=0; i<req.query.tags.length; i++) {
-            if (typeof req.query.tags[i] != "string") {
-                flag = true;
-                error = "Variable tag is of type String !";
-                break;
+        if (typeof req.query.tags == "string") {
+            tags_str = req.query.tags;
+        }
+        else {
+            for (var i=0; i<req.query.tags.length; i++) {
+                if (typeof req.query.tags[i] != "string") {
+                    flag = true;
+                    error = "Variable tag is of type String !";
+                    break;
+                }
+                else if (i == 0) tags_str = req.query.tags[i];
+                else tags_str += "|" + req.query.tags[i];
             }
-            else if (i == 0) tags_str = req.query.tags[i];
-            else tags_str += "|" + req.query.tags[i];
         }
     }
     if (flag == false && req.query.sort) {
