@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
-
 import { UserService } from '../../services/user.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-login-user',
@@ -26,7 +26,6 @@ export class LoginUserComponent implements OnInit {
   private username: string;
 
   ngOnInit() {
-    this.username = localStorage.getItem('username');
   }
 
   private loginAttempt(): void {
@@ -34,15 +33,7 @@ export class LoginUserComponent implements OnInit {
     var username = this.loginForm.controls['username'].value;
     var password = this.loginForm.controls['password'].value;
 
-    this.userService.loginUser(username, password).subscribe(
-      (response) => {
-        if(response.success){
-          localStorage.setItem('username', username);
-          localStorage.setItem('token', response.token);
-          this.username = username;
-        }
-      }
-    );
+    this.userService.loginUser(username, password);
   };
   
 }

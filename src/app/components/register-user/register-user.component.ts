@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
 
 import { UserService } from '../../services/user.service';
 import { FormBuilder } from '@angular/forms';
@@ -12,12 +10,13 @@ import { FormBuilder } from '@angular/forms';
 })
 export class RegisterUserComponent implements OnInit {
 
+  private isRegistered: boolean;
   private errorMessage: string;
+  private successMessage: string;
 
   constructor(
     private userService: UserService,
     private form: FormBuilder,
-    private modalService: NgbModal
   ) { }
 
   private registerForm = this.form.group({
@@ -28,9 +27,11 @@ export class RegisterUserComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.isRegistered = false;
   }
 
   private registerAttempt(): void {
+
     var username = this.registerForm.controls['username'].value;
     var pass1 = this.registerForm.controls['password'].value;
     var pass2 = this.registerForm.controls['pass-repeat'].value;
@@ -39,20 +40,21 @@ export class RegisterUserComponent implements OnInit {
     if(pass1 === pass2) {
       this.userService.registerUser(username, pass1, email).subscribe(
         (response) => {
-          if(!response.success){
-            this.errorMessage = response.message;
-          }else{
-            this.errorMessage = undefined;
+          if(response.success) {
+            console
+            this.isRegistered = true;
+            this.successMessage = response.message;
+            console.log(response.message);
           }
+        },
+        (error) => {
+          this.isRegistered = false;
+          this.errorMessage = error.error.message;
+          console.log(this.errorMessage);
+          this.registerForm.reset('');
         }
       );
     }
   };
-
-  open(content) {
-    this.modalService.dismissAll(content);
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
-  }
-
 
 }

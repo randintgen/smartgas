@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { LogRegResponse } from '../interfaces/log-reg-response';
+import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { LocalStorageService } from './local-storage.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,10 +18,12 @@ const httpOptions = {
 
 export class UserService {
 
+  isConnected = new BehaviorSubject(false);
   private baseUrl = 'https://localhost:8765/observatory/api/';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private myStorage: LocalStorageService
   ) { }
 
   registerUser(username: string, password: string, mail: string): Observable<LogRegResponse> {
@@ -40,7 +44,7 @@ export class UserService {
     return RegisterResponse
   };
 
-  loginUser(username: string, password: string): Observable<LogRegResponse> {
+  loginUser(username: string, password: string): void {
     
     var loginUrl = this.baseUrl + 'login';
 
@@ -49,33 +53,49 @@ export class UserService {
       password: password
     };
 
-    var loginResponse = this.http.post<LogRegResponse>(
+    this.http.post<LogRegResponse>(
       loginUrl,
       JSON.stringify(userToLogin),
       httpOptions
+    ).subscribe(
+      (response) => {
+        this.myStorage.storeOnLocal('username', username);
+        this.myStorage.storeOnLocal('token', response.token);
+        console.log(this.myStorage.getFromLocal('token'));
+        this.isConnected.next(true);
+      },
+      (_) => {
+        this.isConnected.next(false);
+      }
     );
-    
-    return loginResponse;
+
   };
 
-  logoutUser(): Observable<LogRegResponse> {
+
+  logoutUser(): void {
 
     var logoutUrl = this.baseUrl + 'logout';
 
-    var newHeaders = {
-      headers: new HttpHeaders({
-        'Content-Type': 'applications/json',
-        'X-OBSERVATORY-AUTH': localStorage.getItem('token')
-      })
-    };
-
-    console.log(localStorage.getItem('token'));
-
-    var LogoutResponse = this.http.post<LogRegResponse>(
+    console.log(this.myStorage.getFromLocal('token'));
+    this.http.post<LogRegResponse>(
       logoutUrl,
-      newHeaders
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'applications/json',
+          'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+        })
+      }
+    ).subscribe(
+      (response) => {
+        this.isConnected.next(false);
+        console.log('user logged out');
+        this.myStorage.removeFromLocal('token');
+        this.myStorage.removeFromLocal('username');
+      },
+      (error) => {
+        console.log(error.error.message);
+      }
     );
 
-    return LogoutResponse;
   };
 }

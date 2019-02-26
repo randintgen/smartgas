@@ -17,14 +17,7 @@ export class LogoutUserComponent implements OnInit {
   }
 
   logoutAttempt(): void {
-    this.userService.logoutUser().subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error.error.message);
-      }
-    );
+    this.userService.logoutUser();
   }
 
 }
