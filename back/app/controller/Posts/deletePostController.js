@@ -3,10 +3,10 @@
 var del_post = require('../../model/Posts/deletePostModel.js');
 var authenticate = require('../../auth/auth.js')
 
-// check input is a positive integer number with length less than 11
+// check input is a positive integer number with value less than maximum
 function checkInt(input) {
-    if (input.length > 11 || !Number.isInteger(input)) return true;
-    else return (input < 1);
+    if (!Number.isInteger(input) || input > 2147483647 || input < 1) return true;
+    else return false;
 }
 
 exports.delete_post = function(req, res){
@@ -34,7 +34,7 @@ exports.delete_post = function(req, res){
             }
 
             else if(!result) {
-                res.status(400).json({
+                res.status(403).json({
                     "success": false,
                     "message": "Authentication failed !"
                 });

@@ -3,10 +3,10 @@
 var createpost = require('../../model/Posts/createPostModel.js');
 var authenticate = require('../../auth/auth.js')
 
-// check input is a positive integer number with length less than 11
+// check input is a positive integer number with value less than maximum
 function checkInt(input) {
-    if (input.length > 11 || !Number.isInteger(input)) return true;
-    else return (input < 1);
+    if (!Number.isInteger(input) || input > 2147483647 || input < 1) return true;
+    else return false;
 }
 
 // check timestamp has correct form, return true if bad format, else false
@@ -88,20 +88,3 @@ exports.create_post = function(req, res) {
         });
     }
 };
-
-/*
-
-  else if (req.body.price.length > 11 || req.body.productId.length > 11 || req.body.shopId.length > 11) {
-    res.status(400).json({
-      "success": false,
-      "message": "One or more fields are not valid !"
-    });
-  }
-  else if (isNaN(Number(req.body.price)) || isNaN(Number(req.body.productId)) || isNaN(Number(req.body.shopId))) {
-    res.status(400).json({
-      "success": false,
-      "message":"One or more fields are not valid !"
-    });
-  }
-
-*/
