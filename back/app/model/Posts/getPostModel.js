@@ -35,7 +35,7 @@ Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, da
                 if (!geoflag) res[i].shopDist = null;
                 prices.push(res[i]);
             }
-            if (prices.length < count) result(null, {"start": parseInt(start), "count": prices.length, "total": prices.length, "prices": prices});
+            if (prices.length < count) result(null, {"success": true, "start": parseInt(start), "count": prices.length, "total": prices.length, "prices": prices});
             else {
                 var f2 = final + " ;";
                 sql.query(f2, function (err2, res2) {
@@ -44,7 +44,7 @@ Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, da
                         result(true,{"success": false, "message": "Something went wrong,please try again later !"});
                     }
                     else {
-                        result(null, {"start": parseInt(start), "count": prices.length, "total": res2.length, "prices": prices});
+                        result(null, {"success": true, "start": parseInt(start), "count": prices.length, "total": res2.length, "prices": prices});
                     }
                 });
             }
