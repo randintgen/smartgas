@@ -24,7 +24,7 @@ Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, da
 
         if (err) {
             //console.log("ERROR ON SEARCH : " + err);
-            result(true, {"success": false, "message": "Something went wrong,please try again later !" + err});
+            result(true, {"success": false, "message": "Something went wrong,please try again later !"});
         }
         else {
             var prices = [];
