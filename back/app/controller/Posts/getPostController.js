@@ -45,6 +45,7 @@ exports.my_post_list = function(req, res) {
     var error;
     var temp;
     var temp2;
+    var tempList;
 
     var start = 0;
     var count = 20;
@@ -134,89 +135,75 @@ exports.my_post_list = function(req, res) {
     }
     if (flag == false && req.query.shops) {
         shop_flag = true;
-        if (typeof req.query.shops == "string") {
-            if (checkInt2(req.query.shops)) {
+        if (typeof req.query.shops == "string") tempList = [req.query.shops];
+        else tempList = req.query.shops;
+
+        for (var i=0; i<tempList.length; i++) {
+            if (checkInt2(tempList[i])) {
                 flag = true;
                 error = "Variable shopId is a String of type Integer and should be positive !";
-            } else shops += req.query.shops + ")";
-        }
-        else {
-            for (var i=0; i<req.query.shops.length; i++) {
-                if (checkInt2(req.query.shops[i])) {
-                    flag = true;
-                    error = "Variable shopId is a String of type Integer and should be positive !";
-                    break;
-                }
-                else if (i == 0) shops += req.query.shops[i];
-                else shops += "," + req.query.shops[i];
+                break;
             }
-            shops += ")";
+            else if (i == 0) shops += tempList[i];
+            else shops += "," + tempList[i];
         }
+        shops += ")";
     }
     if (flag == false && req.query.products) {
         product_flag = true;
-        if (typeof req.query.products == "string") {
-            if (checkInt2(req.query.products)) {
+        if (typeof req.query.products == "string") tempList = [req.query.products];
+        else tempList = req.query.products;
+
+        for (var i=0; i<tempList.length; i++) {
+            if (checkInt2(tempList[i])) {
                 flag = true;
-                error = "Variable shopId is a String of type Integer and should be positive !";
-            } else products += req.query.products + ")";
-        }
-        else {
-            for (var i=0; i<req.query.products.length; i++) {
-                if (checkInt2(req.query.products[i])) {
-                    flag = true;
-                    error = "Variable productId is a String of type Integer and should be positive !";
-                    break;
-                }
-                else if (i == 0) products += req.query.products[i];
-                else products += "," + req.query.products[i];
+                error = "Variable productId is a String of type Integer and should be positive !";
+                break;
             }
-            products += ")";
+            else if (i == 0) products += tempList[i];
+            else products += "," + tempList[i];
         }
+        products += ")";
     }
     if (flag == false && req.query.tags) {
         tag_flag = true;
-        if (typeof req.query.tags == "string") {
-            tags_str = req.query.tags;
-        }
+        if (typeof req.query.tags == "string") tags_str = req.query.tags;
         else {
             for (var i=0; i<req.query.tags.length; i++) {
-                if (typeof req.query.tags[i] != "string") {
-                    flag = true;
-                    error = "Variable tag is of type String !";
-                    break;
-                }
-                else if (i == 0) tags_str = req.query.tags[i];
+                if (i == 0) tags_str = req.query.tags[i];
                 else tags_str += "|" + req.query.tags[i];
             }
         }
     }
     if (flag == false && req.query.sort) {
+        if (typeof req.query.sort == "string") tempList = [req.query.sort];
+        else tempList = req.query.sort;
+
         sort = [];
         sort2 = " ORDER BY ";
-        if (req.query.sort.length > 3) {
+        if (tempList.length > 3) {
             flag = true;
             error = "Wrong sort list !";
         }
         else {
-            for (var i=0; i<req.query.sort.length; i++) {
-                if (req.query.sort[i] == "price|ASC") {
+            for (var i=0; i<tempList.length; i++) {
+                if (tempList[i] == "price|ASC") {
                     temp = 0;
                     temp2 = "price ASC";
                 }
-                else if (req.query.sort[i] == "price|DESC") {
+                else if (tempList[i] == "price|DESC") {
                     temp = 1;
                     temp2 = "price DESC";
                 }
-                else if (req.query.sort[i] == "date|ASC") {
+                else if (tempList[i] == "date|ASC") {
                     temp = 3;
-                    temp2 = "dateFrom ASC";
+                    temp2 = "date ASC";
                 }
-                else if (req.query.sort[i] == "date|DESC") {
+                else if (tempList[i] == "date|DESC") {
                     temp = 4;
-                    temp2 = "dateFrom DESC"
+                    temp2 = "date DESC"
                 }
-                else if (req.query.sort[i] == "geo.dist|ASC") {
+                else if (tempList[i] == "geo.dist|ASC") {
                     temp = 6;
                     temp2 = "shopDist ASC";
                     if (geoflag == false) {
@@ -225,7 +212,7 @@ exports.my_post_list = function(req, res) {
                         break;
                     }
                 }
-                else if (req.query.sort[i] == "geo.dist|DESC") {
+                else if (tempList[i] == "geo.dist|DESC") {
                     temp = 7;
                     temp2 = "shopDist DESC";
                     if (geoflag == false) {
@@ -236,7 +223,7 @@ exports.my_post_list = function(req, res) {
                 }
                 else {
                     flag = true;
-                    error = "Not valied value in sort list !";
+                    error = "Not valid value in sort list !";
                     break;
                 }
                 if (checkPrev(sort, temp)) {
