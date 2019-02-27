@@ -94,7 +94,7 @@ export class ShopService {
   getShop(id: number): Observable<ShopResponse>{
     
     var getShopUrl = this.baseUrl + 'shops/' + id;
-
+    console.log(getShopUrl, id);
     var shopTaken = this.http.get<ShopResponse>(
       getShopUrl,
       httpOptions

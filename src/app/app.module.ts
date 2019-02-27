@@ -20,6 +20,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { UserService } from './services/user.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { SearchFormComponent } from './components/search-form/search-form.component';
+import { ShopPriceHistoryComponent } from './components/shop-details/shop-price-history/shop-price-history.component';
+import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-prices.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
     TesterComponent,
     FiltersSearchComponent,
     NavBarComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    ShopPriceHistoryComponent,
+    ShopPricesComponent
   ],
   imports: [
     BrowserModule,
