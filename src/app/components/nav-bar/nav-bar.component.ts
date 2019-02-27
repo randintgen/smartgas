@@ -36,19 +36,28 @@ export class NavBarComponent implements OnInit {
 
   openLogin(): void {
     const dialogRef = this.openedDialog.open(LoginUserComponent, {
-      width: '250px',
+      width: '300px',
     });
   };
 
   openRegister(): void {
     const dialogRef = this.openedDialog.open(RegisterUserComponent, {
-      width: '400px',
+      width: '300px',
     });
   };
 
   logoutUser(): void {
     this.isConnected = false;
     this.userService.logoutUser();
+  }
+
+  myFunction(): void {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+      x.className += " responsive";
+    } else {
+      x.className = "topnav";
+    }
   }
 
   do(): void {

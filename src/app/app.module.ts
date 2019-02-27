@@ -22,6 +22,9 @@ import { LocalStorageService } from './services/local-storage.service';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { AddressesListComponent } from './components/addresses-list/addresses-list.component';
 
+import { ShopPriceHistoryComponent } from './components/shop-details/shop-price-history/shop-price-history.component';
+import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-prices.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +39,8 @@ import { AddressesListComponent } from './components/addresses-list/addresses-li
     NavBarComponent,
     SearchFormComponent,
     AddressesListComponent
+    ShopPriceHistoryComponent,
+    ShopPricesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 <form [formGroup]="searchForm">
 
+  
   <mat-form-field>
     <mat-select placeholder="Fuel Type" formControlName="fuel">
       <mat-option *ngFor="let type of allProducts" [value]="type.id">

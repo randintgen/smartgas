@@ -1,24 +1,43 @@
-<mat-grid-list cols="8" rowHeight="100px">
-  <mat-grid-tile>Logo</mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile></mat-grid-tile>
-  <mat-grid-tile *ngIf="!isConnected">
-    <button mat-raised-button (click)="openLogin()">
-      Log in
-    </button>
-    <button mat-raised-button (click)="openRegister()">
-      Register
-    </button>
-  </mat-grid-tile>
-  <mat-grid-tile *ngIf="isConnected">
-    {{usernameConnected}}
-  </mat-grid-tile>
-  <mat-grid-tile *ngIf="isConnected">
-    <button mat-raised-button (click)="logoutUser()">
-      Log out
-    </button>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="topnav" id="myTopnav">
+  
+  <a *ngIf="!isConnected">
+      <a class="tile" class="logo">Logo</a>
+
+      <a class="tile" >
+          <button mat-button (click)="openLogin()">
+            Log in
+          </button>
+        </a>
+      <a class="tile" >
+          <button mat-button (click)="openRegister()">
+              Register
+            </button>
+      </a>
+    <a class="icon">
+        <button mat-button (click)="myFunction()">
+            **
+        </button>
+</a>
+   </a> 
+   <a *ngIf="isConnected">
+           <a class="tile" class="logo">Logo</a>
+            <a class="tile">Βρες Βενζινάδικο</a>
+            <a class="tile">Πρόσθεσε Βενζικάδικο</a>
+            <a class="tile">
+                <button mat-button>
+                    {{usernameConnected}}
+                </button>
+              </a>
+            <a class="tile">
+                <button mat-button (click)="logoutUser()">
+              Log out
+            </button>
+            </a>
+          <a class="icon">
+              <button mat-button (click)="myFunction()">
+                  **
+              </button>
+      </a>
+   </a>
+</div>
+
