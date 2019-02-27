@@ -59,7 +59,7 @@ export class SearchFormComponent implements OnInit {
 
   submit() {
 
-    var objSearch: searchObject = {};
+    var objSearch = {};
 
     var products = this.searchForm.controls['fuel'].value;
     var geoDist = this.searchForm.controls['maxDist'].value;

@@ -38,7 +38,7 @@ import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-
     FiltersSearchComponent,
     NavBarComponent,
     SearchFormComponent,
-    AddressesListComponent
+    AddressesListComponent,
     ShopPriceHistoryComponent,
     ShopPricesComponent
   ],
