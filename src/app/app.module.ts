@@ -19,6 +19,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { UserService } from './services/user.service';
 import { LocalStorageService } from './services/local-storage.service';
+import { SearchFormComponent } from './components/search-form/search-form.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LocalStorageService } from './services/local-storage.service';
     ShopDetailsComponent,
     TesterComponent,
     FiltersSearchComponent,
-    NavBarComponent
+    NavBarComponent,
+    SearchFormComponent
   ],
   imports: [
     BrowserModule,

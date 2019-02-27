@@ -168,4 +168,8 @@ export class ProductsService {
 
     return deleteResult;
   };
+
+  searchProducts(){
+
+  }
 }
