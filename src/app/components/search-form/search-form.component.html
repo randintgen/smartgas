@@ -12,11 +12,11 @@
   <div class="example-container">
     
       <section class="here">
-        <mat-checkbox formControlName="here" class="here" [disabled]="disableAllLocs" (click)="disablerLoc()">Here</mat-checkbox>
+        <mat-checkbox formControlName="here" class="here" (click)="disablerLocation()">Here</mat-checkbox>
       </section>
       <div>
       <mat-form-field>
-        <input matInput placeholder="Location" required [disabled]="disableLocation  || disableAllLocs">
+        <input matInput formControlName="location" placeholder="Location" required [disabled]="disableLocation">
       </mat-form-field>
       </div>
   <div>
@@ -30,7 +30,7 @@
         tickInterval="1000"
         min="1"
         max="100"
-        value="10" formControlName="maxDist" (click)="choseMaxDist()"></mat-slider>
+        value="10" formControlName="maxDist"></mat-slider>
     </div>
 
     <div>
@@ -49,7 +49,7 @@
 
 
       <section class="today">
-        <mat-checkbox class="today" formControlName="today" [disabled]="disableAllLocs" (click)="disablerDates()">Today</mat-checkbox>
+        <mat-checkbox class="today" formControlName="today" (click)="disablerDates()">Today</mat-checkbox>
       </section>
 
       <div>
@@ -57,7 +57,7 @@
       </div>
       <div>
       <mat-form-field>
-        <input matInput [matDatepicker]="picker1" placeholder="Choose start date"  [disabled]="disableDates" formControlName="dateFrom">
+        <input matInput [disabled]="disableDates" [matDatepicker]="picker1" placeholder="Choose start date" formControlName="dateFrom">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
@@ -68,7 +68,7 @@
       </div>
       <div>
       <mat-form-field>
-        <input matInput [matDatepicker]="picker2" placeholder="Choose end date" [disabled]="disableDates" formControlName="dateTo">
+        <input matInput [disabled]="disableDates" [matDatepicker]="picker2" placeholder="Choose end date" formControlName="dateTo">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
         <mat-datepicker #picker2></mat-datepicker>
       </mat-form-field>

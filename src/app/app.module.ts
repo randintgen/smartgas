@@ -17,9 +17,10 @@ import { TesterComponent } from './components/tester/tester.component';
 import { FiltersSearchComponent, Types } from './components/filters-search/filters-search.component';
 import { MaterialModule } from './modules/material/material.module';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { UserService } from './services/user.service';
+
 import { LocalStorageService } from './services/local-storage.service';
 import { SearchFormComponent } from './components/search-form/search-form.component';
+import { AddressesListComponent } from './components/addresses-list/addresses-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
     TesterComponent,
     FiltersSearchComponent,
     NavBarComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    AddressesListComponent
   ],
   imports: [
     BrowserModule,
@@ -50,11 +52,13 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
   ],
   entryComponents: [
     LoginUserComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    AddressesListComponent
   ],
   exports: [
     LoginUserComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    AddressesListComponent
   ],
   bootstrap: [AppComponent]
 })

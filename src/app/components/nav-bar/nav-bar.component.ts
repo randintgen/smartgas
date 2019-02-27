@@ -3,7 +3,6 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { LoginUserComponent } from '../login-user/login-user.component';
 import { RegisterUserComponent } from '../register-user/register-user.component';
 import { UserService } from 'src/app/services/user.service';
-import { LOCAL_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
