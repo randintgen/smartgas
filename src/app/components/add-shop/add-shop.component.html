@@ -1,6 +1,41 @@
-<form [formGroup]="addShopForm">
-  shop name: <input type="text" formControlName="name"><br>
-  shop address: <input type="text" formControlName="address"><br>
-  tags: <input type="text" formControlName="tags"><br>
-  <button (click)="addShopAttempt()">Add Shop</button>
-</form>
+
+<div class="container">
+  <div class="row">
+      <div class="col-70">
+          <mat-form-field [formGroup]="addShopForm" class="fullin" >
+              <input type="text"  formControlName="name" matInput placeholder="Όνομα Καταστήματος">
+            </mat-form-field>
+      </div>
+      <div class="col-30">
+          <mat-form-field [formGroup]="addShopForm" class="fullin">
+              <mat-select formControlName="tags" matInput placeholder="Αλυσίδα">
+                <mat-option *ngFor="let alysida of alysides" [value]="alysida.value">
+                  {{alysida.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      </div>
+  </div>
+  <div class="row">
+      <div class="fullin">
+          <mat-form-field [formGroup]="addShopForm" class="fullin">
+            <input type="text"  formControlName="address" matInput placeholder="Διεύθυνση">
+          </mat-form-field>
+        </div>
+  </div>
+
+  <div class="row">
+      <div class="col-70">
+          <mat-form-field [formGroup]="addShopForm" class="fullin">
+              <input type="text"  formControlName="city" matInput placeholder="Πόλη">
+            </mat-form-field>
+      </div>
+      <div class="col-30">
+          <mat-form-field [formGroup]="addShopForm" class="fullin">
+              <input type="text"  formControlName="tk" matInput placeholder="Τ.Κ.">
+            </mat-form-field>
+      </div>
+  </div>
+  
+<button mat-raised-button class="button" (click)="addShopAttempt()">Προσθήκη Καταστήματος</button>
+</div>
