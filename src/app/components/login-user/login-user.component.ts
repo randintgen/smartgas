@@ -1,9 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 import { UserService } from '../../services/user.service';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-login-user',
@@ -14,8 +12,7 @@ export class LoginUserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private form: FormBuilder,
-    private modalService: NgbModal
+    private form: FormBuilder
   ) { } 
 
   private loginForm = this.form.group({

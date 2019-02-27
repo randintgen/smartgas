@@ -5,7 +5,7 @@ import { ShopResponse } from '../interfaces/shop-response';
 import { CreateShopResponse } from '../interfaces/create-shop-response';
 
 import { StandardResponse } from '../interfaces/standard-response';
-
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -19,6 +19,8 @@ const httpOptions = {
 })
 
 export class ShopService {
+
+  private shopAddresses: any;
 
   constructor(
     private http: HttpClient
@@ -118,4 +120,5 @@ export class ShopService {
 
     return deleteShopRequest;
   };
+
 }

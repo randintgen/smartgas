@@ -17,9 +17,11 @@ import { TesterComponent } from './components/tester/tester.component';
 import { FiltersSearchComponent, Types } from './components/filters-search/filters-search.component';
 import { MaterialModule } from './modules/material/material.module';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
-import { UserService } from './services/user.service';
+
 import { LocalStorageService } from './services/local-storage.service';
 import { SearchFormComponent } from './components/search-form/search-form.component';
+import { AddressesListComponent } from './components/addresses-list/addresses-list.component';
+
 import { ShopPriceHistoryComponent } from './components/shop-details/shop-price-history/shop-price-history.component';
 import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-prices.component';
 
@@ -36,6 +38,7 @@ import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-
     FiltersSearchComponent,
     NavBarComponent,
     SearchFormComponent,
+    AddressesListComponent
     ShopPriceHistoryComponent,
     ShopPricesComponent
   ],
@@ -54,11 +57,13 @@ import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-
   ],
   entryComponents: [
     LoginUserComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    AddressesListComponent
   ],
   exports: [
     LoginUserComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    AddressesListComponent
   ],
   bootstrap: [AppComponent]
 })
