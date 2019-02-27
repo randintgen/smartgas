@@ -16,20 +16,23 @@ export class ShopDetailsComponent implements OnInit {
   ) { }
 
   selectedShop;
+  panelOpenState = false;
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    var x = this.shopService.getShop(parseInt(id)).subscribe(
+    console.log(id);
+    this.shopService.getShop(parseInt(id)).subscribe(
       (response) => {
-
-        console.log(response['product']);
-        this.selectedShop = response['product'];
-
+        console.log(id);
+        console.log(response);
+        this.selectedShop=response.product;
       },
       (error) => {
-        console.log(error.error.message);
+        console.log(error);
       }
     );
+
+    console.log(id);
   }
 
 }

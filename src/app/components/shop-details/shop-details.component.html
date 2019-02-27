@@ -1,4 +1,40 @@
+<mat-accordion *ngIf="selectedShop">
+        <mat-expansion-panel  expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Πληροφορίες και Χάρτης {{selectedShop.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+              
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          {{selectedShop.name}}
+          {{selectedShop.address}}
+        </mat-expansion-panel>
+        
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Τρέχουσες Τιμές
+            </mat-panel-title>
+            <mat-panel-description>
+                
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-shop-prices></app-shop-prices>
 
-<h1 *ngIf="selectedShop">{{selectedShop.name}}</h1>
-<h1 *ngIf="selectedShop">{{selectedShop.tag}}</h1>
-<h2 *ngIf="selectedShop">{{selectedShop.address}}</h2>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Ιστορικό Τιμών
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+               
+      <app-shop-price-history></app-shop-price-history>
+        </mat-expansion-panel>
+</mat-accordion>
