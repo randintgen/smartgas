@@ -24,7 +24,12 @@ import { AddressesListComponent } from './components/addresses-list/addresses-li
 
 import { ShopPriceHistoryComponent } from './components/shop-details/shop-price-history/shop-price-history.component';
 import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-prices.component';
+
+import { EditShopComponent } from './components/shop-details/edit-shop/edit-shop.component';
+import { AddPricesOfshopComponent } from './components/shop-details/add-prices-ofshop/add-prices-ofshop.component';
+
 import { HomePageListComponent } from './components/home-page-list/home-page-list.component';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +47,8 @@ import { HomePageListComponent } from './components/home-page-list/home-page-lis
     AddressesListComponent,
     ShopPriceHistoryComponent,
     ShopPricesComponent,
+    EditShopComponent,
+    AddPricesOfshopComponent,
     HomePageListComponent
   ],
   imports: [

@@ -28,6 +28,7 @@ export class ShopDetailsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.shopService.getShop(parseInt(id)).subscribe(
       (response) => {
+
         this.selectedShop = response.product;
         this.selectedShopId = id;
       },

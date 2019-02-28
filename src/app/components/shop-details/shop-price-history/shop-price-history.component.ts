@@ -11,7 +11,9 @@ import { SearchService } from 'src/app/services/search.service';
 export class ShopPriceHistoryComponent implements OnInit {
 
   private allProducts; 
+
   private chosenId: number;
+
 
   constructor(
     private productService: ProductsService,
