@@ -10,7 +10,7 @@ import { ProductsService } from '../../../services/products.service';
 })
 export class ShopPriceHistoryComponent implements OnInit {
 
-private allProducts; 
+  private allProducts; 
 
   constructor(
     private form: FormBuilder,

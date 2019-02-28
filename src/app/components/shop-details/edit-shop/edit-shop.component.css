@@ -1,0 +1,46 @@
+.container {
+    width :60%;
+  }
+
+  .conteiner > .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -6px;
+  }
+
+  .col-70 {
+    width: 70%;
+    padding: 0 6px;
+  }
+
+  .col-30 {
+    width: 30%;
+    padding: 0 6px;
+  }
+
+
+  .fullin {
+    width: 100%;
+    padding: 0 6px;
+  }
+
+  .button {
+    width: 200px;
+}
+  
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column;
+  }
+  .col-70 {
+    width: 100%;
+    padding: 0 6px;
+  }
+
+  .col-30 {
+    width: 100%;
+    padding: 0 6px;
+  }
+}
+
+

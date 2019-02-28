@@ -1,0 +1,45 @@
+<form [formGroup]="addForm">
+
+  <div class="col-30">
+        <mat-form-field [formGroup]="addForm">
+            <input type="number"  formControlName="t1" matInput placeholder="Βενζίνη 95 οκτανίων" min="0.001" max="5.000" step="0.001">
+            <span matSuffix>€&nbsp;</span>
+          </mat-form-field>
+  </div>
+  
+  <div class="col-30">
+      <mat-form-field [formGroup]="addForm">
+          <input type="number"  formControlName="t2" matInput placeholder="Βενζίνη 97 οκτανίων" min="0.001" max="5.000" step="0.001">
+          <span matSuffix>€&nbsp;</span>
+        </mat-form-field>
+</div>
+
+<div class="col-30">
+    <mat-form-field [formGroup]="addForm">
+        <input type="number"  formControlName="t3" matInput placeholder="Βενζίνη 100 οκτανίων" min="0.001" max="5.000" step="0.001">
+        <span matSuffix>€&nbsp;</span>
+      </mat-form-field>
+</div>
+
+<div class="col-30">
+    <mat-form-field [formGroup]="addForm">
+        <input type="number"  formControlName="t4" matInput placeholder="Πετρέλαιο 95 οκτανίων" min="0.001" max="5.000" step="0.001">
+        <span matSuffix>€&nbsp;</span>
+      </mat-form-field>
+</div>
+
+<div class="col-30">
+    <mat-form-field [formGroup]="addForm">
+        <input type="number"  formControlName="t5" matInput placeholder="Αέριο LPG" min="0.001" max="5.000" step="0.001">
+        <span matSuffix>€&nbsp;</span>
+      </mat-form-field>
+</div>
+  
+<div class="col-30">
+    <mat-form-field [formGroup]="addForm">
+        <input type="number"  formControlName="t6" matInput placeholder="Αέριο CNG" min="0.001" max="5.000" step="0.001">
+        <span matSuffix>€&nbsp;</span>
+      </mat-form-field>
+</div>
+
+</form>

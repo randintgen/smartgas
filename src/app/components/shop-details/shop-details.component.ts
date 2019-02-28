@@ -26,7 +26,7 @@ export class ShopDetailsComponent implements OnInit {
       (response) => {
         console.log(id);
         console.log(response);
-        this.selectedShop=response.products;
+        this.selectedShop=response.product;
       },
       (error) => {
         console.log(error);

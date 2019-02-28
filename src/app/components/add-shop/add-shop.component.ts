@@ -56,6 +56,7 @@ export class AddShopComponent implements OnInit {
       {value: 'alysida-23', viewValue: 'Άλλο'}
     ];
 
+    
   ngOnInit() {
   }
 
