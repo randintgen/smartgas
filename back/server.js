@@ -134,7 +134,7 @@ process.on('SIGTERM', () => {
   //client.flushdb( function (err, succeeded) {
   //  console.log(succeeded); // will be true if successfull
   //});
-  console.info('SIGTERM signal received. Closing redis-server connection! All data in redis will be lost.');
+  console.info('\nSIGTERM signal received. Closing redis-server connection!\nAll data in redis will be lost.');
   server.close((err) => {
     // The associated Redis server is now closed.
   });
@@ -143,7 +143,7 @@ process.on('SIGTERM', () => {
 
 process.on('SIGINT', () => {
   //var client = redis.createClient();
-  console.info('SIGINT signal received. Closing redis-server connection! All data in redis will be lost.');
+  console.info('\nSIGINT signal received. Closing redis-server connection!\nAll data in redis will be lost.');
   //client.flushdb( function (err, succeeded) {
   //  console.log("heeyyyy " + succeeded); // will be true if successfull
   //});
