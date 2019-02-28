@@ -1,29 +1,9 @@
 'use strict';
 
+const functions = require("../utils.js");
+
 var createpost = require('../../model/Posts/createPostModel.js');
 var authenticate = require('../../auth/auth.js')
-
-// check input is a positive integer number with value less than maximum
-function checkInt(input) {
-    if (!Number.isInteger(input) || input > 2147483647 || input < 1) return true;
-    else return false;
-}
-
-// check timestamp has correct form, return true if bad format, else false
-function checkDate(mystring) {
-    // regular expression to match required date format
-    var re = /\d\d\d\d-(0[1-9]|1[0-2])-([12]\d|0[1-9]|3[01])/;
-    return !re.test(mystring);
-}
-
-// true if from later than to, checks datefrom is not later than dateto
-function compDate(from, to) {
-    var r1 = from.split("-");
-    var r2 = to.split("-");
-    var df = new Date(r1[0], r1[1], r1[2]);
-    var dt = new Date(r2[0], r2[1], r2[2]);
-    return (df.getTime() > dt.getTime()); // probably works, should test
-}
 
 exports.create_post = function(req, res) {
 
@@ -39,19 +19,19 @@ exports.create_post = function(req, res) {
             "message": "Please complete all the mandatory fields !"
         });
     }
-    else if (typeof req.body.price != "number" || (req.body.price <= 0) || checkInt(req.body.productId) || checkInt(req.body.shopId)) {
+    else if (typeof req.body.price != "number" || (req.body.price <= 0) || functions.checkInt(req.body.productId) || functions.checkInt(req.body.shopId)) {
         res.status(400).json({
             "success": false,
             "message": "One or more fields are not valid !"
         });
     }
-    else if (checkDate(req.body.dateFrom) || checkDate(req.body.dateTo)) {
+    else if (functions.checkDate(req.body.dateFrom) || functions.checkDate(req.body.dateTo)) {
         res.status(400).json({
             "success": false,
             "message": "Date must be in a valid form (YYYY-MM-DD) !"
         });
     }
-    else if (compDate(req.body.dateFrom, req.body.dateTo)) {
+    else if (functions.compDate(req.body.dateFrom, req.body.dateTo)) {
         res.status(400).json({
             "success": false,
             "message": "dateFrom must not be later than dateTo !"

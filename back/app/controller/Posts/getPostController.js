@@ -1,37 +1,10 @@
 'use strict';
 
+const checks = require("../utils.js");
+
 var Postlist = require('../../model/Posts/getPostModel.js');
 
-// check geoLng, geoLat has correct form, return true if bad format, else false
-function checkGeo(lat, lng) {
-    // regular expression to match required format
-    var relat = /[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/;
-    var relng = /[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)/;
-    return (!relat.test(lat) || !relng.test(lng));
-}
-
-// check date has correct form, return true if bad format, else false
-function checkDate(mystring) {
-    // regular expression to match required date format
-    var re = /\d\d\d\d-(0[1-9]|1[0-2])-([12]\d|0[1-9]|3[01])/;
-    return !re.test(mystring);
-}
-
-// true if from later than to, checks from is not later than to
-function compDate(from, to) {
-    var r1 = from.split("-");
-    var r2 = to.split("-");
-    var df = new Date(r1[0], r1[1], r1[2]);
-    var dt = new Date(r2[0], r2[1], r2[2]);
-    return (df.getTime() > dt.getTime()); // probably works, should test
-}
-
-// true if inp not a positive integer or bigger than maximum possible value
-function checkInt2(inp) {
-    return (!Number.isInteger(Number(inp)) || Number(inp) < 1 || Number(inp) > 2147483647);
-}
-
-// false if |list[i] - value| = 1 for some i, else true
+// false if |list[i] - value| = 1 for some i, else true || make sure sort list is ok
 function checkPrev(mylist, value) {
     for (var i=0; i<mylist.length; i++) {
         if ((mylist[i] - value == 1) || (value - mylist[i] == 1)) return false;
@@ -71,14 +44,14 @@ exports.my_post_list = function(req, res) {
         error = "Unsupported format !";
     }
     if (flag == false && req.query.start) {
-        if (!Number.isInteger(Number(req.query.start)) || Number(req.query.start) < 0) {
+        if (checks.checkInt(Number(req.query.start))) {
             flag = true;
             error = "Variable start is of type Integer and should not be negative !";
         }
         else start = Number(req.query.start);
     }
     if (flag == false && req.query.count) {
-        if (checkInt2(req.query.count)) {
+        if (checks.checkInt(Number(req.query.count)) || Number(req.query.count) == 0) {
             flag = true;
             error = "Variable count is of type Integer and should be positive !";
         }
@@ -89,11 +62,11 @@ exports.my_post_list = function(req, res) {
             geoflag = false;
         }
         else if (req.query.geoDist && req.query.geoLng && req.query.geoLat) {
-            if (checkInt2(req.query.geoDist)) {
+            if (checks.checkInt(Number(req.query.geoDist)) || Number(req.query.geoDist) == 0) {
                 flag = true;
                 error = "Variable geoDist is of type Integer and should be positive !";
             }
-            else if (checkGeo(req.query.geoLat, req.query.geoLng)) {
+            else if (checks.checkGeo(req.query.geoLat, req.query.geoLng)) {
                 flag = true;
                 error = "Coordinates are not in the right format (lat -> [-90, 90] | lng -> [-180, 180]) !";
             }
@@ -115,11 +88,11 @@ exports.my_post_list = function(req, res) {
             dateTo = dateFrom;
         }
         else if (req.query.dateFrom && req.query.dateTo) {
-            if (checkDate(req.query.dateFrom) || checkDate(req.query.dateTo)) {
+            if (checks.checkDate(req.query.dateFrom) || checks.checkDate(req.query.dateTo)) {
                 flag = true;
                 error = "Date has format YYYY-MM-DD !";
             }
-            else if (compDate(req.query.dateFrom, req.query.dateTo)) {
+            else if (checks.compDate(req.query.dateFrom, req.query.dateTo)) {
                 flag = true;
                 error = "dateFrom must not be later than dateTo !";
             }
@@ -139,7 +112,7 @@ exports.my_post_list = function(req, res) {
         else tempList = req.query.shops;
 
         for (var i=0; i<tempList.length; i++) {
-            if (checkInt2(tempList[i])) {
+            if (checks.checkInt(Number(tempList[i]))) {
                 flag = true;
                 error = "Variable shopId is a String of type Integer and should be positive !";
                 break;
@@ -155,7 +128,7 @@ exports.my_post_list = function(req, res) {
         else tempList = req.query.products;
 
         for (var i=0; i<tempList.length; i++) {
-            if (checkInt2(tempList[i])) {
+            if (checks.checkInt(Number(tempList[i]))) {
                 flag = true;
                 error = "Variable productId is a String of type Integer and should be positive !";
                 break;
