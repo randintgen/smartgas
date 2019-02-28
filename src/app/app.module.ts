@@ -24,6 +24,7 @@ import { AddressesListComponent } from './components/addresses-list/addresses-li
 
 import { ShopPriceHistoryComponent } from './components/shop-details/shop-price-history/shop-price-history.component';
 import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-prices.component';
+import { HomePageListComponent } from './components/home-page-list/home-page-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-
     SearchFormComponent,
     AddressesListComponent,
     ShopPriceHistoryComponent,
-    ShopPricesComponent
+    ShopPricesComponent,
+    HomePageListComponent
   ],
   imports: [
     BrowserModule,

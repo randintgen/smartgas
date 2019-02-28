@@ -7,6 +7,7 @@ import { CreateShopResponse } from '../interfaces/create-shop-response';
 import { StandardResponse } from '../interfaces/standard-response';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,7 +24,8 @@ export class ShopService {
   private shopAddresses: any;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private route: ActivatedRoute
   ) { }
 
   private baseUrl = 'https://localhost:8765/observatory/api/';
@@ -96,7 +98,6 @@ export class ShopService {
   getShop(id: number): Observable<ShopResponse>{
     
     var getShopUrl = this.baseUrl + 'shops/' + id;
-    console.log(getShopUrl, id);
     var shopTaken = this.http.get<ShopResponse>(
       getShopUrl,
       httpOptions
@@ -108,7 +109,6 @@ export class ShopService {
   deleteShop(id: number): Observable<StandardResponse> {
 
     var deleteShopUrl = this.baseUrl + 'shops/' + id;
-
     var deleteShopRequest = this.http.delete<StandardResponse>(
       deleteShopUrl,
       {

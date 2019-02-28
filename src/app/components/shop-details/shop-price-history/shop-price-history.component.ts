@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 import { ProductsService } from '../../../services/products.service';
-
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-shop-price-history',
@@ -10,12 +10,18 @@ import { ProductsService } from '../../../services/products.service';
 })
 export class ShopPriceHistoryComponent implements OnInit {
 
-private allProducts; 
+  private allProducts; 
+  private chosenId: number;
 
   constructor(
-    private form: FormBuilder,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private searchService: SearchService
   ) { }
+
+  displayedColumns: string[] = ['date', 'price'];
+  private dataSource: any;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngOnInit() {
     this.productService.getProducts().subscribe(
@@ -24,6 +30,33 @@ private allProducts;
       }
     );
   }
+
+  chosenType(id: number): void {
+    var makeDate: any = new Date("2014-01-01");
+
+    makeDate = makeDate.toISOString().split("T")[0];
+
+    var today: any = new Date();
+    today = today.toISOString().split("T")[0];
+    console.log(makeDate);
+
+    console.log(today);
+    this.chosenId = id;
+    this.searchService.searchShops({
+      'products': [id],
+      'dateFrom': makeDate,
+      'dateTo': today,
+      'sort': 'date|DESC'
+    }).subscribe(
+      (response) => {
+        this.dataSource = new MatTableDataSource<any>(response.products);
+        console.log(response);
+        console.log(response.products);
+      }
+    );
+  }
+
+
 
 }
 
