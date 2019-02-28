@@ -1,13 +1,9 @@
 'use strict';
 
+const checks = require("../utils.js");
+
 var del_post = require('../../model/Posts/deletePostModel.js');
 var authenticate = require('../../auth/auth.js')
-
-// check input is a positive integer number with value less than maximum
-function checkInt(input) {
-    if (!Number.isInteger(input) || input > 2147483647 || input < 1) return true;
-    else return false;
-}
 
 exports.delete_post = function(req, res){
 
@@ -17,7 +13,7 @@ exports.delete_post = function(req, res){
             "message": "Unsupported format !"
         });
     }
-    else if (!req.params.id || checkInt(Number(req.params.id))) {
+    else if (!req.params.id || checks.checkInt(Number(req.params.id))) {
         res.status(400).json({
             "success": false,
             "message": "Please provide a valid postId !"
@@ -43,7 +39,7 @@ exports.delete_post = function(req, res){
 
                 // check OK
                 del_post(Number(req.params.id), usrid, function (err1,res1) {
-                    if(err1) res.status(400).json(res1);    // forbidden action
+                    if(err1) res.status(403).json(res1);    // not authorized
                     else {
                         if (res1.success == true) res.json(res1);
                         else res.status(400).json(res1);
