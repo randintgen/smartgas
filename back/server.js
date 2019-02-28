@@ -14,6 +14,7 @@ const session = require('express-session');
 const redis = require('redis');
 const fs = require('fs')
 const https = require('https');
+const RedisServer = require('redis-server');
 
 // read certificates
 
@@ -45,7 +46,7 @@ mc.connect();
 mc.query("SELECT 1 FROM users WHERE username = ? LIMIT 1" , "fnp" , function (erru,resu) {
 
 	if (resu[0]) {
-			
+
 		console.log("Database already initialized !");
 	}
 	else {
@@ -61,9 +62,27 @@ mc.query("SELECT 1 FROM users WHERE username = ? LIMIT 1" , "fnp" , function (er
 });
 
 
-// REDIS Database 
+// REDIS Database
+
+// Simply pass the port that you want a Redis server to listen on.
+const server = new RedisServer({
+    port: 6379,
+    bin: "../other/redis-5.0.3/src/redis-server"    // change path if necessary
+});
+
+server.open((err) => {
+  if (err === null) {
+    // You may now connect a client to the Redis
+    // server bound to port 6379.
+    console.log("Redis Server started");
+  }
+});
 
 var client = redis.createClient();
+
+client.on('connect', function() {
+    console.log('Redis client connected');
+});
 
 client.on('error', function(err){
   	console.log('Something went wrong ', err)
@@ -75,7 +94,7 @@ client.get('counter', function(error, result) {
 
 	else {
 
-		if(result==null) { 
+		if(result==null) {
 
 			client.set('counter',0, function(e1,r1) {
 
@@ -108,6 +127,32 @@ app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave
 
 var routes = require('./app/routes/appRoutes.js'); //importing route
 routes(app); //register the route
+
+process.on('SIGTERM', () => {
+  //var client = redis.createClient();
+  //console.info('SIGTERM signal received. Flushing redis database and closing redis-server connection!');
+  //client.flushdb( function (err, succeeded) {
+  //  console.log(succeeded); // will be true if successfull
+  //});
+  console.info('SIGTERM signal received. Closing redis-server connection! All data in redis will be lost.');
+  server.close((err) => {
+    // The associated Redis server is now closed.
+  });
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  //var client = redis.createClient();
+  console.info('SIGINT signal received. Closing redis-server connection! All data in redis will be lost.');
+  //client.flushdb( function (err, succeeded) {
+  //  console.log("heeyyyy " + succeeded); // will be true if successfull
+  //});
+  server.close((err) => {
+    // The associated Redis server is now closed.
+  });
+  process.exit(0);
+});
+
 
 module.exports = {
 	app,
