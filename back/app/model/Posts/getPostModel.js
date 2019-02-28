@@ -7,7 +7,7 @@ Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, da
     var f1;
     var final = "SELECT post.price, post.dateFrom as date, fuel.type, fuel.description, fuel.fuelid as productId, fuel.tags as productTags, shops.shopid as shopId, shops.name as shopName, shops.tags as shopTags, shops.address as shopAddress, shops.lng as shopLng, shops.lat as shopLat";
     var fr = " FROM ((post INNER JOIN fuel ON fuel.fuelid = post.fuelid) INNER JOIN shops ON shops.shopid = post.shopid)";
-    var wh = " WHERE (post.dateFrom <= '" + dateTo + "')";  // assume we want only posts which have been valid sometime during the chosen period
+    var wh = " WHERE (post.dateFrom <= '" + dateTo + "') AND (post.dateTo >= '" + dateFrom + "')";  // assume we want only posts which have been valid sometime during the chosen period
     if (shop_flag) wh += " AND (shops.shopid IN " + shops + ")";
     if (product_flag) wh += " AND (fuel.fuelid IN " + products + ")";
     if (tag_flag) wh += " AND CONCAT(',', fuel.tags, ',', shops.tags, ',') REGEXP ',(" + tags + "),'";
