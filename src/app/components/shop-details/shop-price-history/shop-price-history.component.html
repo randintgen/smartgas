@@ -1,5 +1,5 @@
       <mat-select placeholder="Fuel Type" >
-        <mat-option *ngFor="let type of allProducts" [value]="type.id">
+        <mat-option *ngFor="let type of allProducts" [value]="type.id" (click)="chosenType(type.id);">
           {{type.name}} {{type.description}}
         </mat-option>
       </mat-select>
@@ -14,20 +14,20 @@
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
         <!-- Date Column -->
-        <ng-container matColumnDef="dayFrom">
-            <th mat-header-cell *matHeaderCellDef>   </th>
-            <td mat-cell *matCellDef="let element"> {{element.dayFrom}} </td>
+        <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
           </ng-container>
 
-        <!-- Date Column -->
+        <!-- Date Column 
         <ng-container matColumnDef="dayTo">
             <th mat-header-cell *matHeaderCellDef>   </th>
             <td mat-cell *matCellDef="let element"> {{element.dayTo}} </td>
-        </ng-container>
+        </ng-container>-->
           
         <!-- Price Column -->
         <ng-container matColumnDef="price">
-          <th mat-header-cell *matHeaderCellDef>   </th>
+          <th mat-header-cell *matHeaderCellDef> Price </th>
           <td mat-cell *matCellDef="let element"> {{element.price}} </td>
         </ng-container>
       

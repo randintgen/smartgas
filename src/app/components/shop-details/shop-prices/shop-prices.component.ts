@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { SearchService } from '../../../services/search.service';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-shop-prices',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopPricesComponent implements OnInit {
 
-  constructor() { }
+  @Input() shopId;
+
+  private results; 
+
+  constructor(
+    private searchService: SearchService,
+    private route: ActivatedRoute
+  ) { }
+  
+  displayedColumns: string[] = ['id', 'type', 'price', 'dayFrom'];
+  private dataSource;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
 
   ngOnInit() {
+    this.searchService.searchShops({
+      shopId: [this.shopId],
+      sort: "date|DESC"
+    }).subscribe(
+      (response) => {
+        console.log(response);
+        this.dataSource = new MatTableDataSource<any>(response.prices);
+        this.dataSource.paginator = this.paginator;
+      }
+    );
   }
 
 }

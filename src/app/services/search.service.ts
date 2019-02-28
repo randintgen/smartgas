@@ -121,7 +121,8 @@ export class SearchService {
         searchUrl += '&';
       }
       searchUrl += 'sort=price|ASC';
-    }
+    } 
+    console.log(searchUrl);
 
     var result = this.http.get(searchUrl, {
       headers: new HttpHeaders({
