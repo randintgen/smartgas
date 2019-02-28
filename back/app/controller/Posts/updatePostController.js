@@ -1,13 +1,9 @@
 'use strict';
 
+const checks = require("../utils.js");
+
 var updpost = require('../../model/Posts/updatePostModel.js');
 var authenticate = require('../../auth/auth.js')
-
-// check input is a positive integer number with value less than maximum
-function checkInt(input) {
-    if (!Number.isInteger(input) || input > 2147483647 || input < 1) return true;
-    else return false;
-}
 
 exports.update_post = function(req, res) {
 
@@ -23,7 +19,7 @@ exports.update_post = function(req, res) {
             "message": "Please provide postId !"
         });
     }
-    else if (checkInt(Number(req.params.id))) {
+    else if (checks.checkInt(Number(req.params.id))) {
         res.status(400).json({
             "success": false,
             "message": "postId is not valid !"
@@ -35,13 +31,13 @@ exports.update_post = function(req, res) {
             "message": "Please complete at least one field !"
         });
     }
-    else if (req.body.productId && checkInt(req.body.productId)) {
+    else if (req.body.productId && checks.checkInt(req.body.productId)) {
         res.status(400).json({
             "success": false,
             "message": "productId is not valid !"
         });
     }
-    else if (req.body.shopId && checkInt(req.body.shopId)) {
+    else if (req.body.shopId && checks.checkInt(req.body.shopId)) {
         res.status(400).json({
             "success": false,
             "message": "shopId is not valid !"
