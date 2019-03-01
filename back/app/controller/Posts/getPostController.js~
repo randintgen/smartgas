@@ -226,7 +226,7 @@ exports.my_post_list = function(req, res) {
         Postlist(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, dateTo, shop_flag, shops, product_flag, products, tag_flag, tags_str, sort2, function(err, result) {
             if (err) res.status(400).json(result);
             else {
-		//console.log(result);
+		console.log(result);
                 if (result.success == true) res.json(result);
                 else res.status(400).json(result);
             }

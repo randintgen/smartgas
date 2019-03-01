@@ -69,7 +69,7 @@ get_Shops = function(srt,cnt,stat,sorting,result) {
 				shops.push(res[i]);
 
 			}
-			//console.log(shops);
+			console.log(shops);
 			sql.query("select count(*) as total from shops;",function(err2,res2) {
 
 				if(err2){

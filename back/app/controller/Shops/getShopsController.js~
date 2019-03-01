@@ -13,8 +13,8 @@ exports.view_shops = function(req, res) {
   if(req.query.format=="xml") res.status(400).json({"success":false,"message":"XML format is not supported !"});
 
   else{
-    if(req.query.start && !((parseFloat(req.query.start)%1)===0)) res.status(400).json({"success":false,"message":"Start variable must be an integer !"});
-		else if(req.query.count && !((parseFloat(req.query.count)%1)===0)) res.status(400).json({"success":false,"message":"Count variable must be an integer !"});
+    if(isNaN(req.query.start)) res.status(400).json({"success":false,"message":"Start variable must be an integer !"});
+		else if(isNaN(req.query.count)) res.status(400).json({"success":false,"message":"Count variable must be an integer !"});
 		else if(req.query.status && !(req.query.status=="ALL" || req.query.status=="WITHDRAWN" || req.query.status=="ACTIVE")) {
 			res.status(400).json({"success":false,"message":"Status variable must be ACTIVE or WITHDRAWN or ALL !"});
 		}

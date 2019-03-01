@@ -38,7 +38,7 @@ createpost = function createPost(newPost, userid, result) {
                         inp += "( '" + newPost.shopId + "' , '" + userid + "' , '" + newPost.productId + "' , '" + newPost.price + "' , '" + JSON.stringify(dates[i]._now).substr(1,10) + "')";
                     }
                     inp += ";";
-
+	sql.query("LOCK TABLES 'post' WRITE",function (dsa,dsaa) {
                     sql.query(inp, function (err3, res3) {
                         if (err3) {
                             console.log("error on insert : ", err3);
@@ -66,6 +66,9 @@ createpost = function createPost(newPost, userid, result) {
                             });
                         }
                     });
+	  });
+	  sql.query("UNLOCK TABLES",function(a,b){
+	   });
                 }
             });
         }

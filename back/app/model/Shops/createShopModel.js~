@@ -5,30 +5,30 @@ const sql = require('../db.js');
 var Shop = function(shop) {
 
 	this.name = shop.name;
+
 	this.tags = shop.tags;
 	this.withdrawn = shop.withdrawn;
 	this.imgpath = shop.ipath;
-  	this.lng = shop.lng;
-  	this.lat = shop.lat;
-  	this.address = shop.address;
+  this.lng = shop.lng;
+  this.lat = shop.lat;
+  this.address = shop.address;
 
 };
 
 var newShop = function(id,shop) {
-
 	this.id = id;
 	this.name = shop.name;
 	this.tags = shop.tags;
 	this.withdrawn = shop.withdrawn;
-  	this.lng = shop.lng;
-  	this.lat = shop.lat;
-  	this.address = shop.address;
+  this.lng = shop.lng;
+  this.lat = shop.lat;
+  this.address = shop.address;
 };
 
 Shop.create_shop = function(newshop,result) {
 
 	var temp,tagsplit;
- 	//console.log(newshop);
+  console.log(newshop);
 	sql.query("INSERT INTO shops set ?", newshop, function (err, res) {
 
 		if(err) {
