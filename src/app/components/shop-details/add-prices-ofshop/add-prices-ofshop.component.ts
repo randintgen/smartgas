@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-prices-ofshop',
@@ -7,8 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPricesOfshopComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private form: FormBuilder
+  ) { }
 
+  private addForm = this.form.group({
+    t1: [''],
+    t2: [''],
+    t3: [''],
+    t4: [''],
+    t5: [''],
+    t6: ['']
+  });
   ngOnInit() {
   }
 

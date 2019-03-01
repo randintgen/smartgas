@@ -51,9 +51,9 @@ export class ShopPriceHistoryComponent implements OnInit {
       'sort': 'date|DESC'
     }).subscribe(
       (response) => {
-        this.dataSource = new MatTableDataSource<any>(response.products);
         console.log(response);
-        console.log(response.products);
+        this.dataSource = new MatTableDataSource<any>(response.prices);
+        this.dataSource.paginator = this.paginator;
       }
     );
   }

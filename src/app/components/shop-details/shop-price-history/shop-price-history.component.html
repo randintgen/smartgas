@@ -1,8 +1,8 @@
-      <mat-select placeholder="Fuel Type" >
-        <mat-option *ngFor="let type of allProducts" [value]="type.id" (click)="chosenType(type.id);">
-          {{type.name}} {{type.description}}
-        </mat-option>
-      </mat-select>
+<mat-select placeholder="Fuel Type" >
+  <mat-option *ngFor="let type of allProducts" [value]="type.id" (click)="chosenType(type.id);">
+    {{type.name}} {{type.description}}
+  </mat-option>
+</mat-select>
 
 
 

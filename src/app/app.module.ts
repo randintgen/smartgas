@@ -29,6 +29,11 @@ import { EditShopComponent } from './components/shop-details/edit-shop/edit-shop
 import { AddPricesOfshopComponent } from './components/shop-details/add-prices-ofshop/add-prices-ofshop.component';
 
 import { HomePageListComponent } from './components/home-page-list/home-page-list.component';
+import { MapsComponent } from './components/maps/maps.component';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+import { ShowOnMapComponent } from './components/shop-details/show-on-map/show-on-map.component';
+import { ShownShopsComponent } from './components/home-page-list/shown-shops/shown-shops.component';
+import { MarkerOnMapComponent } from './components/search-form/marker-on-map/marker-on-map.component';
 
 
 @NgModule({
@@ -49,7 +54,11 @@ import { HomePageListComponent } from './components/home-page-list/home-page-lis
     ShopPricesComponent,
     EditShopComponent,
     AddPricesOfshopComponent,
-    HomePageListComponent
+    HomePageListComponent,
+    MapsComponent,
+    ShowOnMapComponent,
+    ShownShopsComponent,
+    MarkerOnMapComponent
   ],
   imports: [
     BrowserModule,
@@ -57,22 +66,24 @@ import { HomePageListComponent } from './components/home-page-list/home-page-lis
     HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyBe4CMJoauhV-5CT98i1tTsf2563iG39_4'}),
     BrowserAnimationsModule,
     FormsModule,
     StorageServiceModule
   ],
   providers: [
-    LocalStorageService
+    LocalStorageService,
+    GoogleMapsAPIWrapper
   ],
   entryComponents: [
     LoginUserComponent,
     RegisterUserComponent,
-    AddressesListComponent
+    MarkerOnMapComponent
   ],
   exports: [
     LoginUserComponent,
     RegisterUserComponent,
-    AddressesListComponent
+    MarkerOnMapComponent
   ],
   bootstrap: [AppComponent]
 })

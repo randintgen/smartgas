@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 import { SearchService } from '../../services/search.service';
-import { OpenStreetMapProvider } from 'leaflet-geosearch';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home-page-list',
@@ -9,25 +10,36 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 })
 export class HomePageListComponent implements OnInit {
 
+  private syntagmaSquareLoc = [23.734837, 37.975655];
+  private basicResults;
+  private dataSource;
+  private shopsHomePage = new Subject<any>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  displayedColumns: string[] = ['name', 'type', 'address', 'price'];
+  
+
+
   constructor(
     private searchService: SearchService
-  ) { }
+  ){ }
 
   ngOnInit() {
-    
+    this.searchService.searchShops({
+      'geoLng': this.syntagmaSquareLoc[0],
+      'geoLat': this.syntagmaSquareLoc[1],
+      'geoDist': 20,
+      'products': [1],
+      'sort': 'price|ASC'
+    }).subscribe(
+      (response) => {
+        this.basicResults = response.prices;
+        this.dataSource = new MatTableDataSource<any>(response.prices);
+        this.dataSource.paginator = this.paginator;
+        this.shopsHomePage.next(response.prices);
+      }
+    );
   }
 
 }
-
-/*
-  ask for:  location -> syntagma
-            distance -> 10km
-            type -> 1
-            sort -> price|ASC
-
-  i show:   shop-name
-            shop-tag
-            shop-address 
-            shop-dist
-            price
-*/
