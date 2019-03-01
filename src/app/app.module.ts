@@ -20,7 +20,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 import { LocalStorageService } from './services/local-storage.service';
 import { SearchFormComponent } from './components/search-form/search-form.component';
-import { AddressesListComponent } from './components/addresses-list/addresses-list.component';
+import { AddressesListComponent } from './components/search-form/addresses-list/addresses-list.component';
 
 import { ShopPriceHistoryComponent } from './components/shop-details/shop-price-history/shop-price-history.component';
 import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-prices.component';
@@ -78,12 +78,12 @@ import { MarkerOnMapComponent } from './components/search-form/marker-on-map/mar
   entryComponents: [
     LoginUserComponent,
     RegisterUserComponent,
-    MarkerOnMapComponent
+    AddressesListComponent
   ],
   exports: [
     LoginUserComponent,
     RegisterUserComponent,
-    MarkerOnMapComponent
+    AddressesListComponent
   ],
   bootstrap: [AppComponent]
 })

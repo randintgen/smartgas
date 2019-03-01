@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchFormComponent } from '../search-form/search-form.component';
-import { LocalStorageService } from '../../services/local-storage.service';
+import { LocalStorageService } from '../../../services/local-storage.service';
 
 @Component({
   selector: 'app-addresses-list',
@@ -9,14 +8,15 @@ import { LocalStorageService } from '../../services/local-storage.service';
 })
 export class AddressesListComponent implements OnInit {
 
+  private results;
+
   constructor(
     private myStorage: LocalStorageService
   ) { }
 
-  private allAdds;
   ngOnInit() {
-    this.allAdds = this.myStorage.getFromLocal('adds');
-    console.log(this.allAdds);
+    this.results = this.myStorage.getFromLocal('addresses');
+    console.log(this.results);
   }
 
 }
