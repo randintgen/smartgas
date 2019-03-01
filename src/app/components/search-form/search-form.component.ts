@@ -10,6 +10,7 @@ import { MatDialogRef,  MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { AddressesListComponent } from '../addresses-list/addresses-list.component';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { SearchService } from '../../services/search.service';
+import { MarkerOnMapComponent } from './marker-on-map/marker-on-map.component';
 
 @Component({
   selector: 'app-search-form',
@@ -22,6 +23,9 @@ export class SearchFormComponent implements OnInit {
   private please: string;
   private disableDates: boolean;
   private disableLocation: boolean;
+  private selected: boolean = false;
+  private objSearch;
+  private searchResults;
 
   constructor(
     private form: FormBuilder,
@@ -44,6 +48,8 @@ export class SearchFormComponent implements OnInit {
   });
 
   ngOnInit() {
+    this.objSearch = {};
+
     this.productService.getProducts().subscribe(
       (response) => {
         this.allProducts = response.products;
@@ -52,14 +58,22 @@ export class SearchFormComponent implements OnInit {
   }
 
   openListAdd(result: any): void {
-    const dialogRef = this.dialog.open(AddressesListComponent, {
+    const dialogRef = this.dialog.open(MarkerOnMapComponent, {
       width: '600px'
+    });
+    dialogRef.afterClosed().subscribe(_ => {
+      var results = this.myStorage.getFromLocal('addresses');
+      this.objSearch['geοLat'] = results[parseInt(this.myStorage.getFromLocal('selectedMarker'))].y;
+      this.objSearch['geοLng'] = results[parseInt(this.myStorage.getFromLocal('selectedMarker'))].x;
+      this.searchService.searchShops(this.objSearch).subscribe(
+        (response) => {
+          this.searchResults = response.prices;
+        }
+      );
     });
   };
 
   submit() {
-
-    var objSearch = {};
 
     var products = this.searchForm.controls['fuel'].value;
     var geoDist = this.searchForm.controls['maxDist'].value;
@@ -75,53 +89,57 @@ export class SearchFormComponent implements OnInit {
       const provider = new OpenStreetMapProvider();
 
     if(!this.disableDates && !today && dateFrom) {
-      objSearch['dateFrom'] = dateFrom.toISOString();
-      objSearch['dateTo'] = dateTo.toISOString();
+      this.objSearch['dateFrom'] = dateFrom.toISOString();
+      this.objSearch['dateTo'] = dateTo.toISOString();
     }
 
     if(products){
-      objSearch['products'] = [products];
+      this.objSearch['products'] = [products];
     }
+
+    console.log('ekjnvnejrwnjew', geoDist);
 
     if(geoDist) {
-      objSearch['geoDist'] = geoDist;
+      this.objSearch['geoDist'] = geoDist;
+    }else{
+      this.objSearch['geoDist'] = '100';
     }
 
-    objSearch['sort'] = 'price|ASC';
+    console.log(this.objSearch['geoDist']);
+
+    this.objSearch['sort'] = 'price|ASC';
 
     const results = provider.search({ query: location }).then(
       (result) => {
         if(result.length > 1){
           this.myStorage.storeOnLocal('adds', result);
+          this.selected = true;
           this.openListAdd(result);
         }else if(result.length == 1){
-          objSearch['geoLat'] = result[0].x;
-          objSearch['geoLng'] = result[0].y;
+          this.objSearch['geoLat'] = result[0].x;
+          this.objSearch['geoLng'] = result[0].y;
           console.log('ok');
-          this.searchService.searchShops(objSearch).subscribe(
+          this.searchService.searchShops(this.objSearch).subscribe(
             (response) => {
-              console.log(response);
+              this.searchResults = response.prices;
             }
           );
         }
       })
   }else{
-    console.log('here');
-    navigator.geolocation.getCurrentPosition(
-      (response) => {
-        objSearch['geoLng'] = response.coords.latitude;
-        objSearch['geoLat'] = response.coords.longitude;
-        console.log(response.coords.latitude);
-        this.searchService.searchShops(objSearch).subscribe(
-          (response) => {
-            console.log(response);
-          }
-        );
-      }
-    );
-  }
-
-  this.searchService.searchShops(objSearch);
+      navigator.geolocation.getCurrentPosition(
+        (response) => {
+          this.objSearch['geoLng'] = response.coords.latitude;
+          this.objSearch['geoLat'] = response.coords.longitude;
+          this.searchService.searchShops(this.objSearch).subscribe(
+            (response) => {
+              this.searchResults = response.prices;
+              console.log(response);
+            }
+          );
+        }
+      );
+    }
   };
 
   disablerLocation(): void {
@@ -135,4 +153,5 @@ export class SearchFormComponent implements OnInit {
   async delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   };
+
 }

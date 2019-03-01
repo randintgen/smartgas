@@ -32,9 +32,11 @@ export class ShopPricesComponent implements OnInit {
       sort: "date|DESC"
     }).subscribe(
       (response) => {
-        console.log(response);
         this.dataSource = new MatTableDataSource<any>(response.prices);
         this.dataSource.paginator = this.paginator;
+      },
+      (error) => {
+        console.log(error.error.message);
       }
     );
   }

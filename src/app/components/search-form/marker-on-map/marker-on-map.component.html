@@ -1,0 +1,3 @@
+<agm-map *ngIf="all" [latitude]="+all[0].y" [longitude]="+all[0].x">
+  <agm-marker *ngFor="let add of all" [latitude]="+add.y" [longitude]="+add.x" (markerClick)="keep(add)"></agm-marker>
+</agm-map>

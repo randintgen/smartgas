@@ -34,7 +34,7 @@ export class ShopsListComponent implements OnInit {
     this.shopService.getShops().subscribe(
       (response) => {
         console.log(response);
-        this.dataSource = new MatTableDataSource<Shop>(response.products);
+        this.dataSource = new MatTableDataSource<Shop>(response.product);
         this.dataSource.paginator = this.paginator;
 
       }

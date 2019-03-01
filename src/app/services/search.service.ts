@@ -19,7 +19,8 @@ export class SearchService {
     var searchUrl = this.baseUrl + 'prices';
     var counter: number = 0;
 
-    console.log(JSON.stringify(searchObj));
+    console.log('fbvnjkrwsenfjkeanjsk', JSON.stringify(searchObj));
+    console.log(searchObj.geoDist);
     if(searchObj.geoDist){
       if(counter == 0){
         searchUrl += '?';
@@ -31,6 +32,7 @@ export class SearchService {
     }
 
     if(searchObj.geoLat){
+      console.log('un');
       if(counter == 0){
         searchUrl += '?';
       }else{
@@ -41,6 +43,7 @@ export class SearchService {
     }
 
     if(searchObj.geoLng){
+      console.log(searchObj.geoLng);
       if(counter == 0){
         searchUrl += '?';
       }else{
