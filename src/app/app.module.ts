@@ -34,6 +34,10 @@ import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { ShowOnMapComponent } from './components/shop-details/show-on-map/show-on-map.component';
 import { ShownShopsComponent } from './components/home-page-list/shown-shops/shown-shops.component';
 import { MarkerOnMapComponent } from './components/search-form/marker-on-map/marker-on-map.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { NewUsernameComponent } from './components/profile/new-username/new-username.component';
+import { NewPasswordComponent } from './components/profile/new-password/new-password.component';
+import { MyhistoryComponent } from './components/profile/myhistory/myhistory.component';
 
 
 @NgModule({
@@ -58,7 +62,11 @@ import { MarkerOnMapComponent } from './components/search-form/marker-on-map/mar
     MapsComponent,
     ShowOnMapComponent,
     ShownShopsComponent,
-    MarkerOnMapComponent
+    MarkerOnMapComponent,
+    ProfileComponent,
+    NewUsernameComponent,
+    NewPasswordComponent,
+    MyhistoryComponent
   ],
   imports: [
     BrowserModule,

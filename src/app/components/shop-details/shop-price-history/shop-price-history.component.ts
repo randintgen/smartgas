@@ -12,7 +12,7 @@ export class ShopPriceHistoryComponent implements OnInit {
 
   private allProducts; 
 
-  private chosenId: number;
+  private chosenId: number=1;
 
 
   constructor(
@@ -29,6 +29,29 @@ export class ShopPriceHistoryComponent implements OnInit {
     this.productService.getProducts().subscribe(
       (response) => {
         this.allProducts = response.products;
+      }
+    );
+
+    var makeDate: any = new Date("2014-01-01");
+
+    makeDate = makeDate.toISOString().split("T")[0];
+
+    var today: any = new Date();
+    today = today.toISOString().split("T")[0];
+    console.log(makeDate);
+
+    console.log(today);
+    this.chosenId = 1;
+    this.searchService.searchShops({
+      'products': [1],
+      'dateFrom': makeDate,
+      'dateTo': today,
+      'sort': 'date|DESC'
+    }).subscribe(
+      (response) => {
+        console.log(response);
+        this.dataSource = new MatTableDataSource<any>(response.prices);
+        this.dataSource.paginator = this.paginator;
       }
     );
   }
