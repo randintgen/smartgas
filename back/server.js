@@ -67,7 +67,7 @@ mc.query("SELECT 1 FROM users WHERE username = ? LIMIT 1" , "fnp" , function (er
 // Simply pass the port that you want a Redis server to listen on.
 const server = new RedisServer({
     port: 6379,
-    bin: "../other/redis-5.0.3/src/redis-server"    // change path if necessary
+    bin: "../other/redis-5.0.3/src/redis-server"    // change path if necessary - needs to show to redis-server
 });
 
 server.open((err) => {
@@ -129,11 +129,6 @@ var routes = require('./app/routes/appRoutes.js'); //importing route
 routes(app); //register the route
 
 process.on('SIGTERM', () => {
-  //var client = redis.createClient();
-  //console.info('SIGTERM signal received. Flushing redis database and closing redis-server connection!');
-  //client.flushdb( function (err, succeeded) {
-  //  console.log(succeeded); // will be true if successfull
-  //});
   console.info('\nSIGTERM signal received. Closing redis-server connection!\nAll data in redis will be lost.');
   server.close((err) => {
     // The associated Redis server is now closed.
@@ -142,11 +137,7 @@ process.on('SIGTERM', () => {
 });
 
 process.on('SIGINT', () => {
-  //var client = redis.createClient();
   console.info('\nSIGINT signal received. Closing redis-server connection!\nAll data in redis will be lost.');
-  //client.flushdb( function (err, succeeded) {
-  //  console.log("heeyyyy " + succeeded); // will be true if successfull
-  //});
   server.close((err) => {
     // The associated Redis server is now closed.
   });
