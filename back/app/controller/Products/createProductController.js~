@@ -68,7 +68,7 @@ exports.create_a_product = function(req, res) {
     							if (err) res.status(400).json(product);
 							else {
 								if(product.success==true) {
-									//console.log(product.product);
+									console.log(product.product);
 									res.json(product.product);
 								}
 								else res.status(400).json(product);

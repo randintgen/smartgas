@@ -51,7 +51,7 @@ Product.create_product = function(newproduct,result) {
 				temp.push(tagsplit[j]);
 			}
 			newpr.tags = temp;
-			//console.log(newpr);
+			console.log(newpr);
 	        	result(null, {"success":true,"product":newpr});
 
 		}

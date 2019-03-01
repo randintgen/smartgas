@@ -68,7 +68,7 @@ exports.create_a_shop = function(req, res) {
 
       							if (err) res.status(400).json(shop);
   							else {
-								//console.log(shop.shop);
+								console.log(shop.shop);
   								if(shop.success==true) res.json(shop.shop);
   								else res.status(400).json(shop);
   							}

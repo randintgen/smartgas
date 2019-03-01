@@ -57,7 +57,7 @@ get_products = function(srt,cnt,stat,sorting,result) {
 			
 				res[i].id = ""+res[i].id;
 
-				if(res[i].withdrawn=0) res[i].withdrawn=false
+				if(res[i].withdrawn==0) res[i].withdrawn=false
 				else res[i].withdrawn=true
 
 				tagsplit = res[i].tags.split(',');

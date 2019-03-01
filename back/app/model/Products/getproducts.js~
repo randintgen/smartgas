@@ -2,11 +2,12 @@
 
 const sql = require('../db.js');
 
-get_Shops = function(srt,cnt,stat,sorting,result) {
-  var start = 0;
+get_products = function(srt,cnt,stat,sorting,result) {
+
+	var start = 0;
 	var count = 20;
 	var status = "ACTIVE";
-	var sorter = "id|DESC";
+	var sorter = "id|DESC"; 
 	var frs,scnd,thrd,final ;
 	var jsonval;
 	var temp,tagsplit;
@@ -15,7 +16,7 @@ get_Shops = function(srt,cnt,stat,sorting,result) {
 	if(srt) start = srt;
 	if(cnt) count = cnt;
 	if(stat) status = stat;
-	if(sorting) sorter = sorting;
+	if(sorting) sorter = sorting;	 
 
 	frs = " LIMIT "+count+" OFFSET "+start+" ;" ;
 
@@ -28,18 +29,18 @@ get_Shops = function(srt,cnt,stat,sorting,result) {
 
 	if(sortval[0]=="id") {
 
-		if(sortval[1]=="ASC") thrd = " ORDER BY shopid ASC ";
-		else thrd = " ORDER BY shopid DESC";
+		if(sortval[1]=="ASC") thrd = " ORDER BY fuelid ASC ";
+		else thrd = " ORDER BY fuelid DESC";
 
 	}
 	else if (sortval[0]=="name") {
 
-		if(sortval[1]=="ASC") thrd = " ORDER BY name ASC ";
-		else if(sortval[1]=="DESC") thrd = " ORDER BY name DESC";
-		else thrd = " ORDER BY shopid DESC";
+		if(sortval[1]=="ASC") thrd = " ORDER BY type ASC ";
+		else if(sortval[1]=="DESC") thrd = " ORDER BY type DESC";
+		else thrd = " ORDER BY fuelid DESC";
 	}
 
-	final = "SELECT shopid as id ,name,address,lng,lat,tags,withdrawn FROM shops "+scnd+" "+thrd+" "+frs+" ;";
+	final = "SELECT fuelid as id ,type as name,description,category,tags,withdrawn FROM fuel "+scnd+" "+thrd+" "+frs+" ;";
 
 	sql.query(final,function (err, res) {
 
@@ -51,12 +52,12 @@ get_Shops = function(srt,cnt,stat,sorting,result) {
 
 		else {
 			//console.log(res);
-			var shops = [];
+			var products = [];
 			for(var i=0 ; i<res.length ; i++) {
-
+			
 				res[i].id = ""+res[i].id;
 
-				if(res[i].withdrawn==0) res[i].withdrawn=false
+				if(res[i].withdrawn=0) res[i].withdrawn=false
 				else res[i].withdrawn=true
 
 				tagsplit = res[i].tags.split(',');
@@ -66,11 +67,11 @@ get_Shops = function(srt,cnt,stat,sorting,result) {
 				}
 				res[i].tags = temp;
 				//console.log(temp);
-				shops.push(res[i]);
-
+				products.push(res[i]);
+				
 			}
-			//console.log(shops);
-			sql.query("select count(*) as total from shops;",function(err2,res2) {
+			//console.log(products);
+			sql.query("select count(*) as total from fuel;",function(err2,res2) {
 
 				if(err2){
 					console.log("error: ", err);
@@ -78,13 +79,13 @@ get_Shops = function(srt,cnt,stat,sorting,result) {
 				}
 				else {
 					if(res2) total= res2[0].total;
-					result(null, {"start":parseInt(start),"count":shops.length,"total":total,"shops":shops});
+					result(null, {"start":parseInt(start),"count":products.length,"total":total,"products":products});
 				}
 			});
 		}
 
-	});
+	}); 
 
 };
 
-module.exports= get_Shops;
+module.exports= get_products;

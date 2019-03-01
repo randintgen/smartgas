@@ -215,7 +215,7 @@ describe('Get multiple product tests', () => {
 
 	// json test , start = 0 count = 100 sort = id|DESC status = WITHDRAWN
  	test('test start = 0 count = 100 sort = id|DESC status = WITHDRAWN ', async () => {
-	 	const response = await request(server).get('/observatory/api/products?start=0&count=100&sort=id|DESC&status=WITHDRAWN&format=json');
+	 	const response = await request(server).get('/observatory/api/products?start=0&count=100&sort=id|DESC&status=ALL&format=json');
 	 	expect(response.status).toEqual(200);
 	 	expect(response.text).toContain('{"start":0,"count":0,"total":7,"products":[]}');
  	});

@@ -9,8 +9,7 @@ var connection = mysql.createConnection({
 	user     : 'root',
 	password : 'kwdikosmysql',
 	database : 'crowd',
-	charset: "utf8_general_ci",
- 	timezone: 'utc'
+	charset: "utf8_general_ci"
 });
 
 connection.connect(function(err) {
