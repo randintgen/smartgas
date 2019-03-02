@@ -24,10 +24,10 @@ var compDate = function (from, to) {
 
 // check geoLng, geoLat has correct form, return true if bad format, else false
 var checkGeo = function (lat, lng) {
-    // regular expression to match required format
-    var relat = /[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/;
-    var relng = /[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)/;
-    return (!relat.test(lat) || !relng.test(lng));
+    if (isNaN(Number(lat)) || isNaN(Number(lng))) return true;
+    if (Number(lat) > 180 || Number(lat) < -180) return true;
+    if (Number(lng) > 90 || Number(lng) < -90) return true;
+    return false;
 };
 
 module.exports = {checkInt, checkDate, compDate, checkGeo};
