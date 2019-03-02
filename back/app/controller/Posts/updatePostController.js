@@ -31,19 +31,19 @@ exports.update_post = function(req, res) {
             "message": "Please complete at least one field !"
         });
     }
-    else if (req.body.productId && checks.checkInt(req.body.productId)) {
+    else if (req.body.productId && checks.checkInt(Number(req.body.productId))) {
         res.status(400).json({
             "success": false,
             "message": "productId is not valid !"
         });
     }
-    else if (req.body.shopId && checks.checkInt(req.body.shopId)) {
+    else if (req.body.shopId && checks.checkInt(Number(req.body.shopId))) {
         res.status(400).json({
             "success": false,
             "message": "shopId is not valid !"
         });
     }
-    else if (req.body.price && (typeof req.body.price != "number" || (req.body.price <= 0))) {
+    else if (req.body.price && (isNaN(parseFloat(req.body.price)) || parseFloat(req.body.price) <= 0)) {
         res.status(400).json({
             "success": false,
             "message": "price is not valid !"

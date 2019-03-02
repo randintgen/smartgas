@@ -8,10 +8,10 @@ exports.update_name_user = function(req, res) {
 
 	if(req.query.format=="xml") res.status(400).json({"success":false,"message":"XML"});
 
-	else if(!(req.body.username && req.params.username)) {
+	else if(!(req.body.username)) {
 		res.status(400).json({"success":false,"message":"Please complete all the mandatory fields !"});	
 	}
-	else if(req.params.username.length > 255 || req.body.username.length > 255)  {
+	else if(req.body.username.length > 255)  {
 		res.status(400).json({"success":false,"message":"One or more fields are not valid !"});	
 	}
 	else {

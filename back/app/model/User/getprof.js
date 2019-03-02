@@ -2,11 +2,11 @@
 
 const sql = require('../db.js');
 
-get_pid = function(username,result) {
+get_pid = function(userid,result) {
 
 	var final;
-	final = "SELECT userid as id ,mail,username,nposts,reputation,ipath FROM users WHERE username='"+username+"' LIMIT 1 ;";
-	console.log(final);
+	final = "SELECT mail,username,nposts,ipath FROM users WHERE userid='"+userid+"' LIMIT 1 ;";
+	//console.log(final);
 	sql.query(final,function (err, res) {
 
 		if(err) {

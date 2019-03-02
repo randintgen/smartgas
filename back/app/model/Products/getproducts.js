@@ -71,7 +71,9 @@ get_products = function(srt,cnt,stat,sorting,result) {
 				
 			}
 			//console.log(products);
-			sql.query("select count(*) as total from fuel;",function(err2,res2) {
+			var totaling = "select count(*) as total from fuel "+scnd+" ;";
+			console.log(totaling);
+			sql.query(totaling,function(err2,res2) {
 
 				if(err2){
 					console.log("error: ", err);
@@ -79,7 +81,7 @@ get_products = function(srt,cnt,stat,sorting,result) {
 				}
 				else {
 					if(res2) total= res2[0].total;
-					result(null, {"start":parseInt(start),"count":products.length,"total":total,"products":products});
+					result(null, {"start":parseInt(start),"count":parseInt(count),"total":total,"products":products});
 				}
 			});
 		}

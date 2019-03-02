@@ -4,6 +4,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import * as decode from 'jwt-decode';
 
 export interface userInfo {
   username: string;
@@ -53,6 +54,7 @@ export class NavBarComponent implements OnInit {
           (response) => {
             this.myStorage.storeOnLocal('username', this.username);
             this.myStorage.storeOnLocal('token', response.token);
+            this.myStorage.storeOnLocal('token-decode', decode(response.token));
             this.isConnected = true;
           },
           (error) => {
