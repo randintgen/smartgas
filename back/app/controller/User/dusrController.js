@@ -6,7 +6,7 @@ exports.delete_a_user = function(req, res) {
 
 	var nogo = 0 ;
 	var error ;
-
+	console.log(req.headers);
 	if(req.query.format=="xml") res.status(400).json({"success":false,"message":"XML"});
 	else if( !( req.body.psswd && req.params.username ) ) { 
 		res.status(400).json({"success":false,"message":"Please complete all the mandatory fields !"});

@@ -33,21 +33,26 @@
 
 <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Register</button>
 -->
+<h2 mat-dialog-title>Register</h2>
+<div mat-dialog-content>
 
-<form [formGroup]="registerForm">
-  <mat-form-field>
-    <input matInput placeholder="Username" formControlName="username">
-  </mat-form-field><br>
-  <mat-form-field>
-    <input matInput placeholder="Password" formControlName="password">
-  </mat-form-field><br>
-  <mat-form-field>
-    <input matInput placeholder="Verify Password" formControlName="pass-repeat">
-  </mat-form-field><br>
-  <mat-form-field>
-    <input matInput placeholder="Email" formControlName="email">
-  </mat-form-field><br>
-  <button mat-raised-button (click)="registerAttempt()">Register</button>
-  <mat-error *ngIf="!isRegistered">{{errorMessage}}</mat-error>
-  
-</form>
+    <form [formGroup]="registerForm">
+        <mat-form-field>
+          <input matInput placeholder="Username" formControlName="username" [(ngModel)]="data.username">
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Password" formControlName="password" [(ngModel)]="data.password">
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Verify Password" formControlName="pass-repeat" [(ngModel)]="data.passrepeat">
+        </mat-form-field><br>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email" [(ngModel)]="data.email">
+        </mat-form-field><br>
+        
+      </form>
+
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="data">Register</button>
+  </div>
+</div>
