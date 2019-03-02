@@ -2,44 +2,30 @@
 
 const sql = require('../db.js');
 
-get_Shops = function(srt,cnt,stat,sorting,result) {
-  var start = 0;
-	var count = 20;
-	var status = "ACTIVE";
-	var sorter = "id|DESC";
-	var frs,scnd,thrd,final ;
+get_Shops = function(start, count, status, sorter, result) {
+
+  	var frs,scnd,thrd,final,f1;
 	var jsonval;
+	var sortval;
 	var temp,tagsplit;
 	var total=0;
 
-	if(srt) start = srt;
-	if(cnt) count = cnt;
-	if(stat) status = stat;
-	if(sorting) sorter = sorting;
+	frs = " LIMIT " + count + " OFFSET " + start + " ;" ;
 
-	frs = " LIMIT "+count+" OFFSET "+start+" ;" ;
-
-	if(status=="ACTIVE") scnd = " WHERE withdrawn=0";
-	else if(status=="WITHDRAWN") scnd = "WHERE withdrawn=1";
-	else if(status=="ALL") scnd = "";
-	else scnd = " WHERE withdrawn=0";
+	if (status == "ACTIVE") scnd = " WHERE withdrawn = 0";
+	else if (status == "WITHDRAWN") scnd = " WHERE withdrawn = 1";
+	else if (status == "ALL") scnd = "";
 
 	sortval = sorter.split('|');
 
-	if(sortval[0]=="id") {
+	if(sortval[0] == "id") thrd = " ORDER BY shopid ";
+	else thrd = " ORDER BY name ";
 
-		if(sortval[1]=="ASC") thrd = " ORDER BY shopid ASC ";
-		else thrd = " ORDER BY shopid DESC";
+	if (sortval[1] == "ASC") thrd += "ASC";
+	else thrd += "DESC";
 
-	}
-	else if (sortval[0]=="name") {
-
-		if(sortval[1]=="ASC") thrd = " ORDER BY name ASC ";
-		else if(sortval[1]=="DESC") thrd = " ORDER BY name DESC";
-		else thrd = " ORDER BY shopid DESC";
-	}
-
-	final = "SELECT shopid as id ,name,address,lng,lat,tags,withdrawn FROM shops "+scnd+" "+thrd+" "+frs+" ;";
+	f1 = "SELECT shopid as id, name, address, lng, lat, tags, withdrawn FROM shops" + scnd;
+	final = f1 + thrd + frs + " ;";
 
 	sql.query(final,function (err, res) {
 
@@ -54,37 +40,37 @@ get_Shops = function(srt,cnt,stat,sorting,result) {
 			var shops = [];
 			for(var i=0 ; i<res.length ; i++) {
 
-				res[i].id = ""+res[i].id;
+				res[i].id = "" + res[i].id;
 
-				if(res[i].withdrawn==0) res[i].withdrawn=false
-				else res[i].withdrawn=true
+				if (res[i].withdrawn == 0) res[i].withdrawn = false;
+				else res[i].withdrawn = true;
 
-				tagsplit = res[i].tags.split(',');
-				temp = [];
-				for(var j=0 ; j<tagsplit.length ; j++){
-					temp.push(tagsplit[j]);
-				}
-				res[i].tags = temp;
-				//console.log(temp);
+				res[i].tags = res[i].tags.split(',');
+
 				shops.push(res[i]);
 
 			}
 			//console.log(shops);
-			sql.query("select count(*) as total from shops;",function(err2,res2) {
 
-				if(err2){
-					console.log("error: ", err);
-					result(true,{"success":false,"message":"Something went wrong,please try again later !"});
-				}
-				else {
-					if(res2) total= res2[0].total;
-					result(null, {"start":parseInt(start),"count":shops.length,"total":total,"shops":shops});
-				}
-			});
+			if (shops.length < count) result(null, {"success": true, "start":parseInt(start), "count": shops.length, "total": shops.length, "shops": shops});
+			else {
+				f1 += ";";	// changed here, was SELECT count(*) as total FROM shops
+				sql.query(f1, function(err2,res2) {
+
+					if(err2){
+						console.log("error: ", err);
+						result(true,{"success":false,"message":"Something went wrong,please try again later !"});
+					}
+					else {
+						if(res2) total= res2[0].total;
+						result(null, {"success": true, "start":parseInt(start), "count":shops.length, "total": res2.length/* was total*/, "shops": shops});
+					}
+				});
+			}
 		}
 
 	});
 
 };
 
-module.exports= get_Shops;
+module.exports = get_Shops;
