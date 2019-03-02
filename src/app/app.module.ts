@@ -38,6 +38,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NewUsernameComponent } from './components/profile/new-username/new-username.component';
 import { NewPasswordComponent } from './components/profile/new-password/new-password.component';
 import { MyhistoryComponent } from './components/profile/myhistory/myhistory.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 
 @NgModule({
@@ -66,7 +68,9 @@ import { MyhistoryComponent } from './components/profile/myhistory/myhistory.com
     ProfileComponent,
     NewUsernameComponent,
     NewPasswordComponent,
-    MyhistoryComponent
+    MyhistoryComponent,
+    FooterComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

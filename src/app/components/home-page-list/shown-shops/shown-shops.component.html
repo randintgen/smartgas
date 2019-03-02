@@ -2,7 +2,9 @@
   <agm-marker *ngFor="let shop of allShops" [longitude]="shop.shopLng" [latitude]="shop.shopLat"
     (mouseOver)="do()">
     <agm-info-window >
-        {{shop.price}} €
+      <p> <b>{{shop.shopName}}</b> </p>
+      <p>{{shop.shopAddress}}</p>
+      <p>  {{shop.price}} € </p>
       </agm-info-window>
     </agm-marker>
 </agm-map>
