@@ -24,7 +24,7 @@ removeprod = function(userid,fuelid,result) {
 						result(null,{"sucess":false,"message":"Product id does not exist in database !"});
 					 }
 					 else {
-						console.log(res2);
+						//console.log(res2);
 						if(!res2.message=='' && !res2.changedRows) {
 							console.log("Product with id "+fuelid+" is already withdrawn !");
 					 		result(null,{"success":true,"message":"Product is already withdrawn"});
