@@ -1,0 +1,10 @@
+<agm-map *ngIf="ok" [longitude]="initLng" [latitude]="initLat" [zoom]="initZoom">
+  <agm-marker *ngFor="let shop of allShops" [longitude]="shop.shopLng" [latitude]="shop.shopLat"
+    (mouseOver)="do()">
+    <agm-info-window >
+      <p> <b>{{shop.shopName}}</b> </p>
+      <p>{{shop.shopAddress}}</p>
+      <p>  {{shop.price}} € </p>
+      </agm-info-window>
+    </agm-marker>
+</agm-map>

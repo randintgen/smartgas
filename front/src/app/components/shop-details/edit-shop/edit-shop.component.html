@@ -1,0 +1,42 @@
+<form [formGroup]="editShopForm">
+<div class="container">
+    <div class="row">
+        <div class="col-70">
+            <mat-form-field class="fullin" >
+                <input type="text" matInput placeholder="Όνομα Καταστήματος" formControlName="name" [value]="">
+              </mat-form-field>
+        </div>
+        <div class="col-30">
+            <mat-form-field class="fullin">
+                <mat-select matInput placeholder="Αλυσίδα" formControlName="tags" [value]="">
+                  <mat-option *ngFor="let alysida of alysides" [value]="alysida.value">
+                    {{alysida.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="fullin">
+            <mat-form-field class="fullin">
+              <input type="text"  matInput placeholder="Διεύθυνση" [value]="" formControlName="address">
+            </mat-form-field>
+          </div>
+    </div>
+
+    <div class="row">
+        <div class="col-70">
+            <mat-form-field class="fullin">
+                <input type="text" matInput placeholder="Πόλη" [value]="" formControlName="city">
+              </mat-form-field>
+        </div>
+        <div class="col-30">
+            <mat-form-field class="fullin">
+                <input type="text" matInput placeholder="Τ.Κ." [value]="" formControlName="tk">
+              </mat-form-field>
+        </div>
+    </div>
+    
+  <button mat-raised-button class="button" (click)="editShopAttempt()">Αποθήκευση</button>
+  </div>
+  </form>
