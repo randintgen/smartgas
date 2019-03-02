@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 import { ShopService } from '../../services/shop.service';
-import { ShopResponse } from 'src/app/interfaces/shop-response';
+import { ShopResponse } from '../../interfaces/shop-response';
 
 export class Shop {
   name?: string;
@@ -34,7 +34,9 @@ export class ShopsListComponent implements OnInit {
     this.shopService.getShops().subscribe(
       (response) => {
         console.log(response);
+
         this.dataSource = new MatTableDataSource<Shop>(response.shops);
+
         this.dataSource.paginator = this.paginator;
 
       }

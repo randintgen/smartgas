@@ -9,7 +9,7 @@ var Shopup = function(product) {
 	this.lng = product.lng;
 	this.lat = product.lat;
 	this.tags = product.tags;
-	this.withdrawn = product.withdrawn;
+	//this.withdrawn = product.withdrawn;
 	this.address = product.address;
 	//this.imgpath = product.ipath;
 

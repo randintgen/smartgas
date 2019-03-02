@@ -3,17 +3,16 @@
 const bcrypt = require('bcryptjs');
 const sql = require('../db.js');
 
-remove = function(username,pswd,result){
+remove = function(userid,pswd,result){
 
-	sql.query("SELECT psswd FROM users WHERE username = ? LIMIT 1" , username , function(err1,resp) {
+	sql.query("SELECT username,psswd FROM users WHERE userid = ? LIMIT 1" , userid , function(err1,resp) {
 	
-		if(!resp[0]) result(true,{"success":false,"message":"Invalid username!"});
+		if(!resp[0]) result(true,{"success":false,"message":"Invalid userid!"});
 
 		else {
-
 			if(bcrypt.compareSync(pswd, resp[0].psswd)) {
 
-				sql.query("DELETE FROM users WHERE username = ?", username, function (err, res) {
+				sql.query("DELETE FROM users WHERE userid = ?", userid, function (err, res) {
 
 					if(err) {
 
@@ -22,8 +21,8 @@ remove = function(username,pswd,result){
 					}
 
 					else {
-						console.log("User " +username+ " deleted !");
-						result(null,{"success":true,"message":"We will miss you "+ username});
+						console.log("User " +resp[0].username+ " deleted !");
+						result(null,{"success":true,"message":"We will miss you "+ resp[0].username});
 					}
 				}); 
 			}

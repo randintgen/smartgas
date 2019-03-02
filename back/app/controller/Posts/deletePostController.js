@@ -39,10 +39,10 @@ exports.delete_post = function(req, res){
 
                 // check OK
                 del_post(Number(req.params.id), usrid, function (err1,res1) {
-                    if(err1) res.status(403).json(res1);    // not authorized
+                    if(err1) res.status(404).json(res1);    // not authorized
                     else {
                         if (res1.success == true) res.json(res1);
-                        else res.status(400).json(res1);
+                        else res.status(403).json(res1);
                     }
                 });
             }

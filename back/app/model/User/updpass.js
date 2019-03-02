@@ -3,12 +3,12 @@
 const bcrypt = require('bcryptjs');
 const sql = require('../db.js');
 
-updatepass = function(oldpsswd,newpsswd,usr,result){
+updatepass = function(oldpsswd,newpsswd,usrid,result){
 
 
-	sql.query("SELECT psswd FROM users WHERE username = ? LIMIT 1" , usr , function (erru,resu) {
+	sql.query("SELECT psswd FROM users WHERE userid = ? LIMIT 1" , usrid , function (erru,resu) {
 
-		if(!resu[0]) result(null,{"success":false,"message":"Invalid username!"});
+		if(!resu[0]) result(null,{"success":false,"message":"Invalid userid!"});
 		
 		else {
 
@@ -16,7 +16,7 @@ updatepass = function(oldpsswd,newpsswd,usr,result){
 
 				let hash = bcrypt.hashSync(newpsswd, 10);
 
-				final ="UPDATE users SET psswd = '"+hash+"' WHERE username = '"+usr+"' ; ";  
+				final ="UPDATE users SET psswd = '"+hash+"' WHERE userid = '"+usrid+"' ; ";  
 
 				sql.query(final ,function (err, res) {
 
