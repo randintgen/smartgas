@@ -1,0 +1,5 @@
+<h1 mat-dialog-title>Favorite Animal</h1>
+<div mat-dialog-content>
+Give something: <input type="text" [(ngModel)]="data.phrase" (click)="setNew()">
+  <button [mat-dialog-close]="data.phrase">Close</button>
+</div>

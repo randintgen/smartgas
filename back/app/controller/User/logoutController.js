@@ -7,6 +7,7 @@ exports.logout_profile = function(req, res) {
 
 
 	let token = req.headers['x-observatory-auth'];
+    console.log(req.headers);
 	if(token) {
 
 	  	if (token.startsWith('Bearer ')) {

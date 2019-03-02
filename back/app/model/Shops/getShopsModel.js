@@ -52,8 +52,8 @@ get_Shops = function(start, count, status, sorter, result) {
 			}
 			//console.log(shops);
 
-			if (shops.length < count) result(null, {"success": true, "start":parseInt(start), "count": shops.length, "total": shops.length, "shops": shops});
-			else {
+			//if (shops.length < count) result(null, {"success": true, "start":parseInt(start), "count": count/*shops.length*/, "total": shops.length, "shops": shops});
+
 				f1 += ";";	// changed here, was SELECT count(*) as total FROM shops
 				sql.query(f1, function(err2,res2) {
 
@@ -62,11 +62,10 @@ get_Shops = function(start, count, status, sorter, result) {
 						result(true,{"success":false,"message":"Something went wrong,please try again later !"});
 					}
 					else {
-						if(res2) total= res2[0].total;
-						result(null, {"success": true, "start":parseInt(start), "count":shops.length, "total": res2.length/* was total*/, "shops": shops});
+						result(null, {"success": true, "start":parseInt(start), "count":parseInt(count), "total": res2.length/* was total*/, "shops": shops});
 					}
 				});
-			}
+
 		}
 
 	});

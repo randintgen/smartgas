@@ -91,14 +91,12 @@ export class AddShopComponent implements OnInit {
   private addShopAttempt(): void {
 
     var shopName = this.addShopForm.controls['name'].value;
-    var shopAdd = this.addShopForm.controls['address'].value
-                  +", "+this.addShopForm.controls['city'].value
-                  +", "+this.addShopForm.controls['tk'].value;
+    var shopAdd = this.addShopForm.controls['address'].value;
     var shopTags = this.addShopForm.controls['tags'].value;
 
     var addRequest = this.shopService.createShop(shopName, shopAdd, [shopTags]).subscribe(
       (response) => {
-        console.log(response.success);
+        console.log(response);
       },
       (error) => {
         console.log(error.error.message);
