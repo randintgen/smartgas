@@ -49,8 +49,8 @@ exports.patch_a_shop = function(req, res) {
         error3=1;
       }
 		}
-		else if(typeof req.body.withdrawn!='undefined') {
-
+		//else if(typeof req.body.withdrawn!='undefined') {
+		/*
       if(req.body.withdrawn) newfield=1;
       else newfield=0;
 			final=query+"withdrawn='"+newfield+"'"+where;
@@ -59,7 +59,7 @@ exports.patch_a_shop = function(req, res) {
         error3=1;
       }
 		}
-		else if(typeof req.body.tags!='undefined' && Array.isArray(req.body.tags)) {
+		else*/ if(typeof req.body.tags!='undefined' && Array.isArray(req.body.tags)) {
 			console.log("23132");
 			var i=0;
 			var temp="";

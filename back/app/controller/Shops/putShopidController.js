@@ -34,7 +34,7 @@ exports.update_a_shop = function(req, res) {
 	else {
 
 		// check for empty fields
-		if( (!(new_shop.name  && new_shop.tags && new_shop.address&& new_shop.lng&& new_shop.lat)) ||(typeof new_shop.withdrawn=="undefined")) {
+		if( (!(new_shop.name  && new_shop.tags && new_shop.address&& new_shop.lng&& new_shop.lat)) /*||(typeof new_shop.withdrawn=="undefined") */ ) {
       console.log(typeof new_shop.lat);
 			res.status(400).json({"success":false,"message":"Please complete all the mandatory fields !"});
 		}
@@ -45,14 +45,14 @@ exports.update_a_shop = function(req, res) {
 		}
 
 		// check for fields type
-		else if(typeof new_shop.name!='string' || typeof new_shop.lng!='number' || typeof new_shop.lat!='number'|| typeof new_shop.tags!='string'||typeof new_shop.address!='string'|| typeof new_shop.withdrawn!='boolean') {
+		else if(typeof new_shop.name!='string' || typeof new_shop.lng!='number' || typeof new_shop.lat!='number'|| typeof new_shop.tags!='string'||typeof new_shop.address!='string' /*|| typeof new_shop.withdrawn!='boolean' */) {
 
 			res.status(400).json({"success":false,"message":"Please provide valid fields !"});
 
 		}
 		// check for id's type
 		else if(isNaN(req.params.id)) res.status(400).json({"success":false,"message":"Shop id given is not an integer !"});
-		else if(req.body.withdrawn && typeof new_shop.withdrawn!='boolean') res.status(400).json({"success":false,"message":"Please provide valid fields !"});
+		//else if(req.body.withdrawn && typeof new_shop.withdrawn!='boolean') res.status(400).json({"success":false,"message":"Please provide valid fields !"});
 		else {
 
 			authenticate(req,function(error,result,usrid) {
