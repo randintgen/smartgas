@@ -4,19 +4,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StorageServiceModule } from 'ngx-webstorage-service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { LoginUserComponent } from './components/login-user/login-user.component';
-import { LogoutUserComponent } from './components/logout-user/logout-user.component';
 import { ShopsListComponent } from './components/shops-list/shops-list.component';
 import { AddShopComponent } from './components/add-shop/add-shop.component';
 import { ShopDetailsComponent } from './components/shop-details/shop-details.component';
-import { TesterComponent } from './components/tester/tester.component';
+import { TesterComponent, DialogDataExampleDialog } from './components/tester/tester.component';
 import { FiltersSearchComponent, Types } from './components/filters-search/filters-search.component';
 import { MaterialModule } from './modules/material/material.module';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { NavBarComponent, LoginUserComponent, RegisterUserComponent } from './components/nav-bar/nav-bar.component';
 
 import { LocalStorageService } from './services/local-storage.service';
 import { SearchFormComponent } from './components/search-form/search-form.component';
@@ -42,19 +39,15 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UploadPhotoComponent } from './components/profile/upload-photo/upload-photo.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterUserComponent,
-    LoginUserComponent,
-    LogoutUserComponent,
     ShopsListComponent,
     AddShopComponent,
     ShopDetailsComponent,
+    DialogDataExampleDialog,
     TesterComponent,
     FiltersSearchComponent,
-    NavBarComponent,
     SearchFormComponent,
     AddressesListComponent,
     ShopPriceHistoryComponent,
@@ -72,7 +65,10 @@ import { UploadPhotoComponent } from './components/profile/upload-photo/upload-p
     MyhistoryComponent,
     FooterComponent,
     AboutUsComponent,
-    UploadPhotoComponent
+    UploadPhotoComponent,
+    NavBarComponent,
+    LoginUserComponent,
+    RegisterUserComponent
   ],
   imports: [
     BrowserModule,
@@ -90,13 +86,11 @@ import { UploadPhotoComponent } from './components/profile/upload-photo/upload-p
     GoogleMapsAPIWrapper
   ],
   entryComponents: [
+    AddressesListComponent,
     LoginUserComponent,
-    RegisterUserComponent,
-    AddressesListComponent
+    RegisterUserComponent
   ],
   exports: [
-    LoginUserComponent,
-    RegisterUserComponent,
     AddressesListComponent
   ],
   bootstrap: [AppComponent]

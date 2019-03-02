@@ -8,6 +8,7 @@ import { StandardResponse } from '../interfaces/standard-response';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { LocalStorageService } from './local-storage.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,7 +26,8 @@ export class ShopService {
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private myStorage: LocalStorageService
   ) { }
 
   private baseUrl = 'https://localhost:8765/observatory/api/';
@@ -70,7 +72,7 @@ export class ShopService {
     var newHeaders = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'X-OBSERVATORY-AUTH': localStorage.getItem('token')
+        'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
       })
     };
 

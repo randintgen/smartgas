@@ -19,19 +19,19 @@
         <button mat-button (click)="myFunction()">
             **
         </button>
-</a>
+  </a>
    </a> 
    <a *ngIf="isConnected">
            <a class="tile" class="logo">Logo</a>
             <a class="tile">Βρες Βενζινάδικο</a>
             <a class="tile">Πρόσθεσε Βενζικάδικο</a>
             <a class="tile">
-                <button mat-button>*ngIf="isConnected"
-                    {{usernameConnected}}
+                <button mat-button>
+                    {{username}}
                 </button>
               </a>
             <a class="tile">
-                <button mat-button (click)="logoutUser()">
+                <button mat-button (click)="logout()">
               Log out
             </button>
             </a>
@@ -42,4 +42,3 @@
       </a>
    </a>
 </div>
-

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProductSearch } from '../interfaces/product-search';
 import { ProductResponse } from '../interfaces/product-response';
 import { StandardResponse } from '../interfaces/standard-response';
+import { LocalStorageService } from './local-storage.service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,7 +14,9 @@ import { Observable } from 'rxjs';
 export class ProductsService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private myStorage: LocalStorageService
+
   ) { }
 
   private baseUrl = 'https://localhost:8765/observatory/api/';
@@ -73,7 +76,7 @@ export class ProductsService {
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'X-OBSERVATORY-AUTH': localStorage.getItem('token')
+          'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
         })
       }
     );
@@ -138,7 +141,7 @@ export class ProductsService {
             JSON.stringify(newProd), {
               headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'X-OBSERVATORY-AUTH': localStorage.getItem('token')
+                'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
               })
             });
             
@@ -161,7 +164,7 @@ export class ProductsService {
       {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-          'X-OBSERVATORY-AUTH': localStorage.getItem('token')
+          'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
         })
       }
     );
@@ -169,7 +172,4 @@ export class ProductsService {
     return deleteResult;
   };
 
-  searchProducts(){
-
-  }
 }
