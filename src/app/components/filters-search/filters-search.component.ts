@@ -19,6 +19,7 @@ export interface Types {
 export class FiltersSearchComponent implements OnInit {
  
   ngOnInit() {
+
   }
 
   options1: FormGroup;
@@ -36,11 +37,6 @@ export class FiltersSearchComponent implements OnInit {
   disabled = false;
   disabled2 = false;
 
-    types: Types[] = [
-      {value: 'type-0', viewValue: 'Βενζίνη'},
-      {value: 'type-1', viewValue: 'Πετρέλαιο'},
-      {value: 'type-2', viewValue: 'Φ. Αέριο'}
-    ]
 
   formatLabel(value: number | null) {
     if (!value) {
@@ -55,4 +51,3 @@ export class FiltersSearchComponent implements OnInit {
   }
 
 }
-

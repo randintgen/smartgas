@@ -17,7 +17,7 @@ export class HomePageListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['name', 'type', 'address', 'price'];
+  displayedColumns: string[] = ['name', 'address', 'price', 'shopDist'];
   
 
 

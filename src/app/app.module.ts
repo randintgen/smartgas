@@ -38,6 +38,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NewUsernameComponent } from './components/profile/new-username/new-username.component';
 import { NewPasswordComponent } from './components/profile/new-password/new-password.component';
 import { MyhistoryComponent } from './components/profile/myhistory/myhistory.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UploadPhotoComponent } from './components/profile/upload-photo/upload-photo.component';
 
 
@@ -68,6 +70,8 @@ import { UploadPhotoComponent } from './components/profile/upload-photo/upload-p
     NewUsernameComponent,
     NewPasswordComponent,
     MyhistoryComponent,
+    FooterComponent,
+    AboutUsComponent,
     UploadPhotoComponent
   ],
   imports: [

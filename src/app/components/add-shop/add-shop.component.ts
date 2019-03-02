@@ -2,11 +2,15 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder } from '@angular/forms';
 import { ShopService } from '../../services/shop.service';
+import { OpenStreetMapProvider } from 'leaflet-geosearch';
+
+
 
 export interface Alysida {
   value: string;
   viewValue: string;
 }
+
 
 @Component({
   selector: 'app-add-shop',
@@ -14,6 +18,12 @@ export interface Alysida {
   styleUrls: ['./add-shop.component.css']
 })
 export class AddShopComponent implements OnInit {
+
+  private syntagmaSquareLoc = [23.734837, 37.975655];
+  private initLat=37.975655;
+  private initLng=23.734837;
+  private addressedFound;
+
 
   constructor(
     private form: FormBuilder,
@@ -58,6 +68,24 @@ export class AddShopComponent implements OnInit {
 
     
   ngOnInit() {
+  }
+
+  private find() : void {
+    const provider = new OpenStreetMapProvider();
+
+    const nav = provider.search({
+      query: location
+    }).then((results) => {
+      if(results.length === 0){
+        console.error('No results!');
+      }else if(results.length === 1){
+        this.initLat = results[0].y;
+        this.initLng = results[0].x;
+      }else {
+        this.addressedFound = results;
+        // kalese thn alli sinartisi 
+      }
+    })
   }
 
   private addShopAttempt(): void {

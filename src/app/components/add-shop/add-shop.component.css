@@ -1,11 +1,14 @@
-.container {
-    width :60%;
+.conteiner {
+    width : 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .conteiner > .row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -6px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .col-70 {
@@ -18,15 +21,19 @@
     padding: 0 6px;
   }
 
+  .map{
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .fullin {
-    width: 100%;
+    width: 80%;
     padding: 0 6px;
   }
 
   .button {
     width: 200px;
-}
+  }
   
 @media (max-width: 800px) {
   .row {
@@ -40,7 +47,15 @@
   .col-30 {
     width: 100%;
     padding: 0 6px;
+    
+  }
+  
+  .col-30 .button{
+    box-align: center;
   }
 }
 
 
+agm-map{
+  height: 500px;
+}
