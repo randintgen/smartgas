@@ -1,3 +1,53 @@
-<p>
-  myhistory works!
-</p>
+<p>Ιστορικό Καταχωρήσεων</p>
+
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder=" Αναζήτηση">
+  </mat-form-field>
+<div class="products-container mat-elevation-z8">
+    
+
+  <table mat-table matSort [dataSource]="dataSource">
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Ημερομηνία </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="shopName">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Κατάστημα </th>
+      <td mat-cell *matCellDef="let element"> {{element.shopName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="shopAddress">
+      <th mat-header-cell *matHeaderCellDef> Διεύθυνση </th>
+      <td mat-cell *matCellDef="let element"> {{element.shopAddress}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell mat-sort-header *matHeaderCellDef> Καύσιμο </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef>Τιμή  </th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+
+       
+      <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>   </th>
+          <td mat-cell *matCellDef="let element">   <button mat-flat-button color="warn">Delete</button>
+
+          </td>
+        </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

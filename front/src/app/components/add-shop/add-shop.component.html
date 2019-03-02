@@ -1,3 +1,7 @@
+<p>
+    <br />
+</p>
+
 <div class="conteiner">
     <div class="row">
         <div class="col-70">
@@ -6,7 +10,7 @@
             </mat-form-field>
           </div>
         <div class="col-30">
-            <button mat-raised-button class="button" (click)="find()">Εύρεση</button>
+            <button mat-raised-button class="button"  color="primary"  (click)="find()">Εύρεση</button>
         </div>
     </div>
 
@@ -17,7 +21,9 @@
           </agm-marker>
         </agm-map>
     </div>
-
+    <p>
+        <br />
+    </p>
     <div class="row">
         <div class="col-70">
             <mat-form-field [formGroup]="addShopForm" class="fullin" >
@@ -35,7 +41,7 @@
         </div>
     </div>
   
-    
-  <button mat-raised-button class="button" (click)="addShopAttempt()">Προσθήκη Καταστήματος</button>
-  
+    <div class="row"> 
+  <button mat-raised-button color="primary" class="button" (click)="addShopAttempt()">Προσθήκη Καταστήματος</button>
+  </div>
 </div>

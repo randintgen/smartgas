@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
 
 @Component({
   selector: 'app-myhistory',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyhistoryComponent implements OnInit {
 
-  constructor() { }
+  private dataSource;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  displayedColumns: string[] = ['date','shopName','shopAddress','type','description','price','delete'];
+
+
+  constructor(
+    
+  ) { }
 
   ngOnInit() {
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
