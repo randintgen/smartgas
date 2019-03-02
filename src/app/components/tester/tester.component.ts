@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ProductsService } from '../../services/products.service';
 import { UserService } from '../../services/user.service';
-import { ShopService } from '../../services/shop.service';
+
 
 @Component({
   selector: 'app-tester',
@@ -13,11 +13,15 @@ export class TesterComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private shopsService: ShopService,
     private userService: UserService
   ) { }
 
   ngOnInit() {
+    this.userService.getUser('peiramatozoo').subscribe(
+      (p) => {
+        console.log(p);
+      }
+    )
   }
 
 }

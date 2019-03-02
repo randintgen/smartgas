@@ -38,6 +38,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NewUsernameComponent } from './components/profile/new-username/new-username.component';
 import { NewPasswordComponent } from './components/profile/new-password/new-password.component';
 import { MyhistoryComponent } from './components/profile/myhistory/myhistory.component';
+import { UploadPhotoComponent } from './components/profile/upload-photo/upload-photo.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { MyhistoryComponent } from './components/profile/myhistory/myhistory.com
     ProfileComponent,
     NewUsernameComponent,
     NewPasswordComponent,
-    MyhistoryComponent
+    MyhistoryComponent,
+    UploadPhotoComponent
   ],
   imports: [
     BrowserModule,

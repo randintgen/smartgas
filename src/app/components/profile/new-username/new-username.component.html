@@ -1,3 +1,4 @@
-<p>
-  new-username works!
-</p>
+<form [formGroup]="changeForm">
+  New Username: <input type="text" formControlName="new-username">
+  <button mat-raised-button (click)="submit()">Change</button>
+</form>
