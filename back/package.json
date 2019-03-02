@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:dev": "webpack-dev-server --config './webpack.config.js'",
     "test": "jest --forceExit"
   },
   "keywords": [],
@@ -16,7 +17,6 @@
     "express-jwt-blacklist": "^1.1.0",
     "express-session": "^1.15.6",
     "mysql": "^2.16.0",
-    "node-datetime": "^2.1.2",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "redis": "^2.8.0",
@@ -24,7 +24,11 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "express": "^4.16.4",
     "jest": "^24.1.0",
-    "supertest": "^3.4.2"
+    "supertest": "^3.4.2",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }
