@@ -56,7 +56,7 @@ exports.patch_a_product = function(req, res) {
 				error2=1;
 			}
 			for(var j=0 ; j<req.body.tags.length ; j++) {
-				if(typeof req.body.tags[j]=="string") {
+				if(isNaN(req.body.tags[j]) || typeof req.body.tags[j]=='string') {
 					if(i==0) temp = req.body.tags[j];
 					else temp=temp+","+req.body.tags[j];
 					i=i+1;
@@ -71,14 +71,7 @@ exports.patch_a_product = function(req, res) {
 			newfield=req.body.tags;
 			final=query+"tags='"+newfield+"'"+where;
 		}
-		else if ( typeof req.body.withdrawn !='undefined' ){
-			if(typeof req.body.withdrawn !='boolean' ){
-				error3=1;
-			}
-			if(req.body.withdrawn) newfield=1;
-      else newfield=0;
-			final=query+"withdrawn='"+newfield+"'"+where;
-		}
+
 		else res.status(400).json({"success":false,"message":"Please provide a valid field for update !"});
 
 		if(error2) {
