@@ -1,0 +1,42 @@
+import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../../../services/local-storage.service';
+import { UserService } from 'src/app/services/user.service';
+import { FormBuilder } from '@angular/forms';
+
+
+@Component({
+  selector: 'app-new-username',
+  templateUrl: './new-username.component.html',
+  styleUrls: ['./new-username.component.css']
+})
+export class NewUsernameComponent implements OnInit {
+
+  constructor(
+    private myStorage: LocalStorageService,
+    private userService: UserService,
+    private form: FormBuilder
+  ) { }
+
+  private changeForm = this.form.group({
+    'new-username': ['']
+  });
+
+  ngOnInit() {
+  }
+
+  submit() {
+    var newUsername = this.changeForm.controls['new-username'].value;
+      this.userService.userChUsername(
+        this.myStorage.getFromLocal('username'),
+        newUsername
+        ).subscribe(
+          (response) => {
+            this.myStorage.storeOnLocal('username', newUsername);
+          },
+          (error) => {
+            console.log()
+          }
+      );
+  }
+
+}

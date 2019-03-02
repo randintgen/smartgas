@@ -1,0 +1,65 @@
+ <mat-accordion *ngIf="selectedShop">
+        <mat-expansion-panel  expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Πληροφορίες και Χάρτης {{selectedShop.name}}
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          {{selectedShop.name}}
+          {{selectedShop.address}}
+          <app-show-on-map [selectedShop]="selectedShop"></app-show-on-map>
+        </mat-expansion-panel>
+        
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Τρέχουσες Τιμές
+            </mat-panel-title>
+            <mat-panel-description>
+                
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-shop-prices [shopId]="selectedShopId"></app-shop-prices>
+
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Ιστορικό Τιμών
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+               
+      <app-shop-price-history></app-shop-price-history>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Επεξεργασία Πληροφοριών Καταστήματος
+              </mat-panel-title>
+              <mat-panel-description>
+                
+              </mat-panel-description>
+              
+            </mat-expansion-panel-header>
+            <app-edit-shop></app-edit-shop>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+              Προσθήκη Τιμών
+          </mat-panel-title>
+          <mat-panel-description>
+            
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+       <app-add-prices-ofshop></app-add-prices-ofshop>
+</mat-expansion-panel>
+</mat-accordion>

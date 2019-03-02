@@ -1,0 +1,21 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" [(opened)]="opened" >
+   
+    <div>
+    <app-search-form></app-search-form>
+
+    </div>
+    
+
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <p><button mat-button (click)="sidenav.toggle()"><mat-icon svgIcon="home">***</mat-icon>
+
+    </button></p>
+    <app-home-page-list></app-home-page-list>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>

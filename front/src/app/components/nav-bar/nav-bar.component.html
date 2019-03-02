@@ -1,0 +1,45 @@
+<div class="topnav" id="myTopnav">
+  
+  <a *ngIf="!isConnected">
+      <a class="tile" class="logo">
+          <img src="../../images/logo.png" alt="Smartgas" height="20px">
+      </a>
+
+      <a class="tile" >
+          <button mat-button (click)="openLogin()">
+            Log in
+          </button>
+        </a>
+      <a class="tile" >
+          <button mat-button (click)="openRegister()">
+              Register
+            </button>
+      </a>
+    <a class="icon">
+        <button mat-button (click)="myFunction()">
+            **
+        </button>
+</a>
+   </a> 
+   <a *ngIf="isConnected">
+           <a class="tile" class="logo">Logo</a>
+            <a class="tile">Βρες Βενζινάδικο</a>
+            <a class="tile">Πρόσθεσε Βενζικάδικο</a>
+            <a class="tile">
+                <button mat-button>*ngIf="isConnected"
+                    {{usernameConnected}}
+                </button>
+              </a>
+            <a class="tile">
+                <button mat-button (click)="logoutUser()">
+              Log out
+            </button>
+            </a>
+          <a class="icon">
+              <button mat-button (click)="myFunction()">
+                  **
+              </button>
+      </a>
+   </a>
+</div>
+

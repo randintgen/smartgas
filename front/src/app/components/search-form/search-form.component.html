@@ -1,0 +1,55 @@
+<form [formGroup]="searchForm">
+
+  
+  <mat-form-field>
+    <mat-select placeholder="Τύπος Καυσίμου" formControlName="fuel">
+      <mat-option *ngFor="let type of allProducts" [value]="type.id">
+        {{type.name}} {{type.description}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  
+  <div class="example-container">
+    
+      <section class="here">
+
+        <mat-checkbox formControlName="here" class="here" (click)="here(); distance()">Εδώ</mat-checkbox>
+      </section>
+      <div>
+      <mat-form-field>
+        <input matInput formControlName="location" placeholder="Location" [readonly]="disHere">
+      </mat-form-field>
+      </div>
+  <div>
+
+    <label for="maxdistance">Μέγιστη Απόσταση (χμ)</label>
+    </div>
+    <div>
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        [disabled]="disDist"
+        tickInterval="1000"
+        min="1"
+        max="100"
+        value="10" formControlName="maxDist"></mat-slider>
+    </div>
+
+      <section class="today">
+        <mat-checkbox class="today" formControlName="today" (click)="today()">Σήμερα</mat-checkbox>
+      </section>
+
+      <div>
+      <mat-form-field>
+        <input matInput [disabled]="chooseDates" [matDatepicker]="picker1" placeholder="Επιλογή Ημέρας" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      </div>
+
+  
+  </div>
+  <button mat-raised-button (click)="submit()">Αναζήτηση</button>
+</form>
