@@ -1,7 +1,0 @@
-<ul *ngIf="allShops">
-  <li *ngFor="let shop of allShops.products">{{shop.id}} - {{shop.name}}</li>
-</ul>
-
-<button (click)="nextShops(); loadShops()">Next Shops</button><br>
-<button (click)="prevShops(); loadShops()">Prev Shops</button>
-{{current}} / {{total}}
