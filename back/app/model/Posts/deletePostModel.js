@@ -8,13 +8,13 @@ del_post = function(postId, usrid, result){
         sql.query("SELECT userid FROM post WHERE postid = ? LIMIT 1", postId, function(err1, res1) {
             if (err1) {
                 //console.log("ERROR ON SEARCH :" + err1);
-                result(null, {"success":false, "message":"Something went wrong !"});
+                result(true, {"success":false, "message":"Something went wrong !"});
             }
             else if (!res1[0]) {
-                result(null, {"success":false, "message":"Please provide a valid postId !"});
+                result(true, {"success":false, "message":"Please provide a valid postId !"});
             }
-            else if (res1[0].userid !== usrid) {
-                result(true, {"success": false, "message": "You have no access to delete this post!"});
+            else if (res1[0].userid != usrid) {
+                result(null, {"success": false, "message": "You have no access to delete this post!"});
             }
             else {
                 var inp = "DELETE FROM post WHERE ( userid = '" + usrid + "' AND postid = '" + postId + "');";
