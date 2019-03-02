@@ -40,6 +40,7 @@ import { NewPasswordComponent } from './components/profile/new-password/new-pass
 import { MyhistoryComponent } from './components/profile/myhistory/myhistory.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { UploadPhotoComponent } from './components/profile/upload-photo/upload-photo.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     NewPasswordComponent,
     MyhistoryComponent,
     FooterComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    UploadPhotoComponent
   ],
   imports: [
     BrowserModule,

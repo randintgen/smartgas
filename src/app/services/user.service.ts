@@ -44,7 +44,7 @@ export class UserService {
     return RegisterResponse
   };
 
-  loginUser(username: string, password: string): void {
+  loginUser(username: string, password: string): Observable<any> {
     
     var loginUrl = this.baseUrl + 'login';
 
@@ -53,20 +53,10 @@ export class UserService {
       password: password
     };
 
-    this.http.post<LogRegResponse>(
+    return this.http.post<LogRegResponse>(
       loginUrl,
       JSON.stringify(userToLogin),
       httpOptions
-    ).subscribe(
-      (response) => {
-        this.myStorage.storeOnLocal('username', username);
-        this.myStorage.storeOnLocal('token', response.token);
-        console.log(this.myStorage.getFromLocal('token'));
-        this.isConnected.next(true);
-      },
-      (_) => {
-        this.isConnected.next(false);
-      }
     );
 
   };
@@ -96,6 +86,81 @@ export class UserService {
         console.log(error.error.message);
       }
     );
-
   };
+
+  deleteUser(username: string, password: string): Observable<any>{
+
+    var deleteUserUrl = this.baseUrl + 'users/' + username + '/delete';
+
+    var usDelete = this.http.request('delete', deleteUserUrl, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+      }),
+      body: JSON.stringify({
+        'psswd': password
+      })
+    });
+
+    return usDelete;
+  };
+
+  userChPsswd(username: string, oldPass: string, newPass: string): Observable<any>{
+    
+    var chPassUrl = this.baseUrl + 'users/' + username + '/newpass';
+
+    var chPass = this.http.put<any>(chPassUrl, JSON.stringify({
+      psswd: oldPass,
+      newpsswd: newPass
+    }), {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+      })
+    });
+
+    return chPass;
+  };
+
+  userChUsername(oldUsername: string, newUsername: string): Observable<any>{
+
+    var chUsernameUrl = this.baseUrl + 'users/' + oldUsername + '/newname';
+
+    var newName = this.http.put<any>(chUsernameUrl, JSON.stringify(
+      {
+      username: newUsername
+      }
+    ),
+    {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+      })});
+
+      return newName;
+  }
+
+  getUser(username: string): Observable<any> {
+
+    var getUserUrl = this.baseUrl + 'users/' + username;
+
+    var infoUser = this.http.get<any>(getUserUrl, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+      })
+    });
+
+    return infoUser;
+  };
+
+  changeProfile(username: string, toUpload: File) {
+
+    var uploadProfileUrl = this.baseUrl + 'users/' + username + '/newinfo';
+    const uploadData = new FormData();
+    uploadData.append('profile', toUpload, username);
+
+    //var request = this.http.post()
+  }
+
 }
