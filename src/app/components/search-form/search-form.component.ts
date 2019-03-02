@@ -24,6 +24,7 @@ export class SearchFormComponent implements OnInit {
   private chooseDates: boolean = false;
   private searchResults;
   private addressedFound;
+  private disDist: boolean = true;
 
   constructor(
     private form: FormBuilder,
@@ -95,7 +96,6 @@ export class SearchFormComponent implements OnInit {
       this.objSearch['when'] = toDate;
     }else if(date){
       var newDate:any = new Date(date);
-      newDate = newDate.setHours(newDate.getHours() + 2);
       newDate = newDate.toISOString().split('T')[0];
       this.objSearch['dateFrom'] = newDate;
       this.objSearch['dateTo'] = newDate;
@@ -146,6 +146,10 @@ export class SearchFormComponent implements OnInit {
 
   today(): void {
     this.chooseDates = !this.chooseDates;
+  }
+
+  distance(): void {
+    this.disDist = !this.disDist;
   }
 
 }
