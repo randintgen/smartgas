@@ -67,7 +67,7 @@ exports.create_post = function(req, res) {
                   else {
 			//console.log(post);
                     if (post.success == true) res.json(post);
-                    else res.status(400).json(post);
+                    else res.status(404).json(post);
                   }
                 });
             }
