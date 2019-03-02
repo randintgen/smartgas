@@ -5,7 +5,7 @@ import { SearchPrices } from '../../interfaces/search-prices';
 import { DatePipe } from '@angular/common';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ShopService } from 'src/app/services/shop.service';
+import { ShopService } from '../../services/shop.service';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { AddressesListComponent } from './addresses-list/addresses-list.component';
 import { LocalStorageService } from '../../services/local-storage.service';

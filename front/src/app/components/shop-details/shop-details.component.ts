@@ -27,10 +27,11 @@ export class ShopDetailsComponent implements OnInit {
   ngOnInit() {
 
     const id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
     this.shopService.getShop(parseInt(id)).subscribe(
       (response) => {
-        console.log('now');
-        this.selectedShop = response.product;
+        console.log(response);
+        this.selectedShop = response.shop;
         this.selectedShopId = id;
       },
       (error) => {

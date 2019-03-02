@@ -3,6 +3,7 @@ import { Component, OnInit, Output, Inject, Input } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 import * as decode from 'jwt-decode';
 
 export interface userInfo {
@@ -26,7 +27,8 @@ export class NavBarComponent implements OnInit {
   constructor(
     private userService: UserService,
     private myStorage: LocalStorageService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -95,6 +97,7 @@ export class NavBarComponent implements OnInit {
         this.myStorage.removeFromLocal('username');
         this.myStorage.removeFromLocal('token');
         this.isConnected = false;
+        this.router.navigateByUrl('');
       },  
       (error) => {
         console.log(error.error.message);
