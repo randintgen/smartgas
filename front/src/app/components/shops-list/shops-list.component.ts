@@ -34,11 +34,17 @@ export class ShopsListComponent implements OnInit {
     this.shopService.getShops().subscribe(
       (response) => {
         console.log(response);
-        this.dataSource = new MatTableDataSource<Shop>(response.shop);
+
+        this.dataSource = new MatTableDataSource<Shop>(response.shops);
+
         this.dataSource.paginator = this.paginator;
 
       }
     )
   };
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 
 }
