@@ -37,7 +37,7 @@ exports.my_post_list = function(req, res) {
     var products = "(";
     var tag_flag = 0;
     var tags_str;   // tags = "val1|val2|...|valn"
-    var sort = [0];   // price|ASC -> 0, price|DESC -> 1, date|ASC -> 3, date|DESC -> 4, geo.dist|ASC -> 6, geo.dist|DESC -> 7
+    var sort = [0];   // price|ASC -> 0, price|DESC -> 1, date|ASC -> 3, date|DESC -> 4, geoDist|ASC -> 6, geoDist|DESC -> 7
     var sort2 = " ORDER BY price ASC";
 
     if (req.query.format && req.query.format != "json") {
@@ -177,7 +177,7 @@ exports.my_post_list = function(req, res) {
                     temp = 4;
                     temp2 = "date DESC"
                 }
-                else if (tempList[i] == "geo.dist|ASC") {
+                else if (tempList[i] == "geoDist|ASC") {
                     temp = 6;
                     temp2 = "shopDist ASC";
                     if (geoflag == false) {
@@ -186,7 +186,7 @@ exports.my_post_list = function(req, res) {
                         break;
                     }
                 }
-                else if (tempList[i] == "geo.dist|DESC") {
+                else if (tempList[i] == "geoDist|DESC") {
                     temp = 7;
                     temp2 = "shopDist DESC";
                     if (geoflag == false) {
