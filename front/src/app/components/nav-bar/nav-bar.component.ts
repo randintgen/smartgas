@@ -1,54 +1,104 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { LoginUserComponent } from '../login-user/login-user.component';
-import { RegisterUserComponent } from '../register-user/register-user.component';
-import { UserService } from 'src/app/services/user.service';
 import { LocalStorageService } from '../../services/local-storage.service';
+import { Component, OnInit, Output, Inject, Input } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
+import { UserService } from '../../services/user.service';
+
+export interface userInfo {
+  username: string;
+  password: string;
+  passrepeat: string;
+  mail?: string;
+}
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
+
 export class NavBarComponent implements OnInit {
 
-  private isConnected: boolean;
-  private usernameConnected: string;
+  private isConnected = false;
+  private username: string;
 
   constructor(
-    private openedDialog: MatDialog,
     private userService: UserService,
-    private myStorage: LocalStorageService
-  ) { }
+    private myStorage: LocalStorageService,
+    private dialog: MatDialog
+    ) { }
 
   ngOnInit() {
-
-    this.userService.isConnected.subscribe(
-      (response) => {
-        this.isConnected = response;
-        this.usernameConnected = this.myStorage.getFromLocal('username');
-      },
-      (_) => {
-        this.isConnected = false;
-      }
-    )
+    if(this.myStorage.getFromLocal('username')){
+      this.username = this.myStorage.getFromLocal('username');
+      this.isConnected = true;
+    }
   }
 
   openLogin(): void {
-    const dialogRef = this.openedDialog.open(LoginUserComponent, {
+    var loginRef = this.dialog.open(LoginUserComponent, {
       width: '300px',
+      data: {
+        username: '',
+        password: ''
+        }
     });
-  };
+
+    loginRef.afterClosed().subscribe(
+      (response) => {
+        this.username = response.username;
+        this.userService.loginUser(response.username, response.password).subscribe(
+          (response) => {
+            this.myStorage.storeOnLocal('username', this.username);
+            this.myStorage.storeOnLocal('token', response.token);
+            this.isConnected = true;
+          },
+          (error) => {
+            this.isConnected = false;
+          }
+        );
+      }
+    );
+  }
 
   openRegister(): void {
-    const dialogRef = this.openedDialog.open(RegisterUserComponent, {
+    var registerRef = this.dialog.open(RegisterUserComponent, {
       width: '300px',
+      data : {
+        username: '',
+        password: ''
+      }
     });
-  };
 
-  logoutUser(): void {
-    this.isConnected = false;
-    this.userService.logoutUser();
+    registerRef.afterClosed().subscribe(
+      (response) => {
+        if(response.password === response.passrepeat){
+          this.userService.registerUser(response.username, response.password, response.email).subscribe(
+            (response) => {
+              console.log(response);
+            },
+            (error) => {
+              this.isConnected = false;
+            }
+          )
+        }
+      }
+    );
+  }
+
+  logout(): void {
+
+    this.userService.logoutUser().subscribe(
+      (response) => {
+        this.myStorage.removeFromLocal('username');
+        this.myStorage.removeFromLocal('token');
+        this.isConnected = false;
+      },  
+      (error) => {
+        console.log(error.error.message);
+      }
+    );
+
   }
 
   myFunction(): void {
@@ -60,9 +110,42 @@ export class NavBarComponent implements OnInit {
     }
   }
 
-  do(): void {
-    console.log(this.myStorage.getFromLocal('token'));
-    this.myStorage.removeFromLocal('token');
-    console.log(this.myStorage.getFromLocal('token'));
-  }
+}
+
+@Component({
+  selector: 'app-login-user',
+  templateUrl: 'login-user.component.html'
+})
+
+export class LoginUserComponent {
+
+  constructor(
+    private form: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: userInfo
+  ) { } 
+
+  private loginForm = this.form.group({
+    'username': [''],
+    'password': ['']
+  }); 
+}
+
+@Component({
+  selector: 'app-register-user',
+  templateUrl: 'register-user.component.html'
+})
+
+export class RegisterUserComponent {
+  
+  constructor(
+    private form: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public data: userInfo
+  ){}
+
+  private registerForm = this.form.group({
+    'username': [''],
+    'password': [''],
+    'pass-repeat': [''],
+    'email': ['']
+  }); 
 }

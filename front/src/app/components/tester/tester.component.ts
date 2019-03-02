@@ -1,27 +1,47 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject} from '@angular/core';
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
-import { ProductsService } from '../../services/products.service';
-import { UserService } from '../../services/user.service';
-
-
+/**
+ * @title Injecting data when opening a dialog
+ */
 @Component({
   selector: 'app-tester',
-  templateUrl: './tester.component.html',
-  styleUrls: ['./tester.component.css']
+  templateUrl: 'tester.component.html'
 })
-export class TesterComponent implements OnInit {
+export class TesterComponent {
+
+  public results = 'first';
+  constructor(public dialog: MatDialog) {}
+
+  openDialog() {
+    var t = this.dialog.open(DialogDataExampleDialog, {
+      data: {
+        phrase: this.results
+      }
+    });
+
+    t.afterClosed().subscribe(
+      (returns) => {
+        console.log(returns);
+        this.results = returns;
+      }
+    );
+  }
+}
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: 'dialog-data-example-dialog.html',
+})
+export class DialogDataExampleDialog {
+  private inputt;
 
   constructor(
-    private productsService: ProductsService,
-    private userService: UserService
-  ) { }
+    public dialogRef: MatDialogRef<DialogDataExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+    ) {}
 
-  ngOnInit() {
-    this.userService.getUser('peiramatozoo').subscribe(
-      (p) => {
-        console.log(p);
-      }
-    )
-  }
-
+    newValue() {
+      this.dialogRef.close();
+    }
 }

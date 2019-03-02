@@ -62,40 +62,28 @@ export class UserService {
   };
 
 
-  logoutUser(): void {
+  logoutUser(): Observable<any>{
 
     var logoutUrl = this.baseUrl + 'logout';
 
-    console.log(this.myStorage.getFromLocal('token'));
-    this.http.post<LogRegResponse>(
-      logoutUrl,
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'applications/json',
-          'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
-        })
-      }
-    ).subscribe(
-      (response) => {
-        this.isConnected.next(false);
-        console.log('user logged out');
-        this.myStorage.removeFromLocal('token');
-        this.myStorage.removeFromLocal('username');
-      },
-      (error) => {
-        console.log(error.error.message);
-      }
-    );
+    let newHeaders = new HttpHeaders();
+    newHeaders = newHeaders.set('Content-Type', 'text/plain')
+      .set('X-OBSERVATORY-AUTH', this.myStorage.getFromLocal('token'))
+
+    var logoutResponse = this.http.request('post', logoutUrl, {
+      headers: newHeaders
+    });
+    return logoutResponse;
   };
 
   deleteUser(username: string, password: string): Observable<any>{
 
     var deleteUserUrl = this.baseUrl + 'users/' + username + '/delete';
-
+    
     var usDelete = this.http.request('delete', deleteUserUrl, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+        'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token'),
+        'Content-Type': 'application/json'
       }),
       body: JSON.stringify({
         'psswd': password
