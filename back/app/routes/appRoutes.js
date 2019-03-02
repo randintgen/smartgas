@@ -19,41 +19,41 @@ module.exports = function(app) {
 	const delete_a_product = require('../controller/Products/delproductController.js');
 	const put_a_product = require('../controller/Products/putProductController.js');
 	const patch_a_product = require('../controller/Products/patchProductController.js');
-	// Shops
+	// Shops 
 	const get_the_shops = require('../controller/Shops/getShopsController.js');
 	const create_shop = require('../controller/Shops/createShopController.js');
 	const get_the_shopid = require('../controller/Shops/getShopidController.js');
 	const put_the_shopid = require('../controller/Shops/putShopidController.js');
-    const patch_the_shopid = require('../controller/Shops/patchShopidController.js');
-    const delete_the_shopid = require('../controller/Shops/deleteShopidController.js');
+    	const patch_the_shopid = require('../controller/Shops/patchShopidController.js');
+    	const delete_the_shopid = require('../controller/Shops/deleteShopidController.js');
 	// Posts
-    const newpost = require('../controller/Posts/createPostController.js');
-    const delete_my_old_post = require('../controller/Posts/deletePostController.js');
-    const upd_old_post = require('../controller/Posts/updatePostController.js');
-    const post_search = require('../controller/Posts/getPostController.js');
-    const list_my_posts = require('../controller/Posts/getMyPostController.js');
+    	const newpost = require('../controller/Posts/createPostController.js');
+    	const delete_my_old_post = require('../controller/Posts/deletePostController.js');
+    	const upd_old_post = require('../controller/Posts/updatePostController.js');
+    	const post_search = require('../controller/Posts/getPostController.js');
+
 	// todoList Routes
 
 	// Users
 	app.route(url+'/users/signup')
 		.post(cusr.create_a_user);
-
+   
 	app.route(url+'/login')
 		.post(loginusr.login_as_user);
 
-	app.route(url+'/users/:username/delete')
+	app.route(url+'/users/myprofile')
 		.delete(dusr.delete_a_user);
 
-	app.route(url+'/users/:username/newinfo')
+	app.route(url+'/users/newinfo')
 		.put(updusr.update_gen_user)
 
-	app.route(url+'/users/:username/newpass')
+	app.route(url+'/users/newpass')
 		.put(updpassusr.update_pass_user)
 
-	app.route(url+'/users/:username/newname')
+	app.route(url+'/users/newname')
 		.put(updnameusr.update_name_user)
 
-	app.route(url+'/users/:username')
+	app.route(url+'/users/myprofile')
 		.get(gusr.get_profile)
 
 	app.route(url+'/logout')
@@ -80,7 +80,7 @@ module.exports = function(app) {
 
 	// Shops
 	app.route(url+'/shops')
-        .get(get_the_shops.view_shops)
+        	.get(get_the_shops.view_shops)
 
 	app.route(url+'/shops')
 		.post(create_shop.create_a_shop)
@@ -93,23 +93,16 @@ module.exports = function(app) {
 
 	app.route(url+'/shops/:id')
 		.patch(patch_the_shopid.patch_a_shop)
-
+		
 	app.route(url+'/shops/:id')
 		.delete(delete_the_shopid.delete_a_shop)
-
+	
 	// Posts
 	app.route(url+'/prices')
-        .post(newpost.create_post)
+        	.post(newpost.create_post)
+        	.get(post_search.my_post_list);
 
-    app.route(url+'/prices')
-        .get(post_search.my_post_list);
-
-    app.route(url+'/prices/myposts')
-    	.get(list_my_posts.my_own_posts)
-
-   	app.route(url+'/prices/:id')
-       	.delete(delete_my_old_post.delete_post)
-
-   	app.route(url+'/prices/:id')
-       	.put(upd_old_post.update_post);
+    	app.route(url+'/prices/:id')
+        	.delete(delete_my_old_post.delete_post)
+        	.put(upd_old_post.update_post);
 };

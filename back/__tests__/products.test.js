@@ -81,28 +81,28 @@ describe('Get multiple product tests', () => {
  	test('get at most the first 20 products ', async () => {
 	 	const response = await request(server).get('/observatory/api/products');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":0,"count":7,"total":7,"products":[{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}]}');
+	 	expect(response.text).toContain('{"start":0,"count":20,"total":7,"products":[{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}]}');
  	});
 
 	// test start = 2 count = 100 sort = id|ASC status = ALL
  	test('test start = 2 count = 100 sort = id|ASC status = ALL ', async () => {
 	 	const response = await request(server).get('/observatory/api/products?start=2&count=100&sort=id|ASC&status=ALL');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":2,"count":5,"total":7,"products":[{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false}]}');
+	 	expect(response.text).toContain('{"start":2,"count":100,"total":7,"products":[{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false}]}');
  	});
 
 	// test start = 0 count = 100 sort = id|DESC status = ALL
  	test('test start = 0 count = 100 sort = id|DESC status = ALL ', async () => {
 	 	const response = await request(server).get('/observatory/api/products?start=0&count=100&sort=id|DESC&status=ALL');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":0,"count":7,"total":7,"products":[{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}]}');
+	 	expect(response.text).toContain('{"start":0,"count":100,"total":7,"products":[{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}]}');
  	});
 
 	// test start = 2 count = 100 sort = name|DESC status = ALL
  	test('test start = 2 count = 100 sort = name|DESC status = ALL ', async () => {
 	 	const response = await request(server).get('/observatory/api/products?start=2&count=100&sort=name|DESC&status=ALL');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":2,"count":5,"total":7,"products":[{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false}]}');
+	 	expect(response.text).toContain('{"start":2,"count":100,"total":7,"products":[{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false}]}');
 		//console.log(response.text);
  	});
 
@@ -110,7 +110,7 @@ describe('Get multiple product tests', () => {
  	test('test start = 2 count = 100 sort = name|ASC status = ALL ', async () => {
 	 	const response = await request(server).get('/observatory/api/products?start=2&count=100&sort=name|ASC&status=ALL');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":2,"count":5,"total":7,"products":[{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false}]}');
+	 	expect(response.text).toContain('{"start":2,"count":100,"total":7,"products":[{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false}]}');
 		//console.log(response.text);
  	});
 
@@ -126,14 +126,14 @@ describe('Get multiple product tests', () => {
  	test('test start = 0 count = 100 sort = id|DESC status = ACTIVE ', async () => {
 	 	const response = await request(server).get('/observatory/api/products?start=0&count=100&sort=id|DESC&status=ACTIVE');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":0,"count":7,"total":7,"products":[{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}]}');
+	 	expect(response.text).toContain('{"start":0,"count":100,"total":7,"products":[{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}]}');
  	});
 
 	// test start = 0 count = 100 sort = id|DESC status = WITHDRAWN
  	test('test start = 0 count = 100 sort = id|DESC status = WITHDRAWN ', async () => {
 	 	const response = await request(server).get('/observatory/api/products?start=0&count=100&sort=id|DESC&status=WITHDRAWN');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":0,"count":0,"total":7,"products":[]}');
+	 	expect(response.text).toContain('{"start":0,"count":100,"total":0,"products":[]}');
  	});
 
 	// test start = 0 count = 100 sort = id|DESC status = WITHDRAWNAS (wrong status)
@@ -196,28 +196,28 @@ describe('Get multiple product tests', () => {
  	test('get at most the first 20 products ', async () => {
 	 	const response = await request(server).get('/observatory/api/products?format=json');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":0,"count":7,"total":7,"products":[{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}]}');
+	 	expect(response.text).toContain('{"start":0,"count":20,"total":7,"products":[{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}]}');
  	});
 
 	// json test , start = 2 count = 100 sort = id|ASC status = ALL
  	test('test start = 2 count = 100 sort = id|ASC status = ALL ', async () => {
 	 	const response = await request(server).get('/observatory/api/products?start=2&count=100&sort=id|ASC&status=ALL&format=json');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":2,"count":5,"total":7,"products":[{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false}]}');
+	 	expect(response.text).toContain('{"start":2,"count":100,"total":7,"products":[{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false}]}');
  	});
 
 	// json test , start = 0 count = 100 sort = id|DESC status = ALL
  	test('test start = 0 count = 100 sort = id|DESC status = ALL ', async () => {
 	 	const response = await request(server).get('/observatory/api/products?start=0&count=100&sort=id|DESC&status=ALL&format=json');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":0,"count":7,"total":7,"products":[{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}]}');
+	 	expect(response.text).toContain('{"start":0,"count":100,"total":7,"products":[{"id":"7","name":"Αέριο","description":"CNG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"6","name":"Αέριο","description":"LPG","category":"Καύσιμο κίνησης","tags":["απλό"],"withdrawn":false},{"id":"5","name":"Πετρέλαιο","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"4","name":"Πετρέλαιο","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλό","fuelsave"],"withdrawn":false},{"id":"3","name":"Βενζίνη","description":"100 οκτανίων","category":"Καύσιμο κίνησης","tags":["Racing","Κατοστάρα"],"withdrawn":false},{"id":"2","name":"Βενζίνη","description":"97 οκτανίων","category":"Καύσιμο κίνησης","tags":["Vpower"],"withdrawn":false},{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}]}');
  	});
 
 	// json test , start = 0 count = 100 sort = id|DESC status = WITHDRAWN
  	test('test start = 0 count = 100 sort = id|DESC status = WITHDRAWN ', async () => {
 	 	const response = await request(server).get('/observatory/api/products?start=0&count=100&sort=id|DESC&status=WITHDRAWN&format=json');
 	 	expect(response.status).toEqual(200);
-	 	expect(response.text).toContain('{"start":0,"count":0,"total":7,"products":[]}');
+	 	expect(response.text).toContain('{"start":0,"count":100,"total":0,"products":[]}');
  	});
 });
 
@@ -910,21 +910,43 @@ describe('Users signup', () => {
 		expect(response.text).toEqual('{"success":false,"message":"Username is already in use."}');
  	});
 
+	var token ;
+	test('user0023 login to retrieve token ', async () => {
+		const response = await request(server).post('/observatory/api/login').set("Content-Type", "application/json").send({"username":"user0023","password":"kodikos"});
+		expect(response.status).toEqual(200);
+		expect(response.body.success).toEqual(true);
+		token = response.body.token;
+ 	});
 
 	test('delete user0023 ', async () => {
-		const response = await request(server).delete('/observatory/api/users/user0023/delete').set("Content-Type", "application/json").send({"psswd":"kodikos"});
+		const response = await request(server).delete('/observatory/api/users/myprofile').set("Content-Type", "application/json").send({"psswd":"kodikos"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
 		expect(response.text).toEqual('{"success":true,"message":"We will miss you user0023"}');
+
+ 	});
+
+	test('user0024 login to retrieve token ', async () => {
+		const response = await request(server).post('/observatory/api/login').set("Content-Type", "application/json").send({"username":"user0024","password":"kodikos"});
+		expect(response.status).toEqual(200);
+		expect(response.body.success).toEqual(true);
+		token = response.body.token;
  	});
 
 	test('delete user0024 ', async () => {
-		const response = await request(server).delete('/observatory/api/users/user0024/delete').set("Content-Type", "application/json").send({"psswd":"kodikos"});
+		const response = await request(server).delete('/observatory/api/users/myprofile').set("Content-Type", "application/json").send({"psswd":"kodikos"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
 		expect(response.text).toEqual('{"success":true,"message":"We will miss you user0024"}');
  	});
 
+	test('user0025 login to retrieve token ', async () => {
+		const response = await request(server).post('/observatory/api/login').set("Content-Type", "application/json").send({"username":"user0025","password":"kodikos"});
+		expect(response.status).toEqual(200);
+		expect(response.body.success).toEqual(true);
+		token = response.body.token;
+ 	});
+
 	test('delete user0025 ', async () => {
-		const response = await request(server).delete('/observatory/api/users/user0025/delete').set("Content-Type", "application/json").send({"psswd":"kodikos"});
+		const response = await request(server).delete('/observatory/api/users/myprofile').set("Content-Type", "application/json").send({"psswd":"kodikos"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
 		expect(response.text).toEqual('{"success":true,"message":"We will miss you user0025"}');
  	});
@@ -1006,32 +1028,57 @@ describe('Users delete', () => {
 		expect(response.text).toEqual('{"success":true,"message":"Welcome, user0023 !"}');
  	});
 
-	test('delete no valid username', async () => {
-		const response = await request(server).delete('/observatory/api/users/1/delete').set("Content-Type", "application/json").send({"psswd":"kodikos"});
-		expect(response.status).toEqual(404);
-		expect(response.text).toEqual('{"success":false,"message":"Invalid username!"}');
+	var token ;
+	test('user0023 login to retrieve token ', async () => {
+		const response = await request(server).post('/observatory/api/login').set("Content-Type", "application/json").send({"username":"user0023","password":"kodikos"});
+		expect(response.status).toEqual(200);
+		expect(response.body.success).toEqual(true);
+		token = response.body.token;
  	});
 
 	test('delete user0023 no password', async () => {
-		const response = await request(server).delete('/observatory/api/users/user0023/delete').set("Content-Type", "application/json");
+		const response = await request(server).delete('/observatory/api/users/myprofile').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(400);
 		expect(response.text).toEqual('{"success":false,"message":"Please complete all the mandatory fields !"}');
  	});
 
 	test('delete user0023 wrong password', async () => {
-		const response = await request(server).delete('/observatory/api/users/user0023/delete').set("Content-Type", "application/json").send({"psswd":"kodikos_bad"});
+		const response = await request(server).delete('/observatory/api/users/myprofile').set("Content-Type", "application/json").send({"psswd":"kodikos_bad"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
 		expect(response.text).toEqual('{"success":true,"message":"Invalid password !"}');
  	});
 
-	test('delete user0023 ', async () => {
-		const response = await request(server).delete('/observatory/api/users/user0023/delete').set("Content-Type", "application/json").send({"psswd":"kodikos"});
+	test('delete user0023 no token', async () => {
+		const response = await request(server).delete('/observatory/api/users/myprofile').set("Content-Type", "application/json").send({"psswd":"kodikos"});
+		expect(response.status).toEqual(400);
+		expect(response.text).toEqual('{"success":false,"message":"Please provide a valid authentication token !"}');
+ 	});
+
+	test('delete user0023 bad token', async () => {
+		const response = await request(server).delete('/observatory/api/users/myprofile').set("Content-Type", "application/json").send({"psswd":"kodikos"}).set('X-OBSERVATORY-AUTH', token+"bad_token");
+		expect(response.status).toEqual(403);
+		expect(response.text).toEqual('{"success":false,"message":"Authentication failed !"}');
+ 	});
+
+	test('delete user0023 good', async () => {
+		const response = await request(server).delete('/observatory/api/users/myprofile').set("Content-Type", "application/json").send({"psswd":"kodikos"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
 		expect(response.text).toEqual('{"success":true,"message":"We will miss you user0023"}');
  	});
 
+	test('delete user0023 bad ', async () => {
+		const response = await request(server).delete('/observatory/api/users/myprofile').set("Content-Type", "application/json").send({"psswd":"kodikos"}).set('X-OBSERVATORY-AUTH', token);
+		expect(response.status).toEqual(403);
+		expect(response.text).toEqual('{"success":false,"message":"Authentication failed !"}');
+ 	});
+
+	test('user0023 login to retrieve token ', async () => {
+		const response = await request(server).post('/observatory/api/login').set("Content-Type", "application/json").send({"username":"user0023","password":"kodikos"});
+		expect(response.status).toEqual(404);
+ 	});
+
 	test('delete XML', async () => {
-		const response = await request(server).delete('/observatory/api/users/user0023/delete?format=xml').set("Content-Type", "application/json").send({"psswd":"kodikos"});
+		const response = await request(server).delete('/observatory/api/users/myprofile?format=xml').set("Content-Type", "application/json").send({"psswd":"kodikos"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(400);
 		expect(response.text).toEqual('{"success":false,"message":"XML"}');
  	});
@@ -1049,36 +1096,31 @@ describe('Get user profile', () => {
  	});
 
 	test('get my profile (OK) ', async () => {
-		const response = await request(server).get('/observatory/api/users/fnp').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).get('/observatory/api/users/myprofile').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.body.user.username).toEqual("fnp");
 		expect(response.body.user.mail).toEqual("lkanav@yahoo.com");
 		expect(response.body.user.nposts).toEqual(0);
-		expect(response.body.user.reputation).toEqual(0);
+		expect(response.body.user.ipath).toEqual("/home/fnp");
  	});
 
 	test('get my profile (bad token) ', async () => {
-		const response = await request(server).get('/observatory/api/users/fnp').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token+"bad_token");
+		const response = await request(server).get('/observatory/api/users/myprofile').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token+"bad_token");
 		expect(response.status).toEqual(403);
 		expect(response.text).toEqual('{"success":false,"message":"Authentication failed !"}');
 
  	});
 
 	test('get my profile (no token) ', async () => {
-		const response = await request(server).get('/observatory/api/users/fnp').set("Content-Type", "application/json");
+		const response = await request(server).get('/observatory/api/users/myprofile').set("Content-Type", "application/json");
 		expect(response.status).toEqual(400);
 		expect(response.text).toEqual('{"success":false,"message":"Please provide a valid authentication token !"}');
 
  	});
 
-	test('get my profile (OK) ', async () => {
-		const response = await request(server).get('/observatory/api/users/notfnp').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
-		expect(response.status).toEqual(404);
-		expect(response.text).toEqual('{"success":false,"message":"No matching user with the username given !"}');
- 	});
 
 	test('get my profile XML ', async () => {
-		const response = await request(server).get('/observatory/api/users/fnp?format=xml').set("Content-Type", "application/json");
+		const response = await request(server).get('/observatory/api/users/myprofile?format=xml').set("Content-Type", "application/json");
 		expect(response.status).toEqual(400);
  		expect(response.text).toEqual('{"success":false,"message":"XML"}');
  	});
@@ -1099,7 +1141,7 @@ describe('UPDATE user test', () => {
  	});
 
 	test('update username of manzar to manzar2 ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newname').set("Content-Type", "application/json").send({"username":"manzar2"}).set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newname').set("Content-Type", "application/json").send({"username":"manzar2"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.text).toEqual('{"success":true,"message":"Username update completed!"}');
  	});
@@ -1112,11 +1154,12 @@ describe('UPDATE user test', () => {
 	test('login in as manzar2 after update ', async () => {
 		const response = await request(server).post('/observatory/api/login').set("Content-Type", "application/json").send({"username":"manzar2","password":"kodikos"});
 		expect(response.status).toEqual(200);
+		token = response.body.token;
  	});
 
 
 	test('update username of manzar2 to manzar ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar2/newname').set("Content-Type", "application/json").send({"username":"manzar"}).set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newname').set("Content-Type", "application/json").send({"username":"manzar"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.text).toEqual('{"success":true,"message":"Username update completed!"}');
  	});
@@ -1129,34 +1172,35 @@ describe('UPDATE user test', () => {
 	test('login in as manzar after second update ', async () => {
 		const response = await request(server).post('/observatory/api/login').set("Content-Type", "application/json").send({"username":"manzar","password":"kodikos"});
 		expect(response.status).toEqual(200);
+		token = response.body.token;
  	});
 
 	test('update username of manzar2 to manzar ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar2/newname').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newname').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(400);
  		expect(response.text).toEqual('{"success":false,"message":"Please complete all the mandatory fields !"}');
  	});
 
 	test('update username XML ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newname?format=xml').set("Content-Type", "application/json").send({"username":"manzar2"}).set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newname?format=xml').set("Content-Type", "application/json").send({"username":"manzar2"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(400);
  		expect(response.text).toEqual('{"success":false,"message":"XML"}');
  	});
 
 	test('update username NO TOKEN ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newname').set("Content-Type", "application/json").send({"username":"manzar2"});
+		const response = await request(server).put('/observatory/api/users/newname').set("Content-Type", "application/json").send({"username":"manzar2"});
 		expect(response.status).toEqual(400);
  		expect(response.text).toEqual('{"success":false,"message":"Please provide a valid authentication token !"}');
  	});
 
 	test('update username BAD TOKEN ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newname').set("Content-Type", "application/json").send({"username":"manzar2"}).set('X-OBSERVATORY-AUTH', token+"bad_token");
+		const response = await request(server).put('/observatory/api/users/newname').set("Content-Type", "application/json").send({"username":"manzar2"}).set('X-OBSERVATORY-AUTH', token+"bad_token");
 		expect(response.status).toEqual(403);
  		expect(response.text).toEqual('{"success":false,"message":"Authentication failed !"}');
  	});
 
 	test('update username with already in use username ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newname').set("Content-Type", "application/json").send({"username":"fnp"}).set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newname').set("Content-Type", "application/json").send({"username":"fnp"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.text).toEqual('{"success":false,"message":"Username already in use !"}');
  	});
@@ -1168,21 +1212,28 @@ describe('UPDATE user test', () => {
  	 });
 
 	test('update username after logout ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newname').set("Content-Type", "application/json").send({"username":"manzar2"}).set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newname').set("Content-Type", "application/json").send({"username":"manzar2"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(403);
  		expect(response.text).toEqual('{"success":false,"message":"Authentication failed !"}');
  	});
 
 	// USER UPDATE PASSWORD
 
+ 	test('login in order to update ', async () => {
+		const response = await request(server).post('/observatory/api/login').set("Content-Type", "application/json").send({"username":"manzar","password":"kodikos"});
+		expect(response.status).toEqual(200);
+		token = response.body.token;
+		//console.log(response.body.token);
+ 	});
+
 	test('update password ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newpass').set("Content-Type", "application/json").send({"psswd":"kodikos","newpsswd":"kodikos2"});
+		const response = await request(server).put('/observatory/api/users/newpass').set("Content-Type", "application/json").send({"psswd":"kodikos","newpsswd":"kodikos2"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.text).toEqual('{"success":true,"message":"Password update completed!"}');
  	});
 
-	test('update password ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newpass').set("Content-Type", "application/json").send({"psswd":"kodikos","newpsswd":"kodikos2"});
+	test('update password bad password', async () => {
+		const response = await request(server).put('/observatory/api/users/newpass').set("Content-Type", "application/json").send({"psswd":"kodikos","newpsswd":"kodikos2"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.text).toEqual('{"success":false,"message":"Old password is incorrect,authentication failed !"}');
  	});
@@ -1190,28 +1241,24 @@ describe('UPDATE user test', () => {
 	test('login in as manzar after new psswd ', async () => {
 		const response = await request(server).post('/observatory/api/login').set("Content-Type", "application/json").send({"username":"manzar","password":"kodikos2"});
 		expect(response.status).toEqual(200);
+		token = response.body.token;
  	});
 
 	test('update password 2 ', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newpass').set("Content-Type", "application/json").send({"psswd":"kodikos2","newpsswd":"kodikos"});
+		const response = await request(server).put('/observatory/api/users/newpass').set("Content-Type", "application/json").send({"psswd":"kodikos2","newpsswd":"kodikos"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.text).toEqual('{"success":true,"message":"Password update completed!"}');
  	});
 
-	test('update password in non existent user', async () => {
-		const response = await request(server).put('/observatory/api/users/notfound/newpass').set("Content-Type", "application/json").send({"psswd":"kodikos2","newpsswd":"kodikos"});
-		expect(response.status).toEqual(200);
- 		expect(response.text).toEqual('{"success":false,"message":"Invalid username!"}');
- 	});
 
 	test('update password no psswd', async () => {
-		const response = await request(server).put('/observatory/api/users/notfound/newpass').set("Content-Type", "application/json").send({"newpsswd":"kodikos"});
+		const response = await request(server).put('/observatory/api/users/newpass').set("Content-Type", "application/json").send({"newpsswd":"kodikos"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(400);
  		expect(response.text).toEqual('{"success":false,"message":"Please fill all the mandatory fields ! "}');
  	});
 
 	test('update password no newpsswd', async () => {
-		const response = await request(server).put('/observatory/api/users/notfound/newpass').set("Content-Type", "application/json").send({"psswd":"kodikos2"});
+		const response = await request(server).put('/observatory/api/users/newpass').set("Content-Type", "application/json").send({"psswd":"kodikos2"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(400);
  		expect(response.text).toEqual('{"success":false,"message":"Please fill all the mandatory fields ! "}');
  	});
@@ -1226,43 +1273,43 @@ describe('UPDATE user test', () => {
  	});
 
 	test('update profile image', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newinfo').set("Content-Type", "application/json").send({"ipath":"somepath"}).set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newinfo').set("Content-Type", "application/json").send({"ipath":"somepath"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.text).toEqual('{"success":true,"message":"Update completed!"}');
  	});
 
 	test('get my profile after profile image update ', async () => {
-		const response = await request(server).get('/observatory/api/users/manzar').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).get('/observatory/api/users/myprofile').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.body.user.ipath).toEqual("somepath");
  	});
 
 	test('update profile image 2', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newinfo').set("Content-Type", "application/json").send({"ipath":"/home/fnp"}).set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newinfo').set("Content-Type", "application/json").send({"ipath":"/home/fnp"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.text).toEqual('{"success":true,"message":"Update completed!"}');
  	});
 
 	test('get my profile after profile image update 2 ', async () => {
-		const response = await request(server).get('/observatory/api/users/manzar').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).get('/observatory/api/users/myprofile').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.body.user.ipath).toEqual("/home/fnp");
  	});
 
 	test('update profile image NO IPATH', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newinfo').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newinfo').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(400);
  		expect(response.text).toEqual('{"success":false,"message":"Please complete all the mandatory fields !"}');
  	});
 
 	test('update profile image NO TOKEN', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newinfo').set("Content-Type", "application/json").send({"ipath":"/home/fnp"});
+		const response = await request(server).put('/observatory/api/users/newinfo').set("Content-Type", "application/json").send({"ipath":"/home/fnp"});
 		expect(response.status).toEqual(400);
  		expect(response.text).toEqual('{"success":false,"message":"Please provide a valid authentication token !"}');
  	});
 
 	test('update profile image BAD TOKEN', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newinfo').set("Content-Type", "application/json").send({"ipath":"/home/fnp"}).set('X-OBSERVATORY-AUTH', token+"bad_token");
+		const response = await request(server).put('/observatory/api/users/newinfo').set("Content-Type", "application/json").send({"ipath":"/home/fnp"}).set('X-OBSERVATORY-AUTH', token+"bad_token");
 		expect(response.status).toEqual(403);
  		expect(response.text).toEqual('{"success":false,"message":"Authentication failed !"}');
  	});
@@ -1274,13 +1321,13 @@ describe('UPDATE user test', () => {
  	 });
 
 	test('update profile image after LOGOUT', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newinfo').set("Content-Type", "application/json").send({"ipath":"/home/fnp"}).set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newinfo').set("Content-Type", "application/json").send({"ipath":"/home/fnp"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(403);
  		expect(response.text).toEqual('{"success":false,"message":"Authentication failed !"}');
  	});
 
 	test('update profile image XML', async () => {
-		const response = await request(server).put('/observatory/api/users/manzar/newinfo?format=xml').set("Content-Type", "application/json").send({"ipath":"somepath"}).set('X-OBSERVATORY-AUTH', token);
+		const response = await request(server).put('/observatory/api/users/newinfo?format=xml').set("Content-Type", "application/json").send({"ipath":"somepath"}).set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(400);
  		expect(response.text).toEqual('{"success":false,"message":"XML"}');
  	});

@@ -7,7 +7,6 @@ exports.logout_profile = function(req, res) {
 
 
 	let token = req.headers['x-observatory-auth'];
-    console.log(req.headers);
 	if(token) {
 
 	  	if (token.startsWith('Bearer ')) {
@@ -34,3 +33,4 @@ exports.logout_profile = function(req, res) {
 	else res.status(400).json({"success":false,"message":"Please provide a valid authentication token !"});
 
 };
+
