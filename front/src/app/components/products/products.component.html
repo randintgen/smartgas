@@ -1,0 +1,101 @@
+<p>Προϊόντα εφαρμογής</p>
+
+<mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Αναζήτηση">
+  </mat-form-field>
+<div class="products-container mat-elevation-z8">
+    
+
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Όνομα </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Περιγραφή </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Κατηγορία </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="withdrawn">
+      <th mat-header-cell *matHeaderCellDef> Withdrawn </th>
+      <td mat-cell *matCellDef="let element"> {{element.withdrawn}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element">     <button mat-flat-button color="primary">Edit</button>
+
+        </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>  </th>
+          <td mat-cell *matCellDef="let element">   <button mat-flat-button color="warn">Delete</button>
+
+          </td>
+        </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
+<!--
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Προσθήκη Προϊόντος
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+  
+      <div class="conteiner">
+          <form [formGroup]="addProduct">
+          <div class="row">
+              <div class="col-50">
+                  <mat-form-field [formGroup]="addProduct" class="fullin"> Όνομα Προϊόντος :
+                    <input type="text"  formControlName="name" matInput placeholder="Όνομα Προϊόντος">
+                  </mat-form-field>
+                </div>
+              <div class="col-50">
+                  <mat-form-field [formGroup]="addProduct" class="fullin"> Περιγραφή Προϊόντος :
+                      <input type="text"  formControlName="description" matInput placeholder="Περιγραφή Προϊόντος">
+                    </mat-form-field>
+              </div>
+          </div>
+          <div class="row">
+		          <div class="col-50">
+                  <mat-form-field [formGroup]="addProduct" class="fullin"> Κατηγορία προϊόντος :
+                    <input type="text"  formControlName="category" matInput placeholder="Κατηγορία προϊόντος">
+                  </mat-form-field>
+                </div>
+              <div class="col-50">
+                  <mat-form-field [formGroup]="addProduct" class="fullin"> Tags Προϊόντος:
+                      <input type="text"  formControlName="tag" matInput placeholder="Tags Προϊόντος">
+                    </mat-form-field>
+              </div>
+          </div>
+          
+        
+          
+        <button mat-raised-button class="button" (click)="addProductAttempt()">Προσθήκη</button>
+          </form>
+    </div>
+
+    </mat-expansion-panel>
+</mat-accordion>
+-->

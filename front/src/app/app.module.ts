@@ -41,6 +41,7 @@ import { MyhistoryComponent } from './components/profile/myhistory/myhistory.com
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UploadPhotoComponent } from './components/profile/upload-photo/upload-photo.component';
+import { ProductsComponent } from './components/products/products.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { UploadPhotoComponent } from './components/profile/upload-photo/upload-p
     MyhistoryComponent,
     FooterComponent,
     AboutUsComponent,
-    UploadPhotoComponent
+    UploadPhotoComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
