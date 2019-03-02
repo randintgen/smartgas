@@ -4,7 +4,7 @@ const sql = require('../db.js');
 
 Postlist = function(start, count, geoflag, geoDist, geoLng, geoLat, dateFrom, dateTo, shop_flag, shops, product_flag, products, tag_flag, tags, sort, result) {
 
-    console.log(count);
+    //console.log(count);
     var f1;
     var final = "SELECT post.price, post.my_date as date, fuel.type, fuel.description, fuel.fuelid as productId, fuel.tags as productTags, shops.shopid as shopId, shops.name as shopName, shops.tags as shopTags, shops.address as shopAddress, shops.lng as shopLng, shops.lat as shopLat";
     var fr = " FROM ((post INNER JOIN fuel ON fuel.fuelid = post.fuelid) INNER JOIN shops ON shops.shopid = post.shopid)";
