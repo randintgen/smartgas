@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { ShopService } from '../../services/shop.service';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
-
-
+import { LocalStorageService } from '../../services/local-storage.service';
 
 export interface Alysida {
   value: string;
@@ -23,11 +22,14 @@ export class AddShopComponent implements OnInit {
   private initLat=37.975655;
   private initLng=23.734837;
   private addressedFound;
-
+  private finalResults;
 
   constructor(
     private form: FormBuilder,
-    private shopService: ShopService
+    private shopService: ShopService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private myStorage: LocalStorageService
   ) { }
 
   private addShopForm = this.form.group({
@@ -68,19 +70,27 @@ export class AddShopComponent implements OnInit {
 
     
   ngOnInit() {
+    if(!this.myStorage.getFromLocal('username')){
+      this.router.navigateByUrl('');
+    }
   }
 
   private find() : void {
+    
+    var location = this.addShopForm.controls['address'].value;
+
     const provider = new OpenStreetMapProvider();
 
     const nav = provider.search({
       query: location
     }).then((results) => {
+      console.log(results);
       if(results.length === 0){
         console.error('No results!');
       }else if(results.length === 1){
         this.initLat = results[0].y;
         this.initLng = results[0].x;
+        
       }else {
         this.addressedFound = results;
         // kalese thn alli sinartisi 
@@ -94,6 +104,7 @@ export class AddShopComponent implements OnInit {
     var shopAdd = this.addShopForm.controls['address'].value;
     var shopTags = this.addShopForm.controls['tags'].value;
 
+    console.log(shopName, shopAdd, shopTags);
     var addRequest = this.shopService.createShop(shopName, shopAdd, [shopTags]).subscribe(
       (response) => {
         console.log(response);
