@@ -68,7 +68,7 @@ mc.query("SELECT 1 FROM users WHERE username = ? LIMIT 1" , "fnp" , function (er
 const server = new RedisServer({
     conf: './redis.conf',
     port: 6379,
-    bin: "/home/emmanuel/Desktop/other/redis-5.0.3/src/redis-server"    // change path if necessary - needs to show to redis-server
+    bin: "/home/manzar/Desktop/examino9/texnologia logismikou/redis-stable/src/redis-server"    // change path if necessary - needs to show to redis-server
 });
 
 server.open((err) => {
