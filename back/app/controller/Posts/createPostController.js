@@ -3,7 +3,8 @@
 const functions = require("../utils.js");
 
 var createpost = require('../../model/Posts/createPostModel.js');
-var authenticate = require('../../auth/auth.js')
+var authenticate = require('../../auth/auth.js');
+var datetime = require('node-datetime');
 
 exports.create_post = function(req, res) {
 
@@ -60,8 +61,14 @@ exports.create_post = function(req, res) {
                 });
             }
             else {
-
-                createpost(req.body, usrid, function(err, post) {
+		 
+		// multiple inserts
+              	var dt = datetime.create(req.body.dateFrom);
+                var dates = dt.getDatesInRange(datetime.create(req.body.dateTo));
+                // dates = [ ... ];
+                // dates will contain instances of DateTime object from 2015-01-01 to 2015-01-10
+                
+		createpost(req.body, dates, usrid, function(err, post) {
 
                   if (err) res.status(400).json(post);
                   else {
