@@ -1,9 +1,8 @@
 'user strict';
 
 const sql = require('../db.js');
-var datetime = require('node-datetime');
 
-createpost = function createPost(newPost, userid, result) {
+createpost = function createPost(newPost, dates, userid, result) {
 
     sql.query("SELECT fuelid, tags, type, description FROM fuel WHERE fuelid = ? LIMIT 1", newPost.productId, function (err, res) {
         if (err) {
@@ -12,7 +11,7 @@ createpost = function createPost(newPost, userid, result) {
         }
         else if (!res[0]) {
             //console.log("Fuel not found!");
-            result(true, {"success": false, "message": "Fuel with corresponding productId not found !"});
+            result(null, {"success": false, "message": "Fuel with corresponding productId not found !"});
         }
         else {
             sql.query("SELECT shopid, name, address, tags FROM shops WHERE shopid = ? LIMIT 1", newPost.shopId, function (err2, res2) {
@@ -22,17 +21,10 @@ createpost = function createPost(newPost, userid, result) {
                 }
                 else if (!res2[0]) {
                     //console.log("Shop not found!");
-                    result(true, {"success": false, "message": "Shop with corresponding shopId not found !"});
+                    result(null, {"success": false, "message": "Shop with corresponding shopId not found !"});
                 }
                 else {
-                    // multiple inserts
-                    var dt = datetime.create(newPost.dateFrom);
-                    var dates = dt.getDatesInRange(datetime.create(newPost.dateTo));
-                    // dates = [ ... ];
-                    // dates will contain instances of DateTime object from 2015-01-01 to 2015-01-10
-
-
-                    inp = "INSERT INTO post (shopid, userid, fuelid, price, my_date) VALUES "; //( '" + newPost.shopId + "' , '" + userid + "' , '" + newPost.productId + "' , '" + newPost.price + "' , '" + newPost.dateFrom + "' , '" + newPost.dateTo + "');";
+                    inp = "INSERT INTO post (shopid, userid, fuelid, price, my_date) VALUES ";
                     for(var i=0; i<dates.length; i++) {
                         if (i != 0) inp += ", ";
                         inp += "( '" + newPost.shopId + "' , '" + userid + "' , '" + newPost.productId + "' , '" + newPost.price + "' , '" + JSON.stringify(dates[i]._now).substr(1,10) + "')";
@@ -56,7 +48,7 @@ createpost = function createPost(newPost, userid, result) {
                                 mylist[i].date = JSON.stringify(dates[i]._now).substr(1,10);
                             }
 
-                            console.log("New post created , price -->  " + newPost.price );
+                            //console.log("New post created , price -->  " + newPost.price );
                             result(null, {
                                 "success": true,
                                 "start": 0,
