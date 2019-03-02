@@ -1570,38 +1570,6 @@ describe('UPDATE products test', () => {
 
     	});
 
-      // put product with name = abc  description = abc category = abc tags = ["a"] withdrawn = true
-      test('put product with name = abc  description = abc category = abc tags = ["a"] withdrawn = true ', async () => {
-        const response = await request(server).put('/observatory/api/products/1').set("Content-Type", "application/json").send({"name":"abc","description":"abc","category":"abc", "tags":["a"],"withdrawn":true}).set('X-OBSERVATORY-AUTH', token);
-        expect(response.status).toEqual(200);
-        expect(response.text).toEqual('{"id":"1","name":"abc","description":"abc","category":"abc","tags":["a"],"withdrawn":true}');
-
-      });
-
-      // put product with name = abc  description = abc category = abc tags = ["a"] withdrawn =1
-      test('put product with name = abc  description = abc category = abc tags = ["a"] withdrawn =1 ', async () => {
-        const response = await request(server).put('/observatory/api/products/1').set("Content-Type", "application/json").send({"name":"abc","description":"abc","category":"abc", "tags":["a"],"withdrawn":1}).set('X-OBSERVATORY-AUTH', token);
-        expect(response.status).toEqual(400);
-        expect(response.text).toEqual('{"success":false,"message":"Please provide valid fields !"}');
-
-      });
-
-      // put product with name = abc  description = abc category = abc tags = ["a"] withdrawn =0
-      test('put product with name = abc  description = abc category = abc tags = ["a"] withdrawn =0 ', async () => {
-        const response = await request(server).put('/observatory/api/products/1').set("Content-Type", "application/json").send({"name":"abc","description":"abc","category":"abc", "tags":["a"],"withdrawn":0}).set('X-OBSERVATORY-AUTH', token);
-        expect(response.status).toEqual(400);
-        expect(response.text).toEqual('{"success":false,"message":"Please provide valid fields !"}');
-
-      });
-
-      // put product with name = abc  description = abc category = abc tags = ["a"] withdrawn ="dsads"
-      test('put product with name = abc  description = abc category = abc tags = ["a"] withdrawn ="dsads" ', async () => {
-        const response = await request(server).put('/observatory/api/products/1').set("Content-Type", "application/json").send({"name":"abc","description":"abc","category":"abc", "tags":["a"],"withdrawn":"dsads"}).set('X-OBSERVATORY-AUTH', token);
-        expect(response.status).toEqual(400);
-        expect(response.text).toEqual('{"success":false,"message":"Please provide valid fields !"}');
-
-      });
-
       //put product with name = abc  description = abc category = abc tags = ["a"] withdrawn = false JSON
      	test('put product with name = abc  description = abc category = abc tags = ["a"] withdrawn = false JSON ', async () => {
     	 	const response = await request(server).put('/observatory/api/products/1?format=json').set("Content-Type", "application/json").send({"name":"abc","description":"abc", "category":"abc", "tags":["a"],"withdrawn":false}).set('X-OBSERVATORY-AUTH', token);
@@ -1609,9 +1577,6 @@ describe('UPDATE products test', () => {
         expect(response.text).toEqual('{"id":"1","name":"abc","description":"abc","category":"abc","tags":["a"],"withdrawn":false}');
 
     	});
-
-
-
 
       	//put product with name = abc  description = abc category = abc tags = ["a"] withdrawn = false XML
        	test('put product with name = abc  description = abc category = abc tags = ["a"] withdrawn = false XML ', async () => {
@@ -1685,49 +1650,49 @@ describe('PATCH products test', () => {
 
     // valid id test
     test('set product to previous version', async () => {
-       const response = await request(server).patch('/observatory/api/products/1').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);;
+       const response = await request(server).patch('/observatory/api/products/1').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);
        expect(response.status).toEqual(200);
        expect(response.text).toContain('{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}');
     });
 
   	// invalid id test (STRING)
    	test('patch product with invalid id (string)', async () => {
-  		 const response = await request(server).patch('/observatory/api/products/a').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);;
+  		 const response = await request(server).patch('/observatory/api/products/a').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);
   		 expect(response.status).toEqual(400);
   		 expect(response.text).toContain('{"success":false,"message":"Product id given is not an integer !"}');
    	});
 
   	// invalid id test (float)
    	test('patch product with invalid id (float)', async () => {
-  		 const response = await request(server).patch('/observatory/api/products/2.2').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);;;
+  		 const response = await request(server).patch('/observatory/api/products/2.2').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);
   		 expect(response.status).toEqual(400);
   		 expect(response.text).toContain('{"success":false,"message":"Product id given is not an integer !"}');
    	});
 
    	// inexistent id test
    	test('patch product with inexistent id', async () => {
-   		const response = await request(server).patch('/observatory/api/products/100').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);;
+   		const response = await request(server).patch('/observatory/api/products/100').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);
    		expect(response.status).toEqual(404);
    		expect(response.text).toContain('{"success":false,"message":"Product id does not exist!"}');
    	});
 
   	// json valid id test
    	test('patch product with valid id', async () => {
-  		 const response = await request(server).patch('/observatory/api/products/1?format=json').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);;;
+  		 const response = await request(server).patch('/observatory/api/products/1?format=json').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);
   		 expect(response.status).toEqual(200);
   		 expect(response.text).toContain('{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}');
    	});
 
   	// xml valid id test
    	test('patch product with valid id and xml', async () => {
-  		 const response = await request(server).patch('/observatory/api/products/1?format=xml').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);;;
+  		 const response = await request(server).patch('/observatory/api/products/1?format=xml').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);
   		 expect(response.status).toEqual(400);
   		 expect(response.text).toContain('{"success":false,"message":"XML format is not supported"}');
    	});
 
   	// put huge product id
    	test('patch huge product id ', async () => {
-  	 	const response = await request(server).patch('/observatory/api/products/123213322132').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);;;
+  	 	const response = await request(server).patch('/observatory/api/products/123213322132').set("Content-Type", "application/json").send({"tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);
   	 	expect(response.status).toEqual(400);
   		expect(response.text).toContain('{"success":false,"message":"Variable product id has exceeded maximum length !"}');
     });
@@ -1923,49 +1888,6 @@ describe('PATCH products test', () => {
            const response = await request(server).put('/observatory/api/products/1').set("Content-Type", "application/json").send({"name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"]}).set('X-OBSERVATORY-AUTH', token);;
            expect(response.status).toEqual(200);
            expect(response.text).toContain('{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}');
-
-        });
-
-        // put product  with withdrawn=true
-         test('patch product with withdrawn=true ', async () => {
-          const response = await request(server).patch('/observatory/api/products/1').set("Content-Type", "application/json").send({"withdrawn":true}).set('X-OBSERVATORY-AUTH', token);
-          expect(response.status).toEqual(200);
-          expect(response.text).toContain('{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":true}');
-
-        });
-
-        // put product  with withdrawn=false
-         test('patch product with withdrawn=false', async () => {
-          const response = await request(server).patch('/observatory/api/products/1').set("Content-Type", "application/json").send({"withdrawn":false}).set('X-OBSERVATORY-AUTH', token);
-          expect(response.status).toEqual(200);
-          expect(response.text).toContain('{"id":"1","name":"Βενζίνη","description":"95 οκτανίων","category":"Καύσιμο κίνησης","tags":["απλή αμόλυβδη","απλή","fuelsave"],"withdrawn":false}');
-
-        });
-
-
-        // put product  with withdrawn=false
-         test('patch product with wrong withdrawn=abc ', async () => {
-          const response = await request(server).patch('/observatory/api/products/1').set("Content-Type", "application/json").send({"withdrawn":"abc"}).set('X-OBSERVATORY-AUTH', token);
-          expect(response.status).toEqual(400);
-          expect(response.text).toContain('{"success":false,"message":"Please provide valid input of field!"}');
-
-        });
-
-
-        // put product  with withdrawn=false
-         test('patch product with wrong withdrawn=1 ', async () => {
-          const response = await request(server).patch('/observatory/api/products/1').set("Content-Type", "application/json").send({"withdrawn":1}).set('X-OBSERVATORY-AUTH', token);
-          expect(response.status).toEqual(400);
-          expect(response.text).toContain('{"success":false,"message":"Please provide valid input of field!"}');
-
-        });
-
-
-        // put product  with withdrawn=false
-         test('patch product with wrong withdrawn=0 ', async () => {
-          const response = await request(server).patch('/observatory/api/products/1').set("Content-Type", "application/json").send({"withdrawn":0}).set('X-OBSERVATORY-AUTH', token);
-          expect(response.status).toEqual(400);
-          expect(response.text).toContain('{"success":false,"message":"Please provide valid input of field!"}');
 
         });
 

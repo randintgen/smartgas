@@ -14,7 +14,7 @@ exports.update_a_product = function(req, res) {
 			error2=1;
 		}
 		for(var j=0 ; j<req.body.tags.length ; j++) {
-			if(typeof req.body.tags[j]=="string") {
+			if(isNaN(req.body.tags[j]) || typeof req.body.tags[j]=='string') {
 				if(i==0) temp = req.body.tags[j];
 				else temp=temp+","+req.body.tags[j];
 				i=i+1;
@@ -57,13 +57,8 @@ exports.update_a_product = function(req, res) {
 		else if(!((parseFloat(req.params.id)%1)===0)) res.status(400).json({"success":false,"message":"Product id given is not an integer !"});
 		else if (Number(req.params.id) > 2147483647) res.status(400).json({"success":false,"message":"Variable product id has exceeded maximum length !"});
 		else if (Number(req.params.id) < 0) res.status(400).json({"success":false,"message":"Variable product id is negative!"});
-		else if(typeof req.body.withdrawn!='undefined' && typeof new_product.withdrawn!='boolean') res.status(400).json({"success":false,"message":"Please provide valid fields !"});
 		else {
 
-			//if(!req.body.ipath) new_product.imgpath="/home/fnp";
-			//else new_product.imgpath=req.body.ipath;
-			if(typeof req.body.withdrawn=='undefined') new_product.withdrawn = 0;
-			else new_product.withdrawn = req.body.withdrawn;
 			authenticate(req,function(error,result,usrid) {
 
 				if(error) {
