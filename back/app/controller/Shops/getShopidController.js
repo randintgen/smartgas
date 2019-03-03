@@ -17,7 +17,13 @@ exports.view_shopid = function(req, res) {
 
     		if (err) res.status(400).json(shop);
 			else {
-				if (shop.success == true) res.json(shop);
+				if (shop.success == true){
+					if(shop.shop.tags[0]==""){
+						shop.shop.tags=[]
+					}
+
+					res.json(shop.shop);
+				}
 				else res.status(404).json(shop);
 			}
 		});
