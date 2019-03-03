@@ -1,24 +1,16 @@
-
 const request = require('supertest');
 const file = require('../server.js')
-var server;
-var sa;
-var mc;
+const server = file.app;
+
 
 beforeAll(async () => {
  // do something before anything else runs
  await console.log('Jest starting!');
- server = file.app;
- mc = file.mc;
 });
 
 // close the server after each test
 afterAll(() => {
- //sa.close(done);
- //await mc.end();
- //ex.close();
  console.log('server closed!');
- //process.exit(0);
 });
 
 // GET SINGLE PRODUCT TESTS
@@ -1998,9 +1990,6 @@ describe('PATCH products test', () => {
               	 	expect(response.status).toEqual(403);
               		expect(response.text).toContain('{"success":false,"message":"Authentication failed !"}');
               	});
-
-
-
 
 });
 
