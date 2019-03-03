@@ -128,9 +128,9 @@ export class UserService {
       return newName;
   }
 
-  getUser(username: string): Observable<any> {
+  getUser(): Observable<any> {
 
-    var getUserUrl = this.baseUrl + 'users/' + username;
+    var getUserUrl = this.baseUrl + 'users/myprofile';
 
     var infoUser = this.http.get<any>(getUserUrl, {
       headers: new HttpHeaders({
@@ -149,6 +149,19 @@ export class UserService {
     uploadData.append('profile', toUpload, username);
 
     //var request = this.http.post()
+  }
+
+  getHistory(): Observable<any>{
+    
+    const historyUrl = this.baseUrl + 'prices/myposts';
+    
+    var history = this.http.request('get', historyUrl, {
+      headers: new HttpHeaders({
+        'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+      })
+    });
+
+    return history;
   }
 
 }

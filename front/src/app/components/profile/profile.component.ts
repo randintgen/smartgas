@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 
 @Component({
@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private route: ActivatedRoute,
+    private router: Router,
     private myStorage: LocalStorageService
   ) { }
 
@@ -22,13 +23,19 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     var username = this.route.snapshot.paramMap.get('name');
+    var realUsername = this.myStorage.getFromLocal('username');
 
-    this.userService.getUser(username).subscribe(
+    if(realUsername !== username) {
+      this.router.navigateByUrl('');
+    }else if(!realUsername){
+      this.router.navigateByUrl('');
+    }
+    this.userService.getUser().subscribe(
       (accept) => {
         this.userInfo = accept.user;
       },
       (error) => {
-        alert('No user');
+        console.log(error);
       }
     )
   }

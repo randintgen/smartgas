@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, ContentChildren } from '@angular/core';
-import { AgmInfoWindow } from '@agm/core/directives/info-window';
 import { ShopsListComponent } from '../../shops-list/shops-list.component';
 
 @Component({
@@ -10,28 +9,35 @@ import { ShopsListComponent } from '../../shops-list/shops-list.component';
 export class ShownShopsComponent implements OnInit {
 
   @Input() shopsToShow;
-  @ContentChildren(AgmInfoWindow)
 
-  private initLat;
-  private initLng;
-  private initZoom;
+  private initLat = 37.975764;
+  private initLng = 23.734821;
+  private initZoom = 14;
   private allShops;
+
   private show: boolean = false;
   private ok: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+    this.initLat = 37.975764;
+    this.initLng = 23.734821;
+    this.initZoom = 14;
     this.shopsToShow.subscribe(
       (response) => {
         console.log(response);
-        this.ok = true;
-        this.initLat = response[0].shopLat;
-        this.initLng = response[0].shopLng;
-        this.allShops = response;
-        this.initZoom = 12;
-      }
-    );
+        if(response.length > 0){
+          this.ok = true;
+          console.log(response);
+          this.initLat = response[0].shopLat;
+          this.initLng = response[0].shopLng;
+          this.allShops = response;
+        }else {
+          this.allShops = [];
+          this.ok = false;
+        }
+      });
   }
 
   do() {

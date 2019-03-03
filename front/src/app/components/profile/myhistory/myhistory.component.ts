@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-myhistory',
@@ -17,15 +18,26 @@ export class MyhistoryComponent implements OnInit {
 
 
   constructor(
-    
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    this.dataSource.sort = this.sort;
+    console.log('new user!');
+    this.userService.getHistory().subscribe(
+      (response) => {
+        console.log(response);
+        this.dataSource = new MatTableDataSource(response.prices);
+        this.dataSource.sort = this.sort;
+      }
+    )
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  ngOnDestry() {
+    console.log('byeee');
   }
 
 }

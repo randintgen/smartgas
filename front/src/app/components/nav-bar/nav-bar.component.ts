@@ -23,6 +23,7 @@ export class NavBarComponent implements OnInit {
 
   private isConnected = false;
   private username: string;
+  private userId;
 
   constructor(
     private userService: UserService,
@@ -55,9 +56,11 @@ export class NavBarComponent implements OnInit {
             this.myStorage.storeOnLocal('username', this.username);
             this.myStorage.storeOnLocal('token', response.token);
             this.myStorage.storeOnLocal('token-decode', decode(response.token));
+            this.userId = decode(response.token).user.id;
             this.isConnected = true;
           },
           (error) => {
+            console.log(error.error.message);
             this.isConnected = false;
           }
         );
