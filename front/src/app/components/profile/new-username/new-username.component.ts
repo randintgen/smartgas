@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../../services/local-storage.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from '../../../services/user.service';
 import { FormBuilder } from '@angular/forms';
 
 
@@ -34,7 +34,7 @@ export class NewUsernameComponent implements OnInit {
             this.myStorage.storeOnLocal('username', newUsername);
           },
           (error) => {
-            console.log()
+            console.log(error);
           }
       );
   }

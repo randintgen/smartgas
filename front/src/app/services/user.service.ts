@@ -164,4 +164,18 @@ export class UserService {
     return history;
   }
 
+  userDeleteShop(id: number): Observable<any> {
+
+    var deleteShopUrl = this.baseUrl + 'prices/' + id;
+
+    var delResult = this.http.request('delete', deleteShopUrl, {
+      headers: {
+        'Content-Type': 'application/json',
+        'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+      }
+    });
+
+    return delResult;
+  }
+
 }

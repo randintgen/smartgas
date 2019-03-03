@@ -33,6 +33,7 @@ export class ShopDetailsComponent implements OnInit {
         console.log(response);
         this.selectedShop = response.shops;
         this.selectedShopId = id;
+        console.log(response);
       },
       (error) => {
         console.log(error.error.message);

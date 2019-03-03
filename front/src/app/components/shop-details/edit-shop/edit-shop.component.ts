@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ShopService } from '../../../services/shop.service';
+import { ActivatedRoute } from '@angular/router';
 
 export interface Alysida {
   value: string;
@@ -14,14 +16,16 @@ export interface Alysida {
 export class EditShopComponent implements OnInit {
 
   constructor(
-    private form: FormBuilder
+    private form: FormBuilder,
+    private shopService: ShopService,
+    private router: ActivatedRoute
   ) { }
+
+  @Input() currentShop;
 
   private editShopForm = this.form.group({
     'name': [''],
     'address': [''],
-    'city': [''],
-    'tk': [''],
     'tags': ['']
   });
 
@@ -58,11 +62,30 @@ export class EditShopComponent implements OnInit {
   private editShopAttempt(): void {
 
     var shopName = this.editShopForm.controls['name'].value;
-    var shopAdd = this.editShopForm.controls['address'].value
-                  +", "+this.editShopForm.controls['city'].value
-                  +", "+this.editShopForm.controls['tk'].value;
+    var shopAdd = this.editShopForm.controls['address'].value;
     var shopTags = this.editShopForm.controls['tags'].value;
 
-    
+    if(shopName){
+      this.currentShop.name = shopName;
+    }
+    if(shopAdd){
+      this.currentShop.address = shopAdd;
+    }
+    if(shopTags){
+
+      for(let tag of this.alysides){
+        console.log(tag);
+        if(tag.value === shopTags){
+          this.currentShop.tags.push(tag.viewValue);
+        }
+      }
+    }
+
+    this.shopService.updateShop(this.currentShop.id, this.currentShop).subscribe(
+      (response) => {
+        console.log(response);
+      }
+    );
+
   }
 }

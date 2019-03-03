@@ -2,7 +2,7 @@ export class ShopResponse {
     start: number;
     count: number;
     total: number;
-    shops?: {
+    shop?: {
         id?: number;
         name?: string;
         address?: string;
