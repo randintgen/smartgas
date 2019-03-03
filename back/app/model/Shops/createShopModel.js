@@ -44,7 +44,7 @@ Shop.create_shop = function(newshop,result) {
 
             if(newpr.withdrawn==0) newpr.withdrawn=false
             else newpr.withdrawn=true
-            if(newpr.tags[0]==""){
+            if(newpr.tags[0]=="" && newpr.length==1){
               newpr.tags=[]
             }
             result(null, {"success":true,"shop":newpr});

@@ -20,6 +20,8 @@ exports.patch_a_shop = function(req, res) {
 
 		console.log(typeof req.body.tags!='undefined');
 		console.log(Array.isArray(req.body.tags));
+
+		
 		if(req.body.name) {
 			newfield=req.body.name;
 			final=query+"name='"+newfield+"'"+where;
