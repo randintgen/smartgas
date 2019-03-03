@@ -39,6 +39,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UploadPhotoComponent } from './components/profile/upload-photo/upload-photo.component';
 import { ProductsComponent } from './components/products/products.component';
+import { AddProductsComponent } from './components/products/add-products/add-products.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { ProductsComponent } from './components/products/products.component';
     ProductsComponent,
     NavBarComponent,
     LoginUserComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    AddProductsComponent
   ],
   imports: [
     BrowserModule,
