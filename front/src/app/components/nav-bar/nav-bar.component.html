@@ -2,83 +2,104 @@
   
   <a *ngIf="!isConnected">
       <a class="tile" class="logo">
-          <img routerLink="" src="../../images/logo.png" alt="Smartgas" height="20px">
+          <img routerLink="" src="src/app/images/logo.png" alt="Smartgas">
       </a>
       <a class="menu">
-          <a class="tile" >
-            <button mat-button>
-              Βενζικάδικα
-            </button>
-          </a>
+        <a class="tile" >
+          <button routerLink="shops" mat-button>
+            Βενζινάδικα
+          </button>
+        </a>
 
-          <a class="tile" >
-              <button mat-button (click)="openLogin()">
-                Log in
-              </button>
-            </a>
-          <a class="tile" >
-              <button mat-button (click)="openRegister()">
-                  Register
-                </button>
-          </a>
-          <a class="icon">
-            <button mat-button (click)="myFunction()">
-                **
+        <a class="tile" >
+            <button mat-button (click)="openLogin()">
+              Log in
             </button>
           </a>
+        <a class="tile" >
+            <button mat-button (click)="openRegister()">
+                Register
+              </button>
+        </a>
+        <a class="icon">
+          <button mat-button (click)="myFunction()">
+              **
+          </button>
+        </a>
       </a>
       
   </a> 
-  <a *ngIf="isConnected">
-            <a class="tile" class="logo">Logo</a>
-            <a class="menu">
-                <a class="tile" >
-                    <button mat-button>
-                      Βενζινάδικα
-                    </button>
-                </a>
-                <a class="tile" >
-                    <button mat-button>
-                        Πρόσθεσε Βενζινάδικο
-                    </button>
-                </a>
-                
-                <a class="tile">
-                  <button mat-button>
-                      {{username}}
-                  </button>
-                </a>
-                <a class="tile">
-                  <button mat-button (click)="logout()">
-                    Log out
-                  </button>
-                </a>
-                <a class="icon">
-                  <button mat-button (click)="myFunction()">
-                    **
-                  </button>
-                </a>
-    </a>
 
-   </a> 
-   <a *ngIf="isConnected">
-           <a class="tile" routerLink="" class="logo">Logo</a>
-            <a class="tile">Βρες Βενζινάδικο</a>
-            <a class="tile" routerLink="add/shops">Πρόσθεσε Βενζικάδικο</a>
-            <a class="tile">
-                <button mat-button routerLink="user/{{username}}">
-                    {{username}}
-                </button>
-              </a>
-            <a class="tile">
-                <button mat-button (click)="logout()">
-              Log out
-            </button>
-          </a>
-          <a class="icon">
-            <button mat-button (click)="myFunction()">
-              **
-            </button>
-          </a>
+  <a *ngIf="isConnected">
+
+    <a class="tile" class="logo">
+        <img routerLink="" src="../../images/logo.png" alt="Smartgas" height="20px">
+    </a>
+    <a class="menu">
+      <a class="tile" >
+          <button mat-button>
+            Βενζινάδικα
+          </button>
       </a>
+      <a class="tile" >
+          <button mat-button>
+              Πρόσθεσε Βενζινάδικο
+          </button>
+      </a>
+
+      <a class="tile">
+        <button mat-button>
+            {{username}}
+        </button>
+      </a>
+      <a class="tile">
+        <button mat-button (click)="logout()">
+          Log out
+        </button>
+      </a>
+      <a class="icon">
+        <button mat-button (click)="myFunction()">
+          **
+        </button>
+      </a>
+  </a>
+</a>
+
+<a *ngIf="isAdmin">
+  <a class="tile" class="logo">
+    <img routerLink="" src="../../images/logo.png" alt="Smartgas" height="20px">
+  </a>
+  <a class="menu">
+      <a class="tile" >
+          <button mat-button>
+            Καύσιμα
+          </button>
+      </a>
+      <a class="tile" >
+          <button mat-button>
+            Βενζινάδικα
+          </button>
+      </a>
+      <a class="tile" >
+          <button mat-button>
+              Πρόσθεσε Βενζινάδικο
+          </button>
+      </a>
+      <a class="tile">
+        <button mat-button>
+            {{username}}
+        </button>
+      </a>
+      <a class="tile">
+        <button mat-button (click)="logout()">
+          Log out
+        </button>
+      </a>
+
+      <button mat-button (click)="myFunction()">
+        **
+      </button>
+    </a>
+</a>
+ 
 </div>

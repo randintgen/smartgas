@@ -31,7 +31,7 @@ export class ShopDetailsComponent implements OnInit {
     this.shopService.getShop(parseInt(id)).subscribe(
       (response) => {
         console.log(response);
-        this.selectedShop = response.shop;
+        this.selectedShop = response.shops;
         this.selectedShopId = id;
         console.log(response);
       },
