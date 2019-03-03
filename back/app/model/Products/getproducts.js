@@ -7,7 +7,7 @@ get_products = function(srt,cnt,stat,sorting,result) {
 	var start = 0;
 	var count = 20;
 	var status = "ACTIVE";
-	var sorter = "id|DESC"; 
+	var sorter = "id|DESC";
 	var frs,scnd,thrd,final ;
 	var jsonval;
 	var temp,tagsplit;
@@ -16,7 +16,7 @@ get_products = function(srt,cnt,stat,sorting,result) {
 	if(srt) start = srt;
 	if(cnt) count = cnt;
 	if(stat) status = stat;
-	if(sorting) sorter = sorting;	 
+	if(sorting) sorter = sorting;
 
 	frs = " LIMIT "+count+" OFFSET "+start+" ;" ;
 
@@ -54,7 +54,7 @@ get_products = function(srt,cnt,stat,sorting,result) {
 			//console.log(res);
 			var products = [];
 			for(var i=0 ; i<res.length ; i++) {
-			
+
 				res[i].id = ""+res[i].id;
 
 				if(res[i].withdrawn==0) res[i].withdrawn=false
@@ -68,7 +68,7 @@ get_products = function(srt,cnt,stat,sorting,result) {
 				res[i].tags = temp;
 				//console.log(temp);
 				products.push(res[i]);
-				
+
 			}
 			//console.log(products);
 			var totaling = "select count(*) as total from fuel "+scnd+" ;";
@@ -86,7 +86,7 @@ get_products = function(srt,cnt,stat,sorting,result) {
 			});
 		}
 
-	}); 
+	});
 
 };
 
