@@ -3,6 +3,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 
 import { ShopService } from '../../services/shop.service';
 import { ShopResponse } from '../../interfaces/shop-response';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 export class Shop {
   name?: string;
@@ -27,18 +28,32 @@ export class ShopsListComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'address'];
 
   constructor(
-    private shopService: ShopService
+    private shopService: ShopService,
+    private myStorage: LocalStorageService
   ){}
 
   ngOnInit() {
-    this.shopService.getShops().subscribe(
-      (response) => {
-        this.ready=true;
-        console.log(response);
-        this.dataSource = new MatTableDataSource<any>(response.shops);
-        this.dataSource.paginator = this.paginator;
-      }
-    )
+    var isAdmin = this.myStorage.getFromLocal('isAdmin');
+    if(isAdmin == 1){
+      this.shopService.getShops(0, 20, 'ALL', 'id|ASC').subscribe(
+        (response) => {
+          this.ready = true;
+          console.log(response);
+          this.dataSource = new MatTableDataSource<any>(response.shop);
+          this.dataSource.paginator = this.paginator;
+        }
+      )
+    }
+    else{
+      this.shopService.getShops().subscribe(
+        (response) => {
+          this.ready=true;
+          console.log(response);
+          this.dataSource = new MatTableDataSource<any>(response.shops);
+          this.dataSource.paginator = this.paginator;
+        }
+      )
+    }
   };
 
   applyFilter(filterValue: string) {
