@@ -27,7 +27,7 @@ Product.create_product = function(newproduct,result) {
 	var temp,tagsplit;
 
 	sql.query("INSERT INTO fuel set ?", newproduct, function (err, res) {
-               	 
+
 		if(err) {
 
 			console.log("error in new product : ", err);
@@ -52,13 +52,14 @@ Product.create_product = function(newproduct,result) {
 			}
 			newpr.tags = temp;
 			//console.log(newpr);
+			if(newpr.tags[0]==""&&newpr.tags.length==1){
+				newpr.tags=[]
+			}
 	        	result(null, {"success":true,"product":newpr});
 
 		}
 
-	}); 
+	});
 };
 
 module.exports= Product;
-
-		

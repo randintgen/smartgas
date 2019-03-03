@@ -20,6 +20,8 @@ exports.patch_a_shop = function(req, res) {
 
 		console.log(typeof req.body.tags!='undefined');
 		console.log(Array.isArray(req.body.tags));
+
+		
 		if(req.body.name) {
 			newfield=req.body.name;
 			final=query+"name='"+newfield+"'"+where;
@@ -107,12 +109,17 @@ exports.patch_a_shop = function(req, res) {
 				else {
 					if(!result) res.status(403).json({"success":false,"message":"Authentication failed !"})
 					else {
-						patchit(final,req.params.id,function(err, product) {
+						patchit(final,req.params.id,function(err, shop) {
 
-    							if (err) res.status(400).json(product);
+    							if (err) res.status(400).json(shop);
 							else {
-								if(product.success==true) res.json(product);
-								else res.status(404).json(product);
+								if(shop.success==true) {
+									if(shop.shop.tags[0]==""){
+										shop.shop.tags=[]
+									}
+									res.json(shop.shop);
+								}
+								else res.status(404).json(shop);
 							}
 
 	 	 				});

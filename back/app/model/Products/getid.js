@@ -31,9 +31,12 @@ get_pid = function(fuelid,result) {
 					temp.push(tagsplit[j]);
 				}
 				res[0].tags = temp;
+				if(res[0].tags==""&&res[0].tags.length==1){
+					res[0].tags = []
+				}
 				result(null,{"success":true,"product":res[0]});
 			}
-		} 
+		}
 	});
 };
 
