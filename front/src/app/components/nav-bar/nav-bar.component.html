@@ -6,7 +6,7 @@
       </a>
       <a class="menu">
         <a class="tile" >
-          <button routerLink="shopslist" mat-button>
+          <button routerLink="shopslist" routerLink="/shopslist" mat-button>
             Βενζινάδικα
           </button>
         </a>
@@ -64,18 +64,18 @@
   </a>
 </a>
 
-<a *ngIf="isAdmin">
+<a *ngIf="isAdmin && isConnected">
   <a class="tile" class="logo">
     <img  [src]="LOGO" routerLink="" alt="Smartgas" >
   </a>
   <a class="menu">
       <a class="tile" >
-          <button mat-button routerLink="">
+          <button mat-button routerLink="/products">
             Καύσιμα
           </button>
       </a>
       <a class="tile" >
-          <button mat-button routerLink="shopslist">
+          <button mat-button routerLink="/shopslist">
             Βενζινάδικα
           </button>
       </a>
@@ -95,9 +95,11 @@
         </button>
       </a>
 
-      <button mat-button (click)="myFunction()">
-        **
-      </button>
+      <a class="icon">
+        <button mat-button (click)="myFunction()">
+          **
+        </button>
+      </a>
     </a>
 </a>
  

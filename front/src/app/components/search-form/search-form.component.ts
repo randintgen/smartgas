@@ -87,7 +87,7 @@ export class SearchFormComponent implements OnInit {
     if(geoDist > 2) {
       this.objSearch['geoDist'] = geoDist;
     }else{
-      this.objSearch['geoDist'] = 25;
+      this.objSearch['geoDist'] = 10;
     }
 
     if(this.chooseDates){
