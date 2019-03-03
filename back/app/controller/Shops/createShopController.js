@@ -16,6 +16,7 @@ exports.create_a_shop = function(req, res) {
         var temp="";
         for(var j=0 ; j<req.body.tags.length ; j++) {
             if(isNaN(req.body.tags[j]) || typeof req.body.tags[j]=='string') {
+
                 if(i==0) temp = req.body.tags[j];
                 else temp=temp+","+req.body.tags[j];
                 i=i+1;
@@ -42,7 +43,7 @@ exports.create_a_shop = function(req, res) {
     else if(error2) res.status(400).json({"success":false,"message":"Tags must be a list of strings"}); // if tags is[1,2]
     else {
 
-        if( (!(new_shop.name  && new_shop.tags && new_shop.address && new_shop.lng && new_shop.lat)) ||(typeof new_shop.withdrawn=="undefined"))  {
+        if( (typeof new_shop.name=="undefined")  || (typeof new_shop.tags=="undefined") || (typeof new_shop.address=="undefined") || (typeof new_shop.lng=="undefined") || (typeof new_shop.lat=="undefined") ) {
             res.status(400).json({"success":false,"message":"Please complete all the mandatory fields !"});
         }
         else if(new_shop.name.length>255 || new_shop.address.length>255 || new_shop.tags.length>255) {
@@ -54,7 +55,7 @@ exports.create_a_shop = function(req, res) {
 
         }
 
-        else if((typeof req.body.withdrawn != "undefined") && !(new_shop.withdrawn==false || new_shop.withdrawn==true || new_shop.withdrawn=='false' || new_shop.withdrawn=='true')) res.status(400).json({"success":false,"message":"Please provide valid fields !"});
+        else if ( (typeof req.body.withdrawn != "undefined") && (! ( new_shop.withdrawn===false || new_shop.withdrawn==="false"|| new_shop.withdrawn===true || new_shop.withdrawn==="true" )) )  res.status(400).json({"success":false,"message":"Please provide valid fields !"});
         else if (typeof req.body.ipath != "undefined" && typeof req.body.ipath != "string") {
             res.status(400).json({
                 "success":false,
