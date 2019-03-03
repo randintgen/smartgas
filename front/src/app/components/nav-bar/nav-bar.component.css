@@ -2,11 +2,18 @@
     overflow: hidden; 
 }
 
-
-.topnav a .tile {
+.topnav a .menu {
     float: right;
     display: block;  
-    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .topnav a .menu .tile{
+    float: left;
+    display: block;
+    text-align: center ;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
@@ -26,13 +33,14 @@
     color: white;
   }
   
- .topnav a .icon {
+  
+ .topnav a .menu .icon {
     display: none;
   }
 
   @media screen and (max-width: 700px) {
-    .topnav a .tile:not(:first-child) {display: none;}
-    .topnav a .icon {
+    .topnav a .menu .tile {display: none;}
+    .topnav a .menu .icon {
       float: right;
       display: block;
     }
@@ -40,10 +48,9 @@
 
   @media screen and (max-width: 700px) {
     .topnav.responsive {position: relative;}
-    .topnav.responsive a .icon {
-      position: absolute;
-      right: 0;
-      top: 0;
+    .topnav.responsive a .menu .icon {
+      float: right;
+      display: block;
     }
     
     .topnav.responsive a .logo {
@@ -51,7 +58,7 @@
         display: block;
         text-align: left;
     }
-    .topnav.responsive a .tile {
+    .topnav.responsive a .menu .tile {
       float: none;
       display: block;
       text-align: left;
