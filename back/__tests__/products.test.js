@@ -1,19 +1,24 @@
 
 const request = require('supertest');
 const file = require('../server.js')
-const server = file.app;
-
+var server;
+var sa;
+var mc;
 
 beforeAll(async () => {
  // do something before anything else runs
- console.log('Jest starting!');
+ await console.log('Jest starting!');
+ server = file.app;
+ mc = file.mc;
 });
 
 // close the server after each test
 afterAll(() => {
- //db.end();
+ //sa.close(done);
+ //await mc.end();
  //ex.close();
  console.log('server closed!');
+ //process.exit(0);
 });
 
 // GET SINGLE PRODUCT TESTS
@@ -875,25 +880,25 @@ describe('Users logout', () => {
 describe('Users signup', () => {
 
 	test('create new user0023 ', async () => {
-		const response = await request(server).post('/observatory/api/users/signup').set("Content-Type", "application/json").send({"username":"user0023","psswd":"kodikos","mail":"test@mail.com","admin":0,"ipath":"sda"});
+		const response = await request(server).post('/observatory/api/users/signup').set("Content-Type", "application/json").send({"username":"user0023","psswd":"kodikos","mail":"test@mail.com","admin":0,"ipath":"sda","flag":1});
 		expect(response.status).toEqual(200);
 		expect(response.text).toEqual('{"success":true,"message":"Welcome, user0023 !"}');
  	});
 
 	test('create new user0024 ', async () => {
-		const response = await request(server).post('/observatory/api/users/signup').set("Content-Type", "application/json").send({"username":"user0024","psswd":"kodikos","mail":"test2@mail.com","admin":0});
+		const response = await request(server).post('/observatory/api/users/signup').set("Content-Type", "application/json").send({"username":"user0024","psswd":"kodikos","mail":"test2@mail.com","admin":0,"flag":1});
 		expect(response.status).toEqual(200);
 		expect(response.text).toEqual('{"success":true,"message":"Welcome, user0024 !"}');
  	});
 
 	test('create new user0025 ', async () => {
-		const response = await request(server).post('/observatory/api/users/signup').set("Content-Type", "application/json").send({"username":"user0025","psswd":"kodikos","mail":"test3@mail.com"});
+		const response = await request(server).post('/observatory/api/users/signup').set("Content-Type", "application/json").send({"username":"user0025","psswd":"kodikos","mail":"test3@mail.com","flag":1});
 		expect(response.status).toEqual(200);
 		expect(response.text).toEqual('{"success":true,"message":"Welcome, user0025 !"}');
  	});
 
 	test('create new user0025 duplicate email and username ', async () => {
-		const response = await request(server).post('/observatory/api/users/signup').set("Content-Type", "application/json").send({"username":"user0025","psswd":"kodikos","mail":"test3@mail.com"});
+		const response = await request(server).post('/observatory/api/users/signup').set("Content-Type", "application/json").send({"username":"user0025","psswd":"kodikos","mail":"test3@mail.com","flag":1});
 		expect(response.status).toEqual(200);
 		expect(response.text).toEqual('{"success":false,"message":"Email and username are already in use."}');
  	});
@@ -1023,7 +1028,7 @@ describe('Users signup', () => {
 describe('Users delete', () => {
 
 	test('create new user0023 ', async () => {
-		const response = await request(server).post('/observatory/api/users/signup').set("Content-Type", "application/json").send({"username":"user0023","psswd":"kodikos","mail":"test@mail.com","admin":0,"ipath":"sda"});
+		const response = await request(server).post('/observatory/api/users/signup').set("Content-Type", "application/json").send({"username":"user0023","psswd":"kodikos","mail":"test@mail.com","admin":0,"ipath":"sda","flag":1});
 		expect(response.status).toEqual(200);
 		expect(response.text).toEqual('{"success":true,"message":"Welcome, user0023 !"}');
  	});
@@ -1099,7 +1104,7 @@ describe('Get user profile', () => {
 		const response = await request(server).get('/observatory/api/users/myprofile').set("Content-Type", "application/json").set('X-OBSERVATORY-AUTH', token);
 		expect(response.status).toEqual(200);
  		expect(response.body.user.username).toEqual("fnp");
-		expect(response.body.user.mail).toEqual("lkanav@yahoo.com");
+		expect(response.body.user.mail).toEqual("lkanav2@yahoo.com");
 		expect(response.body.user.nposts).toEqual(0);
 		expect(response.body.user.ipath).toEqual("/home/fnp");
  	});
@@ -1998,3 +2003,6 @@ describe('PATCH products test', () => {
 
 
 });
+
+
+
