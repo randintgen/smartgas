@@ -21,6 +21,8 @@ CREATE TABLE users (
     reputation int(11)  NOT NULL DEFAULT '0',
     admin int(11) NOT NULL DEFAULT '0',     -- when a new user is signed there is no need for value , admin==1!
     ipath varchar(255) NOT NULL DEFAULT 'somepath',     -- path for storing profile photos
+    flag int(11) NOT NULL DEFAULT '0',
+    hashid int(11) NOT NULL,
 
     PRIMARY KEY(userid),
     INDEX(mail),

@@ -35,6 +35,9 @@ exports.create_a_user = function(req, res) {
 
 		if(!new_user.ipath) new_user.ipath='somepath';
 
+		if(!new_user.flag) new_user.flag = 0;
+		else new_user.flag = 1 ;
+
 		User.createusr(new_user, function(err, usr) {
 
     			if (err) res.status(400).json(usr);

@@ -39,7 +39,7 @@ authenticate = function(req,result) {
 
   					if (error || res2!=null) { 
 
-						console.log(error);
+						//console.log(error);
 						client.quit(redis.print);
 						result(null,false,null);
 						
