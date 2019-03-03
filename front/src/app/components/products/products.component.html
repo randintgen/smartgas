@@ -35,14 +35,14 @@
 
     <ng-container matColumnDef="edit">
         <th mat-header-cell *matHeaderCellDef>  </th>
-        <td mat-cell *matCellDef="let element">     <button mat-flat-button (click)="openEditDialog(element.id)" color="primary">Edit</button>
+        <td mat-cell *matCellDef="let element">     <button mat-flat-button (click)="openEditDialog(element.id)" color="primary">Ενημέρωση</button>
 
         </td>
       </ng-container>
     
       <ng-container matColumnDef="delete">
           <th mat-header-cell *matHeaderCellDef>  </th>
-          <td mat-cell *matCellDef="let element">   <button mat-flat-button color="warn" (click)="openDeleteDialog(element.id)">Delete</button>
+          <td mat-cell *matCellDef="let element">   <button mat-flat-button color="warn" (click)="openDeleteDialog(element.id)">Διαγραφή</button>
 
           </td>
         </ng-container>
@@ -52,7 +52,7 @@
   </table>
 
 </div>
-<!--
+
 <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -98,4 +98,3 @@
 
     </mat-expansion-panel>
 </mat-accordion>
--->

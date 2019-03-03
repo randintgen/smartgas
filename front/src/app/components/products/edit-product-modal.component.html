@@ -1,12 +1,12 @@
 <form [formGroup]="editProductForm">
     <mat-form-field>
-        <input matInput type="text" [(ngModel)]="data.name" placeholder="Name" formControlName="name">
+        <input matInput type="text" [(ngModel)]="data.name" placeholder="Όνομα Καταστήματος" formControlName="name">
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="text" [(ngModel)]="data.descriptiom" placeholder="Description" formControlName="description">
+        <input matInput type="text" [(ngModel)]="data.descriptiom" placeholder="Περιγραφή" formControlName="description">
     </mat-form-field>
     <mat-form-field>
-        <input type="text" matInput [(ngModel)]="data.category" placeholder="Category" formControlName="category">
+        <input type="text" matInput [(ngModel)]="data.category" placeholder="Κατηγορία" formControlName="category">
     </mat-form-field>
-    <button mat-raised-button [mat-dialog-close]="data">Submit</button>
+    <button mat-raised-button [mat-dialog-close]="data">Ενημέρωση</button>
 </form>

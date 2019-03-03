@@ -39,6 +39,8 @@ export class NavBarComponent implements OnInit {
       this.username = this.myStorage.getFromLocal('username');
       this.isConnected = true;
     }
+    console.log('isadmin', this.myStorage.getFromLocal('isAdmin'));
+    this.isAdmin = this.myStorage.getFromLocal('isAdmin');
   }
 
   openLogin(): void {
@@ -60,7 +62,8 @@ export class NavBarComponent implements OnInit {
             this.myStorage.storeOnLocal('token', response.token);
             this.myStorage.storeOnLocal('token-decode', decode(response.token));
             this.isAdmin = decode(response.token).user.admin;
-            console.log(this.isAdmin);
+            this.myStorage.storeOnLocal('isAdmin', this.isAdmin);
+            console.log(this.isAdmin, 'slkvnlnsdlkgvnlkfnlkgnvlkwfdnl');
             this.userId = decode(response.token).user.id;
             this.isConnected = true;
           },
