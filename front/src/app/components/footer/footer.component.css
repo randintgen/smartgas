@@ -1,6 +1,8 @@
 .footer {
-   position: bottom;
-   width: 100%;
+    position: bottom;
+    padding: 1rem;
+   background-color: #007FAA;
+   color: white;
    text-align: center;
 }
 

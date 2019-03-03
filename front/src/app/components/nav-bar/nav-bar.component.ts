@@ -21,6 +21,7 @@ export interface userInfo {
 
 export class NavBarComponent implements OnInit {
 
+  private LOGO = "app/images/smart_gas_logo-01.png";
   private isConnected = false;
   private username: string;
   private isAdmin: boolean = false;

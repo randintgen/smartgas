@@ -1,5 +1,5 @@
  <mat-accordion *ngIf="selectedShop">
-        <mat-expansion-panel  expanded>
+        <mat-expansion-panel >
           <mat-expansion-panel-header>
             <mat-panel-title>
               Πληροφορίες και Χάρτης {{selectedShop.name}}
@@ -12,7 +12,7 @@
           <app-show-on-map [selectedShop]="selectedShop"></app-show-on-map>
         </mat-expansion-panel>
         
-        <mat-expansion-panel>
+        <mat-expansion-panel expanded>
           <mat-expansion-panel-header>
             <mat-panel-title>
               Τρέχουσες Τιμές

@@ -2,11 +2,11 @@
   
   <a *ngIf="!isConnected">
       <a class="tile" class="logo">
-          <img routerLink="" src="src/app/images/logo.png" alt="Smartgas">
+          <img  [src]="LOGO" routerLink="" alt="Smartgas" height="70px" width="100px">
       </a>
       <a class="menu">
         <a class="tile" >
-          <button routerLink="shops" mat-button>
+          <button routerLink="shopslist" mat-button>
             Βενζινάδικα
           </button>
         </a>
@@ -30,24 +30,23 @@
       
   </a> 
 
-  <a *ngIf="isConnected">
+  <a *ngIf="isConnected && !isAdmin">
 
     <a class="tile" class="logo">
-        <img routerLink="" src="../../images/logo.png" alt="Smartgas" height="20px">
-    </a>
+        <img  [src]="LOGO" routerLink="" alt="Smartgas" >    </a>
     <a class="menu">
       <a class="tile" >
-          <button mat-button>
+          <button mat-button routerLink="shopslist">
             Βενζινάδικα
           </button>
       </a>
       <a class="tile" >
-          <button mat-button>
+          <button mat-button routerLink="add/shops">
               Πρόσθεσε Βενζινάδικο
           </button>
       </a>
 
-      <a class="tile">
+      <a class="tile" routerLink="user/{{username}}">
         <button mat-button>
             {{username}}
         </button>
@@ -67,21 +66,21 @@
 
 <a *ngIf="isAdmin">
   <a class="tile" class="logo">
-    <img routerLink="" src="../../images/logo.png" alt="Smartgas" height="20px">
+    <img  [src]="LOGO" routerLink="" alt="Smartgas" >
   </a>
   <a class="menu">
       <a class="tile" >
-          <button mat-button>
+          <button mat-button routerLink="">
             Καύσιμα
           </button>
       </a>
       <a class="tile" >
-          <button mat-button>
+          <button mat-button routerLink="shopslist">
             Βενζινάδικα
           </button>
       </a>
       <a class="tile" >
-          <button mat-button>
+          <button mat-button routerLink="add/shops">
               Πρόσθεσε Βενζινάδικο
           </button>
       </a>
