@@ -172,4 +172,37 @@ export class ProductsService {
     return deleteResult;
   };
 
+  editProduct(prevProduct: any, newProduct: any): Observable<any>{
+
+    var editProductUrl = this.baseUrl + 'products/' + prevProduct.id;
+
+    console.log(editProductUrl)
+    if(newProduct.name){
+      prevProduct.name = newProduct.name;
+    }
+    if(newProduct.description){
+      prevProduct.description = newProduct.description;
+    }
+    if(newProduct.category){
+      prevProduct.category = newProduct.category;
+    }
+
+    console.log('old', prevProduct);
+    console.log('new', newProduct);
+    var editResponse = this.http.put<any>(
+      editProductUrl,
+      JSON.stringify(prevProduct),
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+        })
+      }
+    );
+
+    console.log('I sent', prevProduct);
+
+    return editResponse;
+  }
+
 }

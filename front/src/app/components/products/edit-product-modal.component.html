@@ -1,0 +1,12 @@
+<form [formGroup]="editProductForm">
+    <mat-form-field>
+        <input matInput type="text" [(ngModel)]="data.name" placeholder="Name" formControlName="name">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" [(ngModel)]="data.descriptiom" placeholder="Description" formControlName="description">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="text" matInput [(ngModel)]="data.category" placeholder="Category" formControlName="category">
+    </mat-form-field>
+    <button mat-raised-button [mat-dialog-close]="data">Submit</button>
+</form>
