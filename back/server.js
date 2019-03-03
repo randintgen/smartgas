@@ -70,7 +70,7 @@ const server = new RedisServer({
     conf: './redis.conf',
     port: 6379,
 
-    bin: "/home/manzar/Desktop/examino9/texnologia logismikou/redis-stable/src/redis-server"    // change path if necessary - needs to show to redis-server
+    bin: "redis-server"    // change path if necessary - needs to show to redis-server
 
 });
 
