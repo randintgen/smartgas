@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import { ProductsService } from '../../../services/products.service';
-import { SearchService } from 'src/app/services/search.service';
+import { SearchService } from '../../../services/search.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-shop-price-history',
@@ -17,7 +18,8 @@ export class ShopPriceHistoryComponent implements OnInit {
 
   constructor(
     private productService: ProductsService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private route: ActivatedRoute
   ) { }
 
   displayedColumns: string[] = ['date', 'price'];
@@ -32,6 +34,7 @@ export class ShopPriceHistoryComponent implements OnInit {
       }
     );
 
+    const id = this.route.snapshot.paramMap.get('id');
     var makeDate: any = new Date("2014-01-01");
 
     makeDate = makeDate.toISOString().split("T")[0];
@@ -46,7 +49,8 @@ export class ShopPriceHistoryComponent implements OnInit {
       'products': [1],
       'dateFrom': makeDate,
       'dateTo': today,
-      'sort': 'date|DESC'
+      'sort': 'date|DESC',
+      'shops': id
     }).subscribe(
       (response) => {
         console.log(response);
