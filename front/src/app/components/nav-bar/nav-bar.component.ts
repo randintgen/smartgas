@@ -103,6 +103,7 @@ export class NavBarComponent implements OnInit {
       (response) => {
         this.myStorage.removeFromLocal('username');
         this.myStorage.removeFromLocal('token');
+        this.myStorage.removeFromLocal('this.isAdmin');
         this.isConnected = false;
         this.router.navigateByUrl('');
       },  
