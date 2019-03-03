@@ -32,7 +32,7 @@ export class ShopService {
 
   private baseUrl = 'https://localhost:8765/observatory/api/';
 
-  getShops(start?: number, count?: number, status?: string, sort?: string): Observable<ShopResponse>{
+  getShops(start?: number, count?: number, status?: string, sort?: string): Observable<any>{
     
     var shopsUrl = this.baseUrl + 'shops';
 
@@ -123,4 +123,21 @@ export class ShopService {
     return deleteShopRequest;
   };
 
+  updateShop(id: number, newDetails: any): Observable<any> {
+
+    var putUrl = this.baseUrl + 'shops/' + id;
+
+    var putResults = this.http.put(
+      putUrl,
+      newDetails,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+        }
+      }
+    );
+
+    return putResults;
+  }
 }
