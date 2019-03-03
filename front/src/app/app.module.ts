@@ -38,8 +38,8 @@ import { MyhistoryComponent } from './components/profile/myhistory/myhistory.com
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UploadPhotoComponent } from './components/profile/upload-photo/upload-photo.component';
-import { ProductsComponent } from './components/products/products.component';
 import { AddProductsComponent } from './components/products/add-products/add-products.component';
+import { ProductsComponent, EditProductModalComponent, DeleteProductComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +72,9 @@ import { AddProductsComponent } from './components/products/add-products/add-pro
     NavBarComponent,
     LoginUserComponent,
     RegisterUserComponent,
-    AddProductsComponent
+    AddProductsComponent,
+    EditProductModalComponent,
+    DeleteProductComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,9 @@ import { AddProductsComponent } from './components/products/add-products/add-pro
   entryComponents: [
     AddressesListComponent,
     LoginUserComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    EditProductModalComponent,
+    DeleteProductComponent
   ],
   exports: [
     AddressesListComponent

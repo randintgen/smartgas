@@ -60,7 +60,7 @@ export class ShopService {
       shopsUrl += '&sort=' + sort;
     }
     
-    var shopsResponse = this.http.get<ShopResponse>(shopsUrl, httpOptions);
+    var shopsResponse = this.http.get<any>(shopsUrl, httpOptions);
 
     return shopsResponse;
   };
@@ -97,7 +97,7 @@ export class ShopService {
     return createResponse;
   };
 
-  getShop(id: number): Observable<ShopResponse>{
+  getShop(id: number): Observable<any>{
     
     var getShopUrl = this.baseUrl + 'shops/' + id;
     var shopTaken = this.http.get<ShopResponse>(
@@ -139,5 +139,5 @@ export class ShopService {
     );
 
     return putResults;
-  }
+  };
 }
