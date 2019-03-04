@@ -21,6 +21,7 @@ export class ShopDetailsComponent implements OnInit {
   private selectedShopId;
   private selectedShop;
   private shopPrices;
+  private shopLoaded: boolean = false;
   private taken = false;
   panelOpenState = false;
   
@@ -31,7 +32,8 @@ export class ShopDetailsComponent implements OnInit {
     this.shopService.getShop(parseInt(id)).subscribe(
       (response) => {
         console.log(response);
-        this.selectedShop = response.shop;
+        this.shopLoaded = true;
+        this.selectedShop = response;
         this.selectedShopId = id;
         console.log(response);
       },

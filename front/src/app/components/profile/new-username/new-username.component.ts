@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { UserService } from '../../../services/user.service';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,10 +12,13 @@ import { FormBuilder } from '@angular/forms';
 })
 export class NewUsernameComponent implements OnInit {
 
+  @Output() check = new EventEmitter<any>(false);
+
   constructor(
     private myStorage: LocalStorageService,
     private userService: UserService,
-    private form: FormBuilder
+    private form: FormBuilder,
+    private route: Router
   ) { }
 
   private changeForm = this.form.group({
@@ -31,6 +35,8 @@ export class NewUsernameComponent implements OnInit {
         ).subscribe(
           (response) => {
             this.myStorage.storeOnLocal('username', newUsername);
+            this.check.emit(true);
+            this.route.navigateByUrl('/');
           },
           (error) => {
             console.log(error);

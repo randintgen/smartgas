@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +13,8 @@ export class NewPasswordComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private form: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   private changePassForm = this.form.group({
@@ -30,7 +31,10 @@ export class NewPasswordComponent implements OnInit {
     var newPass = this.changePassForm.controls['newPass'].value;
     this.userService.userChPsswd(oldPass, newPass).subscribe(
       (response) => {
-        console.log(response);
+        this.router.navigateByUrl("/");
+      },  
+      (error) => {
+        console.log(error);
       }
     )
   }
