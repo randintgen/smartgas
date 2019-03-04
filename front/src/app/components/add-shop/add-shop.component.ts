@@ -29,6 +29,9 @@ export class AddShopComponent implements OnInit {
   private fromHere: boolean = false;
   private fromSearch: boolean = false;
   private fromDefault: boolean = true;
+  private shopAdd;
+  private shopTags;
+  private shopName;
 
   constructor(
     private form: FormBuilder,
@@ -90,7 +93,7 @@ export class AddShopComponent implements OnInit {
         this.addressedFound = results;
         this.openListDialog();
       }
-    })
+    });
   }
 
   openListDialog(): void {
@@ -116,20 +119,63 @@ export class AddShopComponent implements OnInit {
 
   private addShopAttempt(): void {
 
-    var shopName = this.addShopForm.controls['name'].value;
-    var shopAdd = this.addShopForm.controls['address'].value;
-    var shopTags = this.addShopForm.controls['tags'].value;
+    this.shopName = this.addShopForm.controls['name'].value;
+    this.shopAdd = this.addShopForm.controls['address'].value;
+    this.shopTags = this.addShopForm.controls['tags'].value;
 
-    console.log(shopName, shopAdd, shopTags);
-    var addRequest = this.shopService.createShop(shopName, shopAdd, [shopTags]).subscribe(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error.error.message);
+    const provider = new OpenStreetMapProvider();
+
+    const nav = provider.search({
+      query: this.shopAdd
+    }).then((results) => {
+      console.log(results);
+      if(results.length === 0){
+        console.error('No results!');
+      }else if(results.length === 1){
+        this.initLat = results[0].y;
+        this.initLng = results[0].x;
+        this.shopService.createShop(this.shopName, this.shopAdd, this.shopTags, this.initLng, this.initLat).subscribe(
+          (response) => {
+            console.log('add', response);
+          },
+          (error) => {
+            console.log('add', error);
+          }
+        );
+      }else {
+        this.addressedFound = results;
+        this.openListDialogAdd();
       }
-    );
+    });
   };
+
+
+  openListDialogAdd(): void {
+
+    var list = this.dialog.open(ResultListComponent, {
+      width: '500px',
+      data: {
+        list: this.addressedFound,
+        chosen: ''
+      }
+    });
+
+    list.afterClosed().subscribe(
+      (answer) => {
+        var chosenId = answer.id;
+        var labelChosen = answer.list[chosenId].label;
+        this.shopService.createShop(this.shopName, this.shopAdd, this.shopTags, this.initLng, this.initLat).subscribe(
+          (response) => {
+            console.log('add', response);
+          },
+          (error) => {
+            console.log('add', error);
+          }
+        );
+      }
+    )
+
+  }
 
   private findCurrentLoc(): void {
 

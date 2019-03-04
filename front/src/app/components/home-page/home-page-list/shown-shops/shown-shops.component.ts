@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ContentChildren } from '@angular/core';
-import { ShopsListComponent } from '../../shops-list/shops-list.component';
+import { ShopsListComponent } from '../../../shops-list/shops-list.component';
 
 @Component({
   selector: 'app-shown-shops',

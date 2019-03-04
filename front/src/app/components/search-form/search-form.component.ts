@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ProductsService } from '../../services/products.service';
 import { SearchPrices } from '../../interfaces/search-prices';
@@ -10,12 +10,15 @@ import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { SearchService } from '../../services/search.service';
 
+
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
+
+  @Output() searchOutput: EventEmitter<any> = new EventEmitter();
 
   private allProducts; 
   private objSearch;
@@ -66,11 +69,12 @@ export class SearchFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       (chosen) => {
         console.log(this.addressedFound[chosen.chosen]);
-        this.objSearch['geoLat'] = this.addressedFound[chosen.chosen].x;
-        this.objSearch['geoLng'] = this.addressedFound[chosen.chosen].y
+        this.objSearch['geoLat'] = this.addressedFound[chosen.chosen].y;
+        this.objSearch['geoLng'] = this.addressedFound[chosen.chosen].x;
         this.searchService.searchShops(this.objSearch).subscribe(
           (response) => {
-            console.log(response);
+            console.log('I send', response);
+            this.searchOutput.emit(response.prices);
           }
         )
       }
@@ -117,6 +121,7 @@ export class SearchFormComponent implements OnInit {
           this.searchService.searchShops(this.objSearch).subscribe(
             (response) => {
               this.searchResults = response.prices;
+              this.searchOutput.emit(this.searchResults);
             }
           )
         },
@@ -140,6 +145,7 @@ export class SearchFormComponent implements OnInit {
           this.searchService.searchShops(this.objSearch).subscribe(
             (response) => {
               this.searchResults = response.prices;
+              this.searchOutput.emit(this.searchResults);
             }
           )
         }else {
