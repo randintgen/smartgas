@@ -11,6 +11,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
+  { path: 'verify', component: HomePageComponent},
   { path: 'shops/:id', component: ShopDetailsComponent},
   { path: 'user/:name', component: ProfileComponent},
   { path: 'add/shops', component: AddShopComponent},

@@ -3,7 +3,7 @@ import { Component, OnInit, Output, Inject, Input } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import * as decode from 'jwt-decode';
 
 export interface userInfo {
@@ -34,15 +34,34 @@ export class NavBarComponent implements OnInit {
   private username: string;
   private isAdmin: boolean = false;
   private userId;
+  private loginFail = false;
+  private registerFail = false;
 
   constructor(
     private userService: UserService,
     private myStorage: LocalStorageService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(
+      (response) => {
+        this.userService.verify(
+          response.id,
+          response.userid
+        ).subscribe(
+          (response) => {
+            if(response.success == true){
+              alert(response.message);
+            }
+          }
+        )
+      }
+    );
+
+
     if(this.myStorage.getFromLocal('username')){
       this.username = this.myStorage.getFromLocal('username');
       this.isConnected = true;
@@ -62,9 +81,13 @@ export class NavBarComponent implements OnInit {
 
     loginRef.afterClosed().subscribe(
       (response) => {
+        if(response === undefined){
+          return;
+        }
         this.username = response.username;
         this.userService.loginUser(response.username, response.password).subscribe(
           (response) => {
+            if(!response.success)
             console.log(response);
             this.myStorage.storeOnLocal('username', this.username);
             this.myStorage.storeOnLocal('token', response.token);
@@ -95,6 +118,9 @@ export class NavBarComponent implements OnInit {
 
     registerRef.afterClosed().subscribe(
       (response) => {
+        if(response === undefined){
+          return;
+        }
         if(response.password === response.passrepeat){
           this.userService.registerUser(response.username, response.password, response.email).subscribe(
             (response) => {
@@ -102,6 +128,7 @@ export class NavBarComponent implements OnInit {
             },
             (error) => {
               this.isConnected = false;
+              alert(error.error.message);
             }
           )
         }
