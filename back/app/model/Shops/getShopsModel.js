@@ -62,6 +62,11 @@ get_Shops = function(start, count, status, sorter, result) {
 						result(true,{"success":false,"message":"Something went wrong,please try again later !"});
 					}
 					else {
+            for(var j=0;j<shops.length;j++){
+              if(shops[j].tags[0]=="" && shops[j].tags.length==1){
+                shops[j].tags=[]
+              }
+            }
 						result(null, {"success": true, "start":parseInt(start), "count":parseInt(count), "total": res2.length/* was total*/, "shops": shops});
 					}
 				});
