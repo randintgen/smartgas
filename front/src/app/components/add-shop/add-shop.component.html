@@ -5,6 +5,7 @@
             <mat-form-field class="fullin">
               <input type="text"  formControlName="address" matInput placeholder="Διεύθυνση">
             </mat-form-field>
+            <button (click)="findCurrentLoc()">Here</button>
           </div>
         <div class="col-30">
             <button mat-raised-button class="button"  color="primary"  (click)="find()">Εύρεση</button>
@@ -16,6 +17,8 @@
           <agm-marker [longitude]="initLng" [latitude]="initLat">
           </agm-marker>
         </agm-map>
+        
+
     </div>
     <p>
         <br />

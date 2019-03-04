@@ -53,6 +53,7 @@
 
 </div>
 
+
 <mat-accordion>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
@@ -62,39 +63,7 @@
         <mat-panel-description>
         </mat-panel-description>
       </mat-expansion-panel-header>
-  
-      <div class="conteiner">
-          <form [formGroup]="addProduct">
-          <div class="row">
-              <div class="col-50">
-                  <mat-form-field [formGroup]="addProduct" class="fullin"> Όνομα Προϊόντος :
-                    <input type="text"  formControlName="name" matInput placeholder="Όνομα Προϊόντος">
-                  </mat-form-field>
-                </div>
-              <div class="col-50">
-                  <mat-form-field [formGroup]="addProduct" class="fullin"> Περιγραφή Προϊόντος :
-                      <input type="text"  formControlName="description" matInput placeholder="Περιγραφή Προϊόντος">
-                    </mat-form-field>
-              </div>
-          </div>
-          <div class="row">
-		          <div class="col-50">
-                  <mat-form-field [formGroup]="addProduct" class="fullin"> Κατηγορία προϊόντος :
-                    <input type="text"  formControlName="category" matInput placeholder="Κατηγορία προϊόντος">
-                  </mat-form-field>
-                </div>
-              <div class="col-50">
-                  <mat-form-field [formGroup]="addProduct" class="fullin"> Tags Προϊόντος:
-                      <input type="text"  formControlName="tag" matInput placeholder="Tags Προϊόντος">
-                    </mat-form-field>
-              </div>
-          </div>
-          
-        
-          
-        <button mat-raised-button class="button" (click)="addProductAttempt()">Προσθήκη</button>
-          </form>
-    </div>
 
+      <app-add-products></app-add-products>
     </mat-expansion-panel>
 </mat-accordion>

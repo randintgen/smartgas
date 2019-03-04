@@ -8,7 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ShopsListComponent } from './components/shops-list/shops-list.component';
-import { AddShopComponent } from './components/add-shop/add-shop.component';
+import { AddShopComponent, ResultListComponent } from './components/add-shop/add-shop.component';
 import { ShopDetailsComponent } from './components/shop-details/shop-details.component';
 import { TesterComponent, DialogDataExampleDialog } from './components/tester/tester.component';
 import { FiltersSearchComponent, Types } from './components/filters-search/filters-search.component';
@@ -16,8 +16,7 @@ import { MaterialModule } from './modules/material/material.module';
 import { NavBarComponent, LoginUserComponent, RegisterUserComponent } from './components/nav-bar/nav-bar.component';
 
 import { LocalStorageService } from './services/local-storage.service';
-import { SearchFormComponent } from './components/search-form/search-form.component';
-import { AddressesListComponent } from './components/search-form/addresses-list/addresses-list.component';
+import { SearchFormComponent, PickAdressComponent } from './components/search-form/search-form.component';
 
 import { ShopPriceHistoryComponent } from './components/shop-details/shop-price-history/shop-price-history.component';
 import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-prices.component';
@@ -51,7 +50,6 @@ import { ProductsComponent, EditProductModalComponent, DeleteProductComponent } 
     TesterComponent,
     FiltersSearchComponent,
     SearchFormComponent,
-    AddressesListComponent,
     ShopPriceHistoryComponent,
     ShopPricesComponent,
     EditShopComponent,
@@ -74,7 +72,9 @@ import { ProductsComponent, EditProductModalComponent, DeleteProductComponent } 
     RegisterUserComponent,
     AddProductsComponent,
     EditProductModalComponent,
-    DeleteProductComponent
+    DeleteProductComponent,
+    ResultListComponent,
+    PickAdressComponent
   ],
   imports: [
     BrowserModule,
@@ -92,14 +92,16 @@ import { ProductsComponent, EditProductModalComponent, DeleteProductComponent } 
     GoogleMapsAPIWrapper
   ],
   entryComponents: [
-    AddressesListComponent,
     LoginUserComponent,
     RegisterUserComponent,
     EditProductModalComponent,
-    DeleteProductComponent
+    DeleteProductComponent,
+    ResultListComponent,
+    PickAdressComponent
   ],
   exports: [
-    AddressesListComponent
+    ResultListComponent,
+    PickAdressComponent
   ],
   bootstrap: [AppComponent]
 })

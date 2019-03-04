@@ -35,11 +35,11 @@ export class ShopsListComponent implements OnInit {
   ngOnInit() {
     var isAdmin = this.myStorage.getFromLocal('isAdmin');
     if(isAdmin == 1){
-      this.shopService.getShops(0, 20, 'ALL', 'id|ASC').subscribe(
+      this.shopService.getShops(0, 50, 'ALL', 'id|ASC').subscribe(
         (response) => {
           this.ready = true;
           console.log(response);
-          this.dataSource = new MatTableDataSource<any>(response.shop);
+          this.dataSource = new MatTableDataSource<any>(response.shops);
           this.dataSource.paginator = this.paginator;
         }
       )
@@ -47,13 +47,15 @@ export class ShopsListComponent implements OnInit {
     else{
       this.shopService.getShops().subscribe(
         (response) => {
-          this.ready=true;
+          this.ready = true;
+          console.log('hello');
           console.log(response);
           this.dataSource = new MatTableDataSource<any>(response.shops);
           this.dataSource.paginator = this.paginator;
         }
       )
     }
+
   };
 
   applyFilter(filterValue: string) {
