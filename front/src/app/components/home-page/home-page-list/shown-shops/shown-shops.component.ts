@@ -26,17 +26,22 @@ export class ShownShopsComponent implements OnInit {
     this.initZoom = 14;
     this.shopsToShow.subscribe(
       (response) => {
-        console.log(response);
-        if(response.length > 0){
-          this.ok = true;
-          console.log(response);
-          this.initLat = response[0].shopLat;
-          this.initLng = response[0].shopLng;
-          this.allShops = response;
-        }else {
-          this.allShops = [];
-          this.ok = false;
+          if(response !== undefined){
+          console.log('apantisi', response);
+          if(response.length > 0){
+            this.ok = true;
+            console.log(response);
+            this.initLat = parseFloat(response[0].shopLat);
+            this.initLng = parseFloat(response[0].shopLng);
+            this.allShops = response;
+          }else {
+            this.allShops = [];
+            this.ok = false;
+          }
         }
+      },
+      (error) => {
+        console.log('malakia', error);
       });
   }
 

@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ProductsService } from '../../../services/products.service';
 import { PostService } from '../../../services/post.service';
+import { Observable } from 'rxjs';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-prices-ofshop',
@@ -15,7 +18,9 @@ export class AddPricesOfshopComponent implements OnInit {
   constructor(
     private form: FormBuilder,
     private productService: ProductsService,
-    private postService: PostService
+    private postService: PostService,
+    private myStorage: LocalStorageService,
+    private route: Router
   ) { }
 
   private fuel1 = this.form.group({
@@ -51,14 +56,15 @@ export class AddPricesOfshopComponent implements OnInit {
   ];
 
   ngOnInit() {
+    var isConnected = this.myStorage.getFromLocal('username');
     console.log(this.shopSelected);
   }
 
-  addPrice(offset: number): void {
+  addPrice(offset: number): Observable<any> {
 
   
     var newShop = {...this.shopSelected};
-    const newPrice = this.allForms[offset]
+    const newPrice = this.allForms[offset - 1]
                         .controls['1'].value;
 
     var newDate: any = new Date();
@@ -68,29 +74,20 @@ export class AddPricesOfshopComponent implements OnInit {
       return;
     }
     
-    if(offset === 0){
-      console.log(newDate);
-      this.postService.addPost({
-        price: newPrice,
-        date: newDate,
-        shopId: newShop.id,
-        productId: 0
-      }).subscribe(
-        (response) => {
-          console.log('dadadada', response);
-        },
-        (error) => {
-          console.log(error);
-        }
-      )
-    }else if(offset === 1){
-    }else if(offset === 2){
-    }else if(offset === 3){
-    }else if(offset === 4){
-    }else if(offset === 5){
-    }else if(offset === 6){
-    }else if(offset === 7){
-    }
+    console.log(newDate);
+    this.postService.addPost({
+      price: newPrice,
+      date: newDate,
+      shopId: newShop.id,
+      productId: offset
+    }).subscribe(
+      (response) => {
+        console.log('dadadada', response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
     console.log(newPrice);
   }
 

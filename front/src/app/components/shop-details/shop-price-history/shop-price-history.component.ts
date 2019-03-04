@@ -46,7 +46,6 @@ export class ShopPriceHistoryComponent implements OnInit {
     console.log(today);
     this.chosenId = 1;
     this.searchService.searchShops({
-      'products': [1],
       'dateFrom': makeDate,
       'dateTo': today,
       'sort': 'date|DESC',

@@ -32,6 +32,10 @@ export class AddShopComponent implements OnInit {
   private shopAdd;
   private shopTags;
   private shopName;
+  private lon;
+  private llon;
+  private llat;
+  private lat;
 
   constructor(
     private form: FormBuilder,
@@ -88,7 +92,7 @@ export class AddShopComponent implements OnInit {
       }else if(results.length === 1){
         this.initLat = results[0].y;
         this.initLng = results[0].x;
-        
+        console.log(this.initLat, typeof(this.initLat));
       }else {
         this.addressedFound = results;
         this.openListDialog();
@@ -110,6 +114,8 @@ export class AddShopComponent implements OnInit {
       (answer) => {
         var chosenId = answer.id;
         var labelChosen = answer.list[chosenId].label;
+        this.initLat = parseFloat(answer.list[chosenId].y);
+        this.initLng = parseFloat(answer.list[chosenId].x);
         console.log(labelChosen);
         this.addShopForm.controls['address'].setValue(labelChosen);
       }
@@ -166,7 +172,7 @@ export class AddShopComponent implements OnInit {
         var labelChosen = answer.list[chosenId].label;
         this.shopService.createShop(this.shopName, this.shopAdd, this.shopTags, this.initLng, this.initLat).subscribe(
           (response) => {
-            console.log('add', response);
+            this.router.navigateByUrl('/add/shops')
           },
           (error) => {
             console.log('add', error);
@@ -185,10 +191,13 @@ export class AddShopComponent implements OnInit {
 
     var locator = navigator.geolocation.getCurrentPosition(
       (result) =>{
-        var lon = 'lon=' + result.coords.longitude;
-        var lat = '&lat=' + result.coords.latitude;
+        this.lon = 'lon=' + result.coords.longitude;
+        this.lat = '&lat=' + result.coords.latitude;
 
-        basicUrl += lon + lat;
+        basicUrl += this.lon + this.lat;
+
+        this.llon = result.coords.longitude;
+        this.llat = result.coords.latitude;
 
         this.http.get(basicUrl, {
           headers: new HttpHeaders({
@@ -198,6 +207,9 @@ export class AddShopComponent implements OnInit {
           (final) => {
             console.log(final);
             this.addShopForm.controls['address'].setValue(final['display_name']);
+            this.initLat = parseFloat(this.llat);
+            this.initLng = parseFloat(this.llon);
+            console.log(this.initLat, typeof(this.initLat))
           },
           (error) => {
             console.log(error);
