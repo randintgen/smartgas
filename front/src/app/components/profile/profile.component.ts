@@ -19,13 +19,16 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   private userInfo; 
+  private username: string;
+  private isAdmin;
+  private usernameChange = false;
 
   ngOnInit() {
 
-    var username = this.route.snapshot.paramMap.get('name');
+    this.username = this.route.snapshot.paramMap.get('name');
     var realUsername = this.myStorage.getFromLocal('username');
 
-    if(realUsername !== username) {
+    if(realUsername !== this.username) {
       this.router.navigateByUrl('');
     }else if(!realUsername){
       this.router.navigateByUrl('');
@@ -33,11 +36,20 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser().subscribe(
       (accept) => {
         this.userInfo = accept.user;
+        this.isAdmin = this.myStorage.getFromLocal('isAdmin');
       },
       (error) => {
         console.log(error);
       }
     )
-  }
+  };
+
+  newEntry(hasChanged) {
+    console.log('hellooooooo');
+    if(!hasChanged){
+      return;
+    }
+    this.username = this.myStorage.getFromLocal('username');
+  };
 
 }

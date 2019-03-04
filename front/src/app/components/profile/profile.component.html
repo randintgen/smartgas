@@ -1,6 +1,6 @@
 <div *ngIf="userInfo">
 <mat-card>
-  Πληροφορίες Προφίλ Χρήστη {{userInfo.username}}
+  Πληροφορίες Προφίλ Χρήστη {{username}}
 </mat-card>
 
 <p>Ιστορικό Καταχωρήσεων</p>
@@ -19,7 +19,7 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <app-new-username></app-new-username>
+    <app-new-username (check)="newEntry($event)"></app-new-username>
 
   </mat-expansion-panel>
 
@@ -35,7 +35,7 @@
          <app-new-password></app-new-password>
   </mat-expansion-panel>
 
-<mat-expansion-panel>
+<mat-expansion-panel *ngIf="!isAdmin">
   <mat-expansion-panel-header>
     <mat-panel-title>
        Διαγραφή Προφίλ

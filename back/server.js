@@ -75,11 +75,11 @@ mc.query("SELECT 1 FROM users WHERE username = ? LIMIT 1" , "fnp" , function (er
 // REDIS Database
 
 // Simply pass the port that you want a Redis server to listen on.
-/*
+
 const server = new RedisServer({
     conf: './redis.conf',
     port: 6379,
-    bin: "/home/emmanuel/Desktop/other/redis-5.0.3/src/redis-server"    // change path if necessary - needs to show to redis-server
+    bin: "redis-server"    // change path if necessary - needs to show to redis-server
 
 
 });
@@ -90,7 +90,7 @@ server.open((err) => {
     // server bound to port 6379.
     console.log("Redis Server started");
   }
-});*/
+});
 
 var client = redis.createClient();
 
@@ -165,7 +165,7 @@ app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave
 var routes = require('./app/routes/appRoutes.js'); //importing route
 routes(app); //register the route
 
-/*
+
 process.on('SIGTERM', () => {
   console.info('\nSIGTERM signal received. Closing redis-server connection!\nSaving data in redis.');
   server.close((err) => {
@@ -180,7 +180,7 @@ process.on('SIGINT', () => {
     // The associated Redis server is now closed.
   });
   process.exit(0);
-});*/
+});
 
 module.exports = {
     app,

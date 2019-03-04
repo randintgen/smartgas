@@ -20,7 +20,7 @@ export class Shop {
 
 export class ShopsListComponent implements OnInit {
   
-  ready : boolean =false;
+  ready : boolean = false;
   private dataSource;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -45,7 +45,7 @@ export class ShopsListComponent implements OnInit {
       )
     }
     else{
-      this.shopService.getShops().subscribe(
+      this.shopService.getShops(0, 50).subscribe(
         (response) => {
           this.ready = true;
           console.log('hello');

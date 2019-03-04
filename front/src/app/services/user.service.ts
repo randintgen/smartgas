@@ -157,6 +157,7 @@ export class UserService {
     
     var history = this.http.request('get', historyUrl, {
       headers: new HttpHeaders({
+        'Content-Type': 'application/json',
         'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
       })
     });
