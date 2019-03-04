@@ -81,6 +81,7 @@ const server = new RedisServer({
     port: 6379,
     bin: "/home/emmanuel/Desktop/other/redis-5.0.3/src/redis-server"    // change path if necessary - needs to show to redis-server
 
+
 });
 
 server.open((err) => {
