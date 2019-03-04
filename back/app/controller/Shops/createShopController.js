@@ -46,7 +46,7 @@ exports.create_a_shop = function(req, res) {
         if( (typeof new_shop.name=="undefined")  || (typeof new_shop.tags=="undefined") || (typeof new_shop.address=="undefined") || (typeof new_shop.lng=="undefined") || (typeof new_shop.lat=="undefined") ) {
             res.status(400).json({"success":false,"message":"Please complete all the mandatory fields !"});
         }
-        else if(new_shop.name.length>255 || new_shop.address.length>255 || new_shop.tags.length>255) {
+        else if(new_shop.name.length>255 || new_shop.address.length>255 || new_shop.tags.length>2000) {
             res.status(400).json({"success":false,"message":"Please provide compatible input,maximum length exceeded !"});
         }
         else if(typeof new_shop.name!='string' || checks.checkGeo(req.body.lat.toString(), req.body.lng.toString()) || typeof new_shop.tags!='string' || typeof new_shop.address != 'string'){
