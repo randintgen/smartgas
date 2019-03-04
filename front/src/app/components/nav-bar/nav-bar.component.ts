@@ -21,7 +21,15 @@ export interface userInfo {
 
 export class NavBarComponent implements OnInit {
 
-  private LOGO = "app/images/smart_gas_logo-01.png";
+  private LOGO = "https://i.imgur.com/qV5D0KB.png";
+  private EXPAND = "https://i.imgur.com/8MVu3k0.png";
+  private FUEL = "https://i.imgur.com/3OebcMc.png";
+  private LOGIN = "https://i.imgur.com/CedVurJ.png";
+  private REG = "https://i.imgur.com/FZSC8l6.png";
+  private PLUS = "https://imgur.com/DQV4MFF.png";
+  private KAF = "https://i.imgur.com/gnj3dai.png";
+  private ALE = "https://imgur.com/4cDSHj5.png";
+  private LOGOUT = "https://i.imgur.com/KMEHoSQ.png";
   private isConnected = false;
   private username: string;
   private isAdmin: boolean = false;

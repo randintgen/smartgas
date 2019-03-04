@@ -6,8 +6,7 @@ import { DatePipe } from '@angular/common';
 import { OpenStreetMapProvider } from 'leaflet-geosearch';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ShopService } from '../../services/shop.service';
-import { MatDialogRef, MatDialog } from '@angular/material';
-import { AddressesListComponent } from './addresses-list/addresses-list.component';
+import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { SearchService } from '../../services/search.service';
 
@@ -56,18 +55,26 @@ export class SearchFormComponent implements OnInit {
 
   openListAdd(): void {
     console.log(this.addressedFound);
-    this.myStorage.storeOnLocal('addresses', this.addressedFound);
-    const dialogRef = this.dialog.open(AddressesListComponent, {
-      width: '600px'
+    const dialogRef = this.dialog.open(PickAdressComponent, {
+      width: '600px',
+      data : {
+        list: this.addressedFound,
+        chosen: ''
+      }
     });
-    dialogRef.afterClosed().subscribe(_ => {
-      var results = this.myStorage.getFromLocal('addresses');
-      this.searchService.searchShops(this.objSearch).subscribe(
-        (response) => {
-          this.searchResults = response.prices;
-        }
-      );
-    });
+
+    dialogRef.afterClosed().subscribe(
+      (chosen) => {
+        console.log(this.addressedFound[chosen.chosen]);
+        this.objSearch['geoLat'] = this.addressedFound[chosen.chosen].x;
+        this.objSearch['geoLng'] = this.addressedFound[chosen.chosen].y
+        this.searchService.searchShops(this.objSearch).subscribe(
+          (response) => {
+            console.log(response);
+          }
+        )
+      }
+    );
   };
 
   submit() {
@@ -106,6 +113,7 @@ export class SearchFormComponent implements OnInit {
         (result) => {
           this.objSearch['geoLat'] = result.coords.latitude;
           this.objSearch['geoLng'] = result.coords.longitude;
+          console.log('here:', this.objSearch);
           this.searchService.searchShops(this.objSearch).subscribe(
             (response) => {
               this.searchResults = response.prices;
@@ -123,16 +131,19 @@ export class SearchFormComponent implements OnInit {
         query: location
       }).then((results) => {
         if(results.length === 0){
+          console.log('none', this.objSearch);
           console.error('No results!');
         }else if(results.length === 1){
           this.objSearch['geoLat'] = results[0].y;
           this.objSearch['geoLng'] = results[0].x;
+          console.log('one', this.objSearch);
           this.searchService.searchShops(this.objSearch).subscribe(
             (response) => {
               this.searchResults = response.prices;
             }
           )
         }else {
+          console.log('many', this.objSearch);
           this.addressedFound = results;
           this.openListAdd();
         }
@@ -153,4 +164,39 @@ export class SearchFormComponent implements OnInit {
     this.disDist = !this.disDist;
   }
 
+}
+
+@Component({
+  selector: 'app-pick-address',
+  templateUrl: 'pick-address.component.html',
+  styleUrls: ['./pick-address.component.css']
+})
+
+export class PickAdressComponent implements OnInit{
+
+  constructor(
+    private dialogRef: MatDialogRef<any>,
+    @Inject(MAT_DIALOG_DATA) private data: any
+  ){}
+  
+  private dataSource;
+  private displayedColumns;
+
+  ngOnInit(){
+
+    var addresses = [];
+    var temp = '';
+    var counter = 0;
+    for(let add of this.data.list){
+      var broken = add.label.split(',');
+      temp += broken[0] + broken[1] + broken[2] + broken[3];
+      addresses.push({'add': temp, 'id': counter});
+      counter += 1;
+      temp = '';
+    }
+
+    console.log(addresses);
+    this.displayedColumns = ['add', 'button'];
+    this.dataSource = addresses;
+  }
 }

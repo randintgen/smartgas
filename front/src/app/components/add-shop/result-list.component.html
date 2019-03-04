@@ -1,0 +1,21 @@
+<div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Επιλέξτε μια διεύθυνση:</th>
+        <td mat-cell (click)="choose(element.id)" *matCellDef="let element"> {{element.street}}</td>
+        <button mat-raised-button (click)="data.id=element.id" [mat-dialog-close]="data">Επιλογή</button>
+      </ng-container>
+  
+      <ng-container matColumnDef="tochoose">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                    <button mat-raised-button (click)="data.id=element.id" [mat-dialog-close]="data">Επιλογή</button>
+            </td>
+    </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

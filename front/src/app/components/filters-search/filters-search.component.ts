@@ -18,6 +18,7 @@ export interface Types {
 
 export class FiltersSearchComponent implements OnInit {
  
+  private FILTERS="https://imgur.com/FSpNtx1.png";
   ngOnInit() {
 
   }
