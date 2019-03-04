@@ -71,6 +71,10 @@ exports.patch_a_product = function(req, res) {
 			newfield=req.body.tags;
 			final=query+"tags='"+newfield+"'"+where;
 		}
+		else if(typeof req.body.tags=='string') {
+			 newfield=req.body.tags;
+			 final=query+"tags='"+newfield+"'"+where;
+		}
 
 		else res.status(400).json({"success":false,"message":"Please provide a valid field for update !"});
 

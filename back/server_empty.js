@@ -14,7 +14,7 @@ const redis = require('redis');
 const fs = require('fs')
 const https = require('https');
 const RedisServer = require('redis-server');
-const initialize = require('./init.js');
+//const initialize = require('./init.js');
 
 // read certificates
 
@@ -54,18 +54,11 @@ mc.query("SELECT 1 FROM users WHERE username = ? LIMIT 1" , "fnp" , function (er
         psswd = 'kodikos'
 
         let hash = bcrypt.hashSync(psswd, 10)
-        query = " INSERT INTO users ( mail,username,psswd,nposts,reputation,admin,ipath,flag,hashid) VALUES  ('lkanav@yahoo.com','fnp','"+hash+"',0,0,1,'/home/fnp',1,1),('pcolaras23@yahoo.com','pcolaras23','"+hash+"',0,0,1,'/home/fnp',1,1),('alexkaf@yahoo.com','alexkaf','"+hash+"',0,0,1,'/home/fnp',1,1),('manzar@yahoo.com','manzar','"+hash+"',0,0,1,'/home/fnp',1,1),('caruso@yahoo.com','caruso','"+hash+"',0,0,1,'/home/fnp',1,1),('alexakis@yahoo.com','alexakis','"+hash+"',0,0,1,'/home/fnp',1,1),('notadmin1@yahoo.com','notadmin1','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin2@yahoo.com','notadmin2','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin3@yahoo.com','notadmin3','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin4@yahoo.com','notadmin4','"+hash+"',0,0,0,'/home/fnp',1,1),('peiramatozoo@yahoo.com','peiramatozoo','"+hash+"',0,0,0,'/home/fnp',1,1); "
+        query = " INSERT INTO users ( mail,username,psswd,nposts,reputation,admin,ipath,flag,hashid) VALUES  ('lkanav2@yahoo.com','fnp','"+hash+"',0,0,1,'/home/fnp',1,1),('pcolaras23@yahoo.com','pcolaras23','"+hash+"',0,0,1,'/home/fnp',1,1),('alexkaf@yahoo.com','alexkaf','"+hash+"',0,0,1,'/home/fnp',1,1),('manzar@yahoo.com','manzar','"+hash+"',0,0,1,'/home/fnp',1,1),('caruso@yahoo.com','caruso','"+hash+"',0,0,1,'/home/fnp',1,1),('alexakis@yahoo.com','alexakis','"+hash+"',0,0,1,'/home/fnp',1,1),('notadmin1@yahoo.com','notadmin1','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin2@yahoo.com','notadmin2','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin3@yahoo.com','notadmin3','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin4@yahoo.com','notadmin4','"+hash+"',0,0,0,'/home/fnp',1,1),('peiramatozoo@yahoo.com','peiramatozoo','"+hash+"',0,0,0,'/home/fnp',1,1); "
 
         mc.query(query, function (err1, res1) {
             if (err1) console.log("Wrong HERE!!! " + err1);
-            else {
-                mc.query(initialize(), function (err2, res2) {
-                    if (err2) console.log("WRONG THERE" + err2);
-                    else {
-                        console.log("Database Initialized ! ")
-                    }
-                });
-            }
+
         });
     }
 

@@ -6,6 +6,7 @@ var authenticate = require('../../auth/auth.js')
 exports.update_a_product = function(req, res) {
 
 	var error2=0;
+	var temptags = req.body.tags;
 	// tags must be in form ["tag1","tag2","tag3"] but database supports "tag1,tag2,tag3"
 	if(Array.isArray(req.body.tags)) {
 		var i=0;
@@ -38,7 +39,12 @@ exports.update_a_product = function(req, res) {
 	else {
 
 		// check for empty fields
-		if(!(new_product.type && new_product.description && new_product.tags && new_product.category)) {
+		if((typeof new_product.tags=='undefined' && new_product.tags!='' )) { 
+			console.log(11111)
+			res.status(400).json({"success":false,"message":"Please complete all the mandatory fields !"});
+		}
+
+		else if(!(new_product.type && new_product.description && new_product.category)) {
 			res.status(400).json({"success":false,"message":"Please complete all the mandatory fields !"});
 		}
 

@@ -66,13 +66,16 @@ get_products = function(srt,cnt,stat,sorting,result) {
 					temp.push(tagsplit[j]);
 				}
 				res[i].tags = temp;
+				if(tagsplit[0]==""&&tagsplit.length==1){
+					res[i].tags=[]
+				}
 				//console.log(temp);
 				products.push(res[i]);
 
 			}
 			//console.log(products);
 			var totaling = "select count(*) as total from fuel "+scnd+" ;";
-			console.log(totaling);
+			//console.log(totaling);
 			sql.query(totaling,function(err2,res2) {
 
 				if(err2){

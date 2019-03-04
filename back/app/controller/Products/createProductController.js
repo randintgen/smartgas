@@ -6,10 +6,10 @@ var authenticate = require('../../auth/auth.js')
 exports.create_a_product = function(req, res) {
 
 	var error2=0;
-	//console.log(req.body.tags)
+	var temptags = req.body.tags;
+	//console.log(req.body);
 	// tags must be in form ["tag1","tag2","tag3"] but database supports "tag1,tag2,tag3"
 	if(Array.isArray(req.body.tags)) {
-		//console.log('edo');
 		var i=0;
 		var temp="";
 		for(var j=0 ; j<req.body.tags.length ; j++) {
@@ -25,9 +25,10 @@ exports.create_a_product = function(req, res) {
 		}
 		req.body.tags=temp;
 	}
+	//console.log(Array.isArray(req.body.tags));
 	var new_product = new Product(req.body);
 
-	//console.log(req.body);
+	//console.log(new_product);
 
 	var nogo = 0 ;
 
@@ -35,7 +36,12 @@ exports.create_a_product = function(req, res) {
 	else if(error2) res.status(400).json({"success":false,"message":"Tags must be a list of strings"}); // if tags is[1,2]
 	else {
 
-		if(!(new_product.type && new_product.description && new_product.tags && new_product.category)) { 
+		if((typeof new_product.tags=='undefined' && new_product.tags!='' )) { 
+			console.log(11111)
+			res.status(400).json({"success":false,"message":"Please complete all the mandatory fields !"});
+		}
+
+		else if(!(new_product.type && new_product.description && new_product.category)) { 
 			res.status(400).json({"success":false,"message":"Please complete all the mandatory fields !"});
 		}
 		else if(new_product.type.length>255 || new_product.description.length>255 || new_product.category.length>255 ||new_product.tags.length>2000) {
