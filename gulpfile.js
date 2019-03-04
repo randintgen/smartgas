@@ -1,14 +1,9 @@
-/*
-npm-run() {
-  $(npm bin)/$*
-}
-in .bashrc
-*/
 /*--------------------------------INSTRUCTIONS---------------------------------------//
 HOW TO :
 -> install : npm i gulp gulp-cli gulp-multi-process npm
 -> run     : $(npm bin)/gulp <task_name> (servers, installs, testing)
                                           by default does everything
+-> if installed .bashrc, just run gulp <task_name>
 //-----------------------------------------------------------------------------------*/
 
 var gulp = require('gulp');
