@@ -179,4 +179,16 @@ export class UserService {
     return delResult;
   }
 
+  verify(id: number, userid: number): Observable<any>{
+
+    var verifyUrl = this.baseUrl + 'verify?id=' + id + '&userid=' + userid;
+    var req = this.http.get(verifyUrl, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+
+    return req;
+  }
+
 }
