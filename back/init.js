@@ -1,9 +1,6 @@
-var initialize = function(hash) {
-    var result = "";
-    if (hash !== null) {
-        result = " INSERT INTO users ( mail,username,psswd,nposts,reputation,admin,ipath ) VALUES  ('lkanav@yahoo.com','fnp','"+hash+"',0,0,1,'/home/fnp'),          ('pcolaras23@yahoo.com','pcolaras23','"+hash+"',0,0,1,'/home/fnp'),('alexkaf@yahoo.com','alexkaf','"+hash+"',0,0,1,'/home/fnp'),('manzar@yahoo.com','manzar','"+hash+"',0,0,1,'/home/fnp'),('caruso@yahoo.com','caruso','"+hash+"',0,0,1,'/home/fnp'),('alexakis@yahoo.com','alexakis','"+hash+"',0,0,1,'/home/fnp'),('notadmin1@yahoo.com','notadmin1','"+hash+"',0,0,0,'/home/fnp'),('notadmin2@yahoo.com','notadmin2','"+hash+"',0,0,0,'/home/fnp'),('notadmin3@yahoo.com','notadmin3','"+hash+"',0,0,0,'/home/fnp'),('notadmin4@yahoo.com','notadmin4','"+hash+"',0,0,0,'/home/fnp'),('peiramatozoo@yahoo.com','peiramatozoo','"+hash+"',0,0,0,'/home/fnp'); "
-    } else {
-        result = ` INSERT INTO post(shopid,userid,fuelid,price,my_date) VALUES ( 1 , 3 , 1 , 1.561 , ' 2019-03-03 '),
+var initialize = function() {
+     var result = "";
+     result = ` INSERT INTO post(shopid,userid,fuelid,price,my_date) VALUES ( 1 , 3 , 1 , 1.561 , ' 2019-03-03 '),
                     ( 1 , 3 , 2 , 1.56 , ' 2019-03-02 '),
                     ( 1 , 2 , 3 , 1.884 , ' 2019-03-04 '),
                     ( 1 , 3 , 4 , 1.31 , ' 2019-03-04 '),
@@ -241,7 +238,6 @@ var initialize = function(hash) {
                     ( 34 , 1 , 5 , 1.376 , ' 2019-03-04 '),
                     ( 34 , 5 , 6 , 0.765 , ' 2019-03-03 '),
                     ( 34 , 2 , 7 , 0.781 , ' 2019-03-03 ') ;`
-    }
     return result;
 }
 
