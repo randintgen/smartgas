@@ -39,7 +39,7 @@ export class ShopsListComponent implements OnInit {
         (response) => {
           this.ready = true;
           console.log(response);
-          this.dataSource = new MatTableDataSource<any>(response.shop);
+          this.dataSource = new MatTableDataSource<any>(response.shops);
           this.dataSource.paginator = this.paginator;
         }
       )

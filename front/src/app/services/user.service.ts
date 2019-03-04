@@ -93,9 +93,9 @@ export class UserService {
     return usDelete;
   };
 
-  userChPsswd(username: string, oldPass: string, newPass: string): Observable<any>{
+  userChPsswd( oldPass: string, newPass: string): Observable<any>{
     
-    var chPassUrl = this.baseUrl + 'users/' + username + '/newpass';
+    var chPassUrl = this.baseUrl + 'users' + '/newpass';
 
     var chPass = this.http.put<any>(chPassUrl, JSON.stringify({
       psswd: oldPass,
@@ -110,9 +110,9 @@ export class UserService {
     return chPass;
   };
 
-  userChUsername(oldUsername: string, newUsername: string): Observable<any>{
+  userChUsername(newUsername: string): Observable<any>{
 
-    var chUsernameUrl = this.baseUrl + 'users/' + oldUsername + '/newname';
+    var chUsernameUrl = this.baseUrl + 'users' + '/newname';
 
     var newName = this.http.put<any>(chUsernameUrl, JSON.stringify(
       {
@@ -144,9 +144,9 @@ export class UserService {
 
   changeProfile(username: string, toUpload: File) {
 
-    var uploadProfileUrl = this.baseUrl + 'users/' + username + '/newinfo';
+    var uploadProfileUrl = this.baseUrl + 'users' + '/newinfo';
     const uploadData = new FormData();
-    uploadData.append('profile', toUpload, username);
+    uploadData.append('profile', toUpload);
 
     //var request = this.http.post()
   }
