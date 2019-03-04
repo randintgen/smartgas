@@ -1,3 +1,8 @@
 <agm-map [longitude]="shopLng" [latitude]="shopLat" [zoom]="initZoom">
-    <agm-marker [longitude]="shopLng" [latitude]="shopLat"></agm-marker>
+    <agm-marker [longitude]="shopLng" [latitude]="shopLat">
+        <agm-info-window >
+            <p> <b>{{selectedShop.name}}</b> </p>
+            <p>{{selectedShop.address}}</p>
+            </agm-info-window>
+    </agm-marker>
 </agm-map>

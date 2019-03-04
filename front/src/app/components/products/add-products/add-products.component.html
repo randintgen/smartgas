@@ -18,24 +18,7 @@
               <input type="text"  formControlName="category" matInput placeholder="Κατηγορία προϊόντος">
             </mat-form-field>
           </div>
-        <div class="col-50">
-            <mat-form-field [formGroup]="addProduct" class="chip-list" class="fullin">
-                <mat-chip-list #chipList>
-                  <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
-                           [removable]="removable" (removed)="remove(tag)">
-                    {{tag.name}}
-                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                  </mat-chip>
-                  <input placeholder="Νέα Tags..."
-                         [matChipInputFor]="chipList"
-                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                         [matChipInputAddOnBlur]="addOnBlur"
-                         (matChipInputTokenEnd)="add($event)"
-                         formControlName="tags">
-                </mat-chip-list>
-              </mat-form-field>
-              
-        </div>
+
     </div>          
   
     

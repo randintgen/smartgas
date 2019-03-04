@@ -1,15 +1,14 @@
 <form [formGroup]="addShopForm">
 <div class="conteiner">
     <div class="row">
-        <div class="col-70">
             <mat-form-field class="fullin">
               <input type="text"  formControlName="address" matInput placeholder="Διεύθυνση">
             </mat-form-field>
-            <button (click)="findCurrentLoc()">Here</button>
-          </div>
-        <div class="col-30">
-            <button mat-raised-button class="button"  color="primary"  (click)="find()">Εύρεση</button>
-        </div>
+
+
+            <button mat-mini-fab  (click)="findCurrentLoc()">Εδώ</button>
+            <button mat-raised-button   (click)="find()">Εύρεση</button>
+
     </div>
 
     <div class="map">
@@ -41,7 +40,7 @@
     </div>
   
     <div class="row"> 
-  <button mat-raised-button color="primary" class="button" (click)="addShopAttempt()">Προσθήκη Καταστήματος</button>
+  <button mat-raised-button  class="button" (click)="addShopAttempt()">Προσθήκη Καταστήματος</button>
   </div>
 </div>
 </form>
