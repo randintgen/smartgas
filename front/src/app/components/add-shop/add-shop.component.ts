@@ -48,6 +48,7 @@ export class AddShopComponent implements OnInit {
     'tags': ['']
   });
 
+  
 
   alysides: Alysida[] = [
       {value: 'Shell', viewValue: 'Shell'},
