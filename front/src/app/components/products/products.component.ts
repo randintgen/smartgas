@@ -107,7 +107,14 @@ export class ProductsComponent implements OnInit {
           this.productService.deleteProduct(id).subscribe(
             (response) => {
               console.log(response);
-              this.allProducts.splice(id - 1, 1);
+              var counter = 0;
+              for(let p of this.allProducts){
+                if(p.id == id){
+                  break;
+                }
+                counter++;
+              }
+              this.allProducts.splice(counter, 1);
               this.dataSource = new MatTableDataSource<any>(this.allProducts);
             },
             (error) => {

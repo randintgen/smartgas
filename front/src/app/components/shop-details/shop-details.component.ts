@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ShopService } from '../../services/shop.service';
 import { SearchService } from '../../services/search.service';
 import { FormBuilder } from '@angular/forms';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-shop-details',
@@ -14,7 +15,8 @@ export class ShopDetailsComponent implements OnInit {
   constructor(
     private shopService: ShopService,
     private route: ActivatedRoute,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private myStorage: LocalStorageService
   ) { }
 
 
@@ -23,9 +25,12 @@ export class ShopDetailsComponent implements OnInit {
   private shopPrices;
   private shopLoaded: boolean = false;
   private taken = false;
+  private isConnected;
   panelOpenState = false;
   
   ngOnInit() {
+
+    this.isConnected = this.myStorage.getFromLocal('username');
 
     const id = this.route.snapshot.paramMap.get('id');
     console.log(id);

@@ -23,13 +23,21 @@ export class PostService {
     objAdd.dateTo = objAdd.date;
 
     console.log('gine kommotis', objAdd);
+    var addResult = this.http.request('post', addUrl,{
+      body: JSON.stringify(objAdd),
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
+      })
+    });
+    /*
     var addResult = this.http.post(addUrl, JSON.stringify(objAdd), {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
       })
     }); 
-
+*/
     return addResult;
   };
 

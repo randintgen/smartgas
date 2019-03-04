@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild, Input, AfterViewInit } from '@angular/core
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import { SearchService } from '../../../services/search.service';
 import { FiltersSearchComponent } from '../filters-search/filters-search.component';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-home-page-list',
@@ -15,7 +15,7 @@ export class HomePageListComponent implements OnInit {
   private basicResults;
   private dataSource;
   private x;
-  private shopsHomePage = new Subject<any>();
+  private shopsHomePage = new BehaviorSubject(undefined);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['name', 'address', 'price', 'shopDist'];
@@ -41,6 +41,7 @@ export class HomePageListComponent implements OnInit {
         this.basicResults = response.prices;
         this.dataSource = new MatTableDataSource<any>(response.prices);
         this.dataSource.paginator = this.paginator;
+        this.shopsHomePage.next(response.prices);
       }
     );
   }
@@ -52,6 +53,7 @@ export class HomePageListComponent implements OnInit {
         if(results !== undefined){
         console.log('wow results!');
         console.log(results);
+        this.shopsHomePage.next(results);
         this.dataSource = [];
         this.dataSource = new MatTableDataSource<any>(results);
         this.dataSource.paginator = this.paginator;

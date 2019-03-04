@@ -42,7 +42,7 @@
       <app-shop-price-history></app-shop-price-history>
         </mat-expansion-panel>
 
-        <mat-expansion-panel >
+        <mat-expansion-panel *ngIf="isConnected">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 Επεξεργασία Πληροφοριών Καταστήματος
@@ -55,7 +55,7 @@
             <app-edit-shop [currentShop]="selectedShop"></app-edit-shop>
     </mat-expansion-panel>
 
-    <mat-expansion-panel>
+    <mat-expansion-panel *ngIf="isConnected">
         <mat-expansion-panel-header>
           <mat-panel-title>
               Προσθήκη Τιμών
