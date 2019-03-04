@@ -1,6 +1,3 @@
-// npm install gulp-cli -g
-// npm install gulp -D
-// ---> npm i npm gulp gulp-cli gulp-multi-process
 /*
 npm-run() {
   $(npm bin)/$*
@@ -9,7 +6,7 @@ in .bashrc
 */
 /*--------------------------------INSTRUCTIONS---------------------------------------//
 HOW TO :
--> install : npm i gulp gulp-cli gulp-multi-process
+-> install : npm i gulp gulp-cli gulp-multi-process npm
 -> run     : $(npm bin)/gulp <task_name> (servers, installs, testing)
                                           by default does everything
 //-----------------------------------------------------------------------------------*/
