@@ -32,6 +32,7 @@ module.exports = function(app) {
     	const delete_my_old_post = require('../controller/Posts/deletePostController.js');
     	const upd_old_post = require('../controller/Posts/updatePostController.js');
     	const post_search = require('../controller/Posts/getPostController.js');
+      const my_posts = require('../controller/Posts/getMyPostController.js');
 
 	// todoList Routes
 
@@ -102,10 +103,17 @@ module.exports = function(app) {
 	
 	// Posts
 	app.route(url+'/prices')
-        	.post(newpost.create_post)
-        	.get(post_search.my_post_list);
+      .post(newpost.create_post)
+  
+  app.route(url+'/prices')
+      .get(post_search.my_post_list);
 
-    	app.route(url+'/prices/:id')
-        	.delete(delete_my_old_post.delete_post)
-        	.put(upd_old_post.update_post);
+  app.route(url+'/prices/:id')
+      .delete(delete_my_old_post.delete_post)
+  
+  app.route(url+'/prices/:id')
+      .put(upd_old_post.update_post);
+  
+  app.route(url+'/prices/myposts')
+      .get(my_posts.my_own_posts);
 };
