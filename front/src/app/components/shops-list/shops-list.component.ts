@@ -25,7 +25,7 @@ export class ShopsListComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['id', 'name', 'address'];
+  displayedColumns: string[] = ['id', 'name', 'address', 'tags'];
 
   constructor(
     private shopService: ShopService,

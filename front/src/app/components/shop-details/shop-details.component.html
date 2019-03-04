@@ -8,7 +8,11 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
           {{selectedShop.name}}
+          <br />
           {{selectedShop.address}}
+          <br />
+          {{selectedShop.tags}}
+          <br />
           <app-show-on-map [selectedShop]="selectedShop"></app-show-on-map>
         </mat-expansion-panel>
         

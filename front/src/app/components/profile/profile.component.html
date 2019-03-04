@@ -1,7 +1,12 @@
 <div *ngIf="userInfo">
 <mat-card>
-  Πληροφορίες Προφίλ Χρήστη {{username}}
+  <b>Πληροφορίες Προφίλ Χρήστη {{username}}</b>
+  <br />
+  email: {{userInfo.mail}}
+  <br />
+  Αριθμός Καταχωρήσεων: {{userInfo.nposts}}
 </mat-card>
+
 
 <p>Ιστορικό Καταχωρήσεων</p>
 <app-myhistory></app-myhistory>

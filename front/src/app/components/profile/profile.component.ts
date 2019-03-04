@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   private userInfo; 
   private username: string;
   private isAdmin;
+  private hasPosts=true;
   private usernameChange = false;
 
   ngOnInit() {
@@ -36,6 +37,7 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser().subscribe(
       (accept) => {
         this.userInfo = accept.user;
+        console.log(this.userInfo);
         this.isAdmin = this.myStorage.getFromLocal('isAdmin');
       },
       (error) => {
@@ -45,7 +47,7 @@ export class ProfileComponent implements OnInit {
   };
 
   newEntry(hasChanged) {
-    console.log('hellooooooo');
+    console.log('OK');
     if(!hasChanged){
       return;
     }
