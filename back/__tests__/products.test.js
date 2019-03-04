@@ -1125,7 +1125,7 @@ describe('Get user profile', () => {
 		expect(response.status).toEqual(200);
  		expect(response.body.user.username).toEqual("fnp");
 		expect(response.body.user.mail).toEqual("lkanav@yahoo.com");
-		expect(response.body.user.nposts).toEqual(446);
+		expect(response.body.user.nposts).toEqual(550);
 		expect(response.body.user.ipath).toEqual("/home/fnp");
  	});
 

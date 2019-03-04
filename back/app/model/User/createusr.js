@@ -80,7 +80,7 @@ User.createusr = function createUser(newUser, result) {
 
 					if(!newUser.flag) {
 					
-						link="http://localhost:4200/verify?id="+rand+"&userid="+res.insertId;
+						link="https://localhost:4200/verify?id="+rand+"&userid="+res.insertId;
 
 						mailOptions = {
 								to : newUser.mail,
