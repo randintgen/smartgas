@@ -7,23 +7,26 @@
       <a class="menu">
         <a class="tile" >
           <button routerLink="shopslist" routerLink="/shopslist" mat-button>
+            <img  [src]="FUEL"  alt="*" height="20px" width="20px">
             Βενζινάδικα
           </button>
         </a>
 
         <a class="tile" >
             <button mat-button (click)="openLogin()">
+              <img  [src]="LOGIN" alt="*" height="20px" width="20px">
               Log in
             </button>
           </a>
         <a class="tile" >
             <button mat-button (click)="openRegister()">
+                <img  [src]="REG" alt="*" height="20px" width="20px">
                 Register
               </button>
         </a>
         <a class="icon">
           <button mat-button (click)="myFunction()">
-              **
+              <img  [src]="EXPAND" routerLink="" alt="*" height="20px" width="20px">
           </button>
         </a>
       </a>
@@ -37,28 +40,32 @@
     <a class="menu">
       <a class="tile" >
           <button mat-button routerLink="shopslist">
+              <img  [src]="FUEL" routerLink="" alt="*" height="20px" width="20px">
             Βενζινάδικα
           </button>
       </a>
       <a class="tile" >
           <button mat-button routerLink="add/shops">
+            <img  [src]="PLUS" alt="*" height="20px" width="20px">
               Πρόσθεσε Βενζινάδικο
           </button>
       </a>
 
       <a class="tile" routerLink="user/{{username}}">
         <button mat-button>
+            <img  [src]="ALE" alt="*" height="20px" width="20px">
             {{username}}
         </button>
       </a>
       <a class="tile">
         <button mat-button (click)="logout()">
+            <img  [src]="LOGOUT" alt="*" height="20px" width="20px">
           Log out
         </button>
       </a>
       <a class="icon">
         <button mat-button (click)="myFunction()">
-          **
+            <img  [src]="EXPAND" routerLink="" alt="*" height="20px" width="20px">
         </button>
       </a>
   </a>
@@ -71,33 +78,40 @@
   <a class="menu">
       <a class="tile" >
           <button mat-button routerLink="/products">
+            <img  [src]="KAF" routerLink="" alt="*" height="20px" width="20px">
+
             Καύσιμα
           </button>
       </a>
       <a class="tile" >
           <button mat-button routerLink="/shopslist">
+            <img  [src]="FUEL" routerLink="" alt="*" height="20px" width="20px">
             Βενζινάδικα
           </button>
       </a>
       <a class="tile" >
-          <button mat-button routerLink="add/shops">
+          <button mat-button routerLink="/add/shops">
+            <img  [src]="PLUS" alt="*" height="20px" width="20px">
               Πρόσθεσε Βενζινάδικο
           </button>
       </a>
       <a class="tile">
-        <button mat-button routerLink="/user/{{username}}">
+
+        <button mat-button routerLink="/user/{{username}}" >
+          <img  [src]="ALE" alt="*" height="20px" width="20px">
             {{username}}
         </button>
       </a>
       <a class="tile">
         <button mat-button (click)="logout()">
+          <img  [src]="LOGOUT" alt="*" height="20px" width="20px">
           Log out
         </button>
       </a>
 
       <a class="icon">
         <button mat-button (click)="myFunction()">
-          **
+            <img  [src]="EXPAND" routerLink="" alt="*" height="20px" width="20px">
         </button>
       </a>
     </a>

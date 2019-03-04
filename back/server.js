@@ -14,6 +14,7 @@ const redis = require('redis');
 const fs = require('fs')
 const https = require('https');
 const RedisServer = require('redis-server');
+const initialize = require('./init.js');
 
 // read certificates
 
@@ -44,21 +45,29 @@ mc.connect();
 
 mc.query("SELECT 1 FROM users WHERE username = ? LIMIT 1" , "fnp" , function (erru,resu) {
 
-	if (resu[0]) {
-			
-		console.log("Database already initialized !");
-	}
-	else {
+    if (resu[0]) {
 
-		psswd = 'kodikos'
+        console.log("Database already initialized !");
+    }
+    else {
 
-		let hash = bcrypt.hashSync(psswd, 10)
-		query = " INSERT INTO users ( mail,username,psswd,nposts,reputation,admin,ipath,flag,hashid) VALUES  ('lkanav2@yahoo.com','fnp','"+hash+"',0,0,1,'/home/fnp',1,1),('pcolaras23@yahoo.com','pcolaras23','"+hash+"',0,0,1,'/home/fnp',1,1),('alexkaf@yahoo.com','alexkaf','"+hash+"',0,0,1,'/home/fnp',1,1),('manzar@yahoo.com','manzar','"+hash+"',0,0,1,'/home/fnp',1,1),('caruso@yahoo.com','caruso','"+hash+"',0,0,1,'/home/fnp',1,1),('alexakis@yahoo.com','alexakis','"+hash+"',0,0,1,'/home/fnp',1,1),('notadmin1@yahoo.com','notadmin1','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin2@yahoo.com','notadmin2','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin3@yahoo.com','notadmin3','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin4@yahoo.com','notadmin4','"+hash+"',0,0,0,'/home/fnp',1,1),('peiramatozoo@yahoo.com','peiramatozoo','"+hash+"',0,0,0,'/home/fnp',1,1); "
+        psswd = 'kodikos'
 
-		mc.query(query)
-		console.log("Database Initialized ! ")
+        let hash = bcrypt.hashSync(psswd, 10)
+        query = " INSERT INTO users ( mail,username,psswd,nposts,reputation,admin,ipath,flag,hashid) VALUES  ('lkanav2@yahoo.com','fnp','"+hash+"',0,0,1,'/home/fnp',1,1),('pcolaras23@yahoo.com','pcolaras23','"+hash+"',0,0,1,'/home/fnp',1,1),('alexkaf@yahoo.com','alexkaf','"+hash+"',0,0,1,'/home/fnp',1,1),('manzar@yahoo.com','manzar','"+hash+"',0,0,1,'/home/fnp',1,1),('caruso@yahoo.com','caruso','"+hash+"',0,0,1,'/home/fnp',1,1),('alexakis@yahoo.com','alexakis','"+hash+"',0,0,1,'/home/fnp',1,1),('notadmin1@yahoo.com','notadmin1','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin2@yahoo.com','notadmin2','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin3@yahoo.com','notadmin3','"+hash+"',0,0,0,'/home/fnp',1,1),('notadmin4@yahoo.com','notadmin4','"+hash+"',0,0,0,'/home/fnp',1,1),('peiramatozoo@yahoo.com','peiramatozoo','"+hash+"',0,0,0,'/home/fnp',1,1); "
 
-	}
+        mc.query(query, function (err1, res1) {
+            if (err1) console.log("Wrong HERE!!! " + err1);
+            else {
+                mc.query(initialize(), function (err2, res2) {
+                    if (err2) console.log("WRONG THERE" + err2);
+                    else {
+                        console.log("Database Initialized ! ")
+                    }
+                });
+            }
+        });
+    }
 
 });
 
@@ -66,11 +75,12 @@ mc.query("SELECT 1 FROM users WHERE username = ? LIMIT 1" , "fnp" , function (er
 // REDIS Database
 
 // Simply pass the port that you want a Redis server to listen on.
+/*
 const server = new RedisServer({
     conf: './redis.conf',
     port: 6379,
+    bin: "/home/emmanuel/Desktop/other/redis-5.0.3/src/redis-server"    // change path if necessary - needs to show to redis-server
 
-    bin: "redis-server"    // change path if necessary - needs to show to redis-server
 
 });
 
@@ -80,7 +90,7 @@ server.open((err) => {
     // server bound to port 6379.
     console.log("Redis Server started");
   }
-});
+});*/
 
 var client = redis.createClient();
 
@@ -89,29 +99,29 @@ client.on('connect', function() {
 });
 
 client.on('error', function(err){
-  	console.log('Something went wrong ', err)
+    console.log('Something went wrong ', err)
 });
 
 client.get('counter', function(error, result) {
 
-  	if (error) console.log(error);
+    if (error) console.log(error);
 
-	else {
+    else {
 
-		if(result==null) {
+        if(result==null) {
 
-			client.set('counter',0, function(e1,r1) {
+            client.set('counter',0, function(e1,r1) {
 
-				if(e1) console.log(e1);
-				client.quit(redis.print);
-			});
-		}
+                if(e1) console.log(e1);
+                client.quit(redis.print);
+            });
+        }
 
-		else {
-  			console.log('Counter is ->', result)
-			client.quit(redis.print);
-		}
-	}
+        else {
+            console.log('Counter is ->', result)
+            client.quit(redis.print);
+        }
+    }
 });
 
 /*
@@ -155,6 +165,7 @@ app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave
 var routes = require('./app/routes/appRoutes.js'); //importing route
 routes(app); //register the route
 
+/*
 process.on('SIGTERM', () => {
   console.info('\nSIGTERM signal received. Closing redis-server connection!\nSaving data in redis.');
   server.close((err) => {
@@ -169,9 +180,9 @@ process.on('SIGINT', () => {
     // The associated Redis server is now closed.
   });
   process.exit(0);
-});
+});*/
 
 module.exports = {
-	app,
-	mc
+    app,
+    mc
 }

@@ -27,7 +27,6 @@ export class NewUsernameComponent implements OnInit {
   submit() {
     var newUsername = this.changeForm.controls['new-username'].value;
       this.userService.userChUsername(
-        this.myStorage.getFromLocal('username'),
         newUsername
         ).subscribe(
           (response) => {

@@ -1,6 +1,18 @@
-// npm i gulp gulp-multi-process
-// gulp
-//-----------------------------------------------------------------------------------//
+// npm install gulp-cli -g
+// npm install gulp -D
+// ---> npm i npm gulp gulp-cli gulp-multi-process
+/*
+npm-run() {
+  $(npm bin)/$*
+}
+in .bashrc
+*/
+/*--------------------------------INSTRUCTIONS---------------------------------------//
+HOW TO :
+-> install : npm i gulp gulp-cli gulp-multi-process
+-> run     : $(npm bin)/gulp <task_name> (servers, installs, testing)
+                                          by default does everything
+//-----------------------------------------------------------------------------------*/
 
 var gulp = require('gulp');
 var exec = require('child_process').exec;
@@ -45,15 +57,7 @@ gulp.task('test', function(cb) {
         npm.on("log", function (message) { console.log(message); });
     });
 });
-/*
-gulp.task('waiting', function (cb) {
-  process.chdir('../back');
-  exec('sleep 3', function (err, stdout, stderr) {
-        console.log(stdout);
-    cb(err);
-  });
-});
-*/
+
 gulp.task('back_server', function (cb) {
   process.chdir('./back');
   var npm = require("npm");
@@ -77,25 +81,27 @@ gulp.task('front_server', function (cb) {
 });
 
 gulp.task('installs', function(cb) {
-  // task1 and task2 will run in different processes
+  // install_back and install_front will run in different processes
   return gulpMultiProcess(['install_back', 'install_front'], cb);
 });
 
-gulp.task('initializations', gulp.series('installs','init_db','test'/*,'waiting'*/));
-//gulp.task('servers', gulp.parallel('back_server','front_server'));
+gulp.task('testing', gulp.series('init_db','test'));
+
+gulp.task('initializations', gulp.series('installs','testing'));
 
 gulp.task('servers', function(cb) {
-  // task1 and task2 will run in different processes
+  // back_server and front_server will run in different processes
   return gulpMultiProcess(['back_server', 'front_server'], cb);
 });
 
 gulp.task('default',gulp.series('initializations','servers'));
-//gulp.task('default',gulp.series('install_front','front_server'));
 
+
+//--------------------------------------------------------------------------------//
 /*
 var nodemon = require('gulp-nodemon')
 gulp.task('back_server', function (done) {
-  //process.chdir('../back');
+  process.chdir('./back');
   nodemon({
     script: 'server.js'
   , ext: 'js html'

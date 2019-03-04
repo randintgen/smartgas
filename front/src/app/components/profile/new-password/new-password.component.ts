@@ -28,7 +28,7 @@ export class NewPasswordComponent implements OnInit {
     var username = this.route.snapshot.paramMap.get('name');
     var oldPass = this.changePassForm.controls['oldPass'].value;
     var newPass = this.changePassForm.controls['newPass'].value;
-    this.userService.userChPsswd(username, oldPass, newPass).subscribe(
+    this.userService.userChPsswd(oldPass, newPass).subscribe(
       (response) => {
         console.log(response);
       }
