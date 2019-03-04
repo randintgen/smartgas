@@ -83,6 +83,7 @@ export class AddPricesOfshopComponent implements OnInit {
     }).subscribe(
       (response) => {
         console.log('dadadada', response);
+        this.allForms[offset - 1].controls['1'].setValue({'1': ''})
       },
       (error) => {
         console.log(error);

@@ -90,8 +90,8 @@ export class AddShopComponent implements OnInit {
       if(results.length === 0){
         console.error('No results!');
       }else if(results.length === 1){
-        this.initLat = results[0].y;
-        this.initLng = results[0].x;
+        this.initLat = parseFloat(results[0].y);
+        this.initLng = parseFloat(results[0].x);
         console.log(this.initLat, typeof(this.initLat));
       }else {
         this.addressedFound = results;
@@ -138,11 +138,12 @@ export class AddShopComponent implements OnInit {
       if(results.length === 0){
         console.error('No results!');
       }else if(results.length === 1){
-        this.initLat = results[0].y;
-        this.initLng = results[0].x;
+        this.initLat = parseFloat(results[0].y);
+        this.initLng = parseFloat(results[0].x);
         this.shopService.createShop(this.shopName, this.shopAdd, this.shopTags, this.initLng, this.initLat).subscribe(
           (response) => {
             console.log('add', response);
+            this.router.navigateByUrl('/shops/'+ response.id);
           },
           (error) => {
             console.log('add', error);
@@ -169,10 +170,11 @@ export class AddShopComponent implements OnInit {
     list.afterClosed().subscribe(
       (answer) => {
         var chosenId = answer.id;
+        console.log(answer);
         var labelChosen = answer.list[chosenId].label;
         this.shopService.createShop(this.shopName, this.shopAdd, this.shopTags, this.initLng, this.initLat).subscribe(
           (response) => {
-            this.router.navigateByUrl('/add/shops')
+            this.router.navigateByUrl('/shops/' + response.id);
           },
           (error) => {
             console.log('add', error);

@@ -22,7 +22,7 @@ export class ShopPriceHistoryComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  displayedColumns: string[] = ['date', 'price'];
+  displayedColumns: string[] = ['date', 'name', 'price'];
   private dataSource: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
