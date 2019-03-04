@@ -79,10 +79,10 @@ export class SearchService {
       console.log('shops', searchObj.shops);
       if(counter == 0){
         searchUrl += '?';
+      }else{
+        searchUrl += '&';
       }
-      for(let id of searchObj.shops){
-        searchUrl += '&shops[]=' + id;
-      }
+      searchUrl += 'shops[]=' + searchObj.shops;
       counter++;
     }
 
@@ -90,10 +90,10 @@ export class SearchService {
       console.log('products', searchObj.products);
       if(counter == 0){
         searchUrl += '?';
+      }else{
+        searchUrl += '&';
       }
-      for(let id of searchObj.products){
-        searchUrl += '&products[]=' + id;
-      }
+      searchUrl += 'products[]=' + searchObj.products;
       counter++;
     }
 
@@ -101,10 +101,11 @@ export class SearchService {
       console.log('tags', searchObj.tags);
       if(counter == 0){
         searchUrl += '?';
+      }else{
+        searchUrl += '&';
       }
-      for(let id of searchObj.tags){
-        searchUrl += '&tags[]=' + id;
-      }
+
+      searchUrl += '&tags[]=' + searchObj.tags;
       counter++;
     }
 
@@ -125,7 +126,7 @@ export class SearchService {
       }
       searchUrl += 'sort=price|ASC';
     } 
-    console.log(searchUrl);
+    console.log('se parakalo poly', searchUrl);
 
     var result = this.http.get(searchUrl, {
       headers: new HttpHeaders({

@@ -65,7 +65,7 @@ export class ShopService {
     return shopsResponse;
   };
 
-  createShop(name: string, address: string, tags?: string[], lng?: number, lat?: number): Observable<CreateShopResponse>{
+  createShop(name: string, address: string, tags: string[], lng: number, lat: number): Observable<CreateShopResponse>{
     
     var createUrl = this.baseUrl + 'shops';
     
@@ -75,14 +75,6 @@ export class ShopService {
         'X-OBSERVATORY-AUTH': this.myStorage.getFromLocal('token')
       })
     };
-
-    if(lat == undefined){
-      var lat = 0.23;
-    }
-
-    if(lng == undefined){
-      var lng = 0.54;
-    }
 
     var createResponse = this.http.post<CreateShopResponse>(createUrl,
       JSON.stringify({

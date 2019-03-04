@@ -39,7 +39,7 @@
     display: none;
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width:800px) {
     .topnav a .menu .tile {display: none;}
     .topnav a .menu .icon {
       float: right;
@@ -47,7 +47,7 @@
     }
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 800px) {
     .topnav.responsive {position: relative;}
     .topnav.responsive a .menu .icon {
       float: right;

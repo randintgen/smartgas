@@ -1,6 +1,8 @@
-import { OnInit, Component } from '@angular/core';
+import { OnInit, Component, Output } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { EventEmitter } from 'events';
+import { BehaviorSubject } from 'rxjs';
 
 export interface Types {
   value: string;
@@ -17,8 +19,12 @@ export interface Types {
 
 
 export class FiltersSearchComponent implements OnInit {
- 
+
   private FILTERS="https://imgur.com/FSpNtx1.png";
+
+  public searchResults = new BehaviorSubject(undefined);
+  private random = 'hello';
+
   ngOnInit() {
 
   }
@@ -49,6 +55,11 @@ export class FiltersSearchComponent implements OnInit {
     }
 
     return value;
+  }
+
+  private searchTaken(event: any){
+    console.log('in filters search', event);
+    this.searchResults.next(event);
   }
 
 }

@@ -4,7 +4,7 @@
             <input type="number"  formControlName="1" matInput placeholder="Βενζίνη 95 οκτανίων" min="0.001" max="5.000" step="0.001">
             <span matSuffix>€&nbsp;</span>
           </mat-form-field>
-          <button mat-raised-button (click)="addPrice(0)">Add</button>
+          <button mat-raised-button (click)="addPrice(1)">Προσθήκη</button>
   </div>
   </form>
   
@@ -14,7 +14,7 @@
           <input type="number"  formControlName="1" matInput placeholder="Βενζίνη 97 οκτανίων" min="0.001" max="5.000" step="0.001">
           <span matSuffix>€&nbsp;</span>
         </mat-form-field>
-      <button mat-raised-button (click)="addPrice(1)">Add</button>
+      <button mat-raised-button (click)="addPrice(2)">Προσθήκη</button>
 </div>
 </form>
 
@@ -24,7 +24,7 @@
         <input type="number"  formControlName="1" matInput placeholder="Βενζίνη 100 οκτανίων" min="0.001" max="5.000" step="0.001">
         <span matSuffix>€&nbsp;</span>
       </mat-form-field>
-      <button mat-raised-button (click)="addPrice(2)">Add</button>
+      <button mat-raised-button (click)="addPrice(3)">Προσθήκη</button>
 </div>
 </form>
 
@@ -34,26 +34,36 @@
         <input type="number"  formControlName="1" matInput placeholder="Πετρέλαιο 95 οκτανίων" min="0.001" max="5.000" step="0.001">
         <span matSuffix>€&nbsp;</span>
       </mat-form-field>
-      <button mat-raised-button (click)="addPrice(3)">Add</button>
+      <button mat-raised-button (click)="addPrice(4)">Προσθήκη</button>
 </div>
 </form>
 
 <form [formGroup]="fuel5">
+  <div class="col-30">
+      <mat-form-field >
+          <input type="number"  formControlName="1" matInput placeholder="Πετρέλαιο 100 οκτανίων" min="0.001" max="5.000" step="0.001">
+          <span matSuffix>€&nbsp;</span>
+        </mat-form-field>
+        <button mat-raised-button (click)="addPrice(5)">Προσθήκη</button>
+  </div>
+  </form>
+
+<form [formGroup]="fuel6">
 <div class="col-30">
     <mat-form-field >
         <input type="number"  formControlName="1" matInput placeholder="Αέριο LPG" min="0.001" max="5.000" step="0.001">
         <span matSuffix>€&nbsp;</span>
       </mat-form-field>
-      <button mat-raised-button (click)="addPrice(4)">Add</button>
+      <button mat-raised-button (click)="addPrice(6)">Προσθήκη</button>
 </div>
 </form>
-  
-<form [formGroup]="fuel6">
-<div class="col-30">
-    <mat-form-field>
-        <input type="number"  formControlName="1" matInput placeholder="Αέριο CNG" min="0.001" max="5.000" step="0.001">
-        <span matSuffix>€&nbsp;</span>
-      </mat-form-field>
-      <button mat-raised-button (click)="addPrice(5)">Add</button>
-</div>
-</form>
+
+<form [formGroup]="fuel7">
+  <div class="col-30">
+      <mat-form-field >
+          <input type="number"  formControlName="1" matInput placeholder="Αέριο CNG" min="0.001" max="5.000" step="0.001">
+          <span matSuffix>€&nbsp;</span>
+        </mat-form-field>
+        <button mat-raised-button (click)="addPrice(7)">Προσθήκη</button>
+  </div>
+  </form>

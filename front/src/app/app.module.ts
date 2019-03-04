@@ -11,7 +11,7 @@ import { ShopsListComponent } from './components/shops-list/shops-list.component
 import { AddShopComponent, ResultListComponent } from './components/add-shop/add-shop.component';
 import { ShopDetailsComponent } from './components/shop-details/shop-details.component';
 import { TesterComponent, DialogDataExampleDialog } from './components/tester/tester.component';
-import { FiltersSearchComponent, Types } from './components/filters-search/filters-search.component';
+import { FiltersSearchComponent, Types } from './components/home-page/filters-search/filters-search.component';
 import { MaterialModule } from './modules/material/material.module';
 import { NavBarComponent, LoginUserComponent, RegisterUserComponent } from './components/nav-bar/nav-bar.component';
 
@@ -24,11 +24,11 @@ import { ShopPricesComponent } from './components/shop-details/shop-prices/shop-
 import { EditShopComponent } from './components/shop-details/edit-shop/edit-shop.component';
 import { AddPricesOfshopComponent } from './components/shop-details/add-prices-ofshop/add-prices-ofshop.component';
 
-import { HomePageListComponent } from './components/home-page-list/home-page-list.component';
+import { HomePageListComponent } from './components/home-page/home-page-list/home-page-list.component';
 import { MapsComponent } from './components/maps/maps.component';
 import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 import { ShowOnMapComponent } from './components/shop-details/show-on-map/show-on-map.component';
-import { ShownShopsComponent } from './components/home-page-list/shown-shops/shown-shops.component';
+import { ShownShopsComponent } from './components/home-page/home-page-list/shown-shops/shown-shops.component';
 import { MarkerOnMapComponent } from './components/search-form/marker-on-map/marker-on-map.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NewUsernameComponent } from './components/profile/new-username/new-username.component';
@@ -39,6 +39,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UploadPhotoComponent } from './components/profile/upload-photo/upload-photo.component';
 import { AddProductsComponent } from './components/products/add-products/add-products.component';
 import { ProductsComponent, EditProductModalComponent, DeleteProductComponent } from './components/products/products.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { ProductsComponent, EditProductModalComponent, DeleteProductComponent } 
     EditProductModalComponent,
     DeleteProductComponent,
     ResultListComponent,
-    PickAdressComponent
+    PickAdressComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

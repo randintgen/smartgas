@@ -27,8 +27,9 @@ export class ShopPricesComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log('edo eimaste', this.shopId);
     this.searchService.searchShops({
-      shopId: [this.shopId],
+      shops: [this.shopId],
       sort: "date|DESC"
     }).subscribe(
       (response) => {
