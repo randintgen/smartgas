@@ -84,7 +84,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
-    AgmCoreModule.forRoot({apiKey: 'AIzaSyBe4CMJoauhV-5CT98i1tTsf2563iG39_4'}),
+    AgmCoreModule.forRoot({apiKey: '********************'}),
     BrowserAnimationsModule,
     FormsModule,
     StorageServiceModule
