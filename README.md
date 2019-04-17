@@ -1,12 +1,8 @@
-# motherhackers
-
-
-| Μέλος                       | Α.Μ.          | github user name                                         |
-| --------------------------- | ------------- |--------------------------------------------------------- |
-| Αλεξάκης Κωνσταντίνος       | 03114086      |[konAlexakis](https://github.com/konAlexakis)             |
-| Βασιλάκης Εμμανουήλ         | 03114167      |[manolisvasilakis](https://github.com/manolisvasilakis)   |
-|Ζαράνης Εμμανουήλ            |03114798       |[manzar96](https://github.com/manzar96)                   |
-|Καναβάκης Ελευθέριος         |03114180       |[filmnoirprod](https://github.com/filmnoirprod)           |
-|Καρούζος Κωνσταντίνος        |03114176       |[ckarouzos](https://github.com/ckarouzos)                 |
-|Καφίρης Αλέξανδρος           |03114044       |[alexkaf](https://github.com/alexkaf)                     |
-
+# Software Engineering (9th Semester)
+### National and Technical University of Athens - School of Electrical and Computer Engineering
+---
+In this course, some concepts of Software Design were analysed. This repo is dedicated to the course project in which we created a web-app to inspect the prices of fuel in the fuel stations.
+---
+Implented in:
+* NodeJs
+* Angular
