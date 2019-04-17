@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-/* AIzaSyBe4CMJoauhV-5CT98i1tTsf2563iG39_4 */
 
 @Component({
   selector: 'app-maps',
