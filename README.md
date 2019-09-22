@@ -23,25 +23,42 @@ This application was developped as part of the 9th semester course, Software Eng
 ## Some print screens of our working application 
   
 
+### Application's Main Page
+
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img1.png" width="800" height="400">
 
 ### Add New Fuel Type 
 
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img2.png" width="800" height="400">
 
+### Choose your current location from a drop down list of close locations
+
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img3.png" width="800" height="400">
+
+### Email verification after signing up
 
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img4.png" width="800" height="400">
 
+### History of user's entries
+
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img5.png" width="800" height="400">
+
+### Search for fuel entries using max distance slide bar
 
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img6.png" width="800" height="400">
 
+### Add a new price fuel entry
+
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img7.png" width="800" height="400">
 
+### Delete a fuel Type
+
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img8.png" width="800" height="400">
+
+### Find a nearby gas station
 
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img9.png" width="800" height="400">
 
 ### An example of the application's responsiveness (Apple iPhone X Display)
+
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img10.png" width="800" height="400">
