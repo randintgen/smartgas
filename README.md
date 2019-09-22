@@ -23,3 +23,4 @@ This application was developped as part of the 9th semester course, Software Eng
 ## Some print screens of our working application 
   
 
+<img src="https://github.com/filmnoirprod/advanced_databases/blob/master/mmm.png" width="600" height="200">
