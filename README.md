@@ -23,4 +23,4 @@ This application was developped as part of the 9th semester course, Software Eng
 ## Some print screens of our working application 
   
 
-<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img1.png" width="600" height="200">
+<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img1.png" width="800" height="400">
