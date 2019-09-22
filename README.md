@@ -1,4 +1,4 @@
-# Smartgas
+# Smartgas - Innovation for gas stations
 This application was developped as part of the 9th semester course, Software Engineering (of the National Technical University of Athens) taught by Konstantinos Saidis and Vasilios Veskoukis in the winter semester of 2018.This project was developped by a team of 6 members known as motherhackers.
 
 ## This application is developped using the below technologies :
