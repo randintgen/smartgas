@@ -24,3 +24,21 @@ This application was developped as part of the 9th semester course, Software Eng
   
 
 <img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img1.png" width="800" height="400">
+
+<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img2.png" width="800" height="400">
+
+<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img3.png" width="800" height="400">
+
+<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img4.png" width="800" height="400">
+
+<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img5.png" width="800" height="400">
+
+<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img6.png" width="800" height="400">
+
+<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img7.png" width="800" height="400">
+
+<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img8.png" width="800" height="400">
+
+<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img9.png" width="800" height="400">
+
+<img src="https://github.com/filmnoirprod/smartgas/blob/master/Images/img10.png" width="800" height="400">
