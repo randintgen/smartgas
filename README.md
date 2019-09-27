@@ -19,17 +19,6 @@ The project task is to develop an online price observatory, wich will allow user
 * Spatial display of data should be done through a platform with an online map service (e.g. Google Maps or equivalent) with use of a suitable javascript library (openlayers, mapbox or other).
 * Responsive, user-friendly designed and fully funcional pages should be provided in a uniform way for Desktop, Tablet and Mobile devices.
 
-## Team members
-
-| Name                        | github user name                                         |
-| --------------------------- |--------------------------------------------------------- |
-|Alex Kafiris                 |[alexkaf](https://github.com/alexkaf)                     |
-|Eleftherios Kanavakis        |[filmnoirprod](https://github.com/filmnoirprod)           |
-|Manolis Vasilakis            |[manolisvasilakis](https://github.com/manolisvasilakis)   |
-|Constantinos Karouzos        |[ckarouzos](https://github.com/ckarouzos)                 |
-|Manos Zaranis                |[manzar96](https://github.com/manzar96)                   |
-|Konstantinos Alexakis        |[konAlexakis](https://github.com/konAlexakis)             |
-
 ## Getting Started 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -48,7 +37,6 @@ Execute the following in order to install dependencies, run the automated tests 
 $(npm bin)/gulp
 
 ```
-## Testing
 
 ## Built With
 
@@ -73,6 +61,16 @@ $(npm bin)/gulp
 
 * GULP
 
+## Team members
+
+| Name                        | github user name                                         |
+| --------------------------- |--------------------------------------------------------- |
+|Alex Kafiris                 |[alexkaf](https://github.com/alexkaf)                     |
+|Eleftherios Kanavakis        |[filmnoirprod](https://github.com/filmnoirprod)           |
+|Manolis Vasilakis            |[manolisvasilakis](https://github.com/manolisvasilakis)   |
+|Constantinos Karouzos        |[ckarouzos](https://github.com/ckarouzos)                 |
+|Manos Zaranis                |[manzar96](https://github.com/manzar96)                   |
+|Konstantinos Alexakis        |[konAlexakis](https://github.com/konAlexakis)             |
 
 ## Desktop overview 
   
