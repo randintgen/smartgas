@@ -1,26 +1,78 @@
-# Smartgas - Innovation for gas stations
-This application was developped as part of the 9th semester course, Software Engineering (of the National Technical University of Athens) taught by Konstantinos Saidis and Vasilios Veskoukis in the winter semester of 2018.This project was developped by a team of 6 members known as motherhackers.
+# Smartgas - Fuel Price Observatory
+This application was developped as part of the 9th semester course, Software Engineering of the National Technical University of Athens, taught by Konstantinos Saidis and Vasilios Veskoukis in the winter semester of 2018. The project was developped by a team of 6 members.
 
-## This application is developped using the below technologies :
+## Task description
 
-  ### Back-end 
-  The Back endpoint of this application was developped using NodeJS and express . We should also mention that the main database of this     project is MySQL. We also used a in memory NoSQL database (Redis) in order to invalidate Json Web Tokens of users that  have logged      out.
-  
-  ### Front-end
-  The Front endpoint of this application was developped using not only HTML5 but also AngularJS.
-  
-  ### Test Automation
-  In order to test our back end server for bugs and possible errors we executed 255 tests using the Jest automation framework.
-  
-  ### Building Automation
-  We used GULP as the building automation framework. 
-  
-## How to run this Application ? 
-  1) At first you should have MySQL and Redis install and configured appropriately in your UNIX computer.
-  2) After this and assuming that you have configured the databases correctly just type --> npm i gulp gulp-cli gulp-multi-process npm
-  3) Finnaly type --> $(npm bin)/gulp in order to install dependencies, run the automated tests and start the servers
-  
-## Some print screens of our working application 
+### General description
+The project task is to develop an online price observatory, wich will allow users to record electronically fuel prices in various gas stations. The observatory will operate by crowdsourcing, so volunteers record prices to share them with others through a web service. Special emphasis should be placed on the development of the appropriate web API.
+
+### Technical Specifications
+* The observatory shall consist of (a) a backend and (b) a frontend subsystems, which should be implemented in Java, Javascript or similar. 
+* The language of the user interfaces should be in Greek.
+* A build automation tool of team's choice should be used.
+* The observatory should provide an appropriate RESTful Web API to interface with third party applications. 
+* The following three user roles should be supported: 
+  - registered user - volunteer
+  - administrator
+  - reader 
+* HTTPS protocol should be supported for all pages and utilities via self-signed certificate.
+* Spatial display of data should be done through a platform with an online map service (e.g. Google Maps or equivalent) with use of a suitable javascript library (openlayers, mapbox or other).
+* Responsive, user-friendly designed and fully funcional pages should be provided in a uniform way for Desktop, Tablet and Mobile devices.
+
+## Getting Started 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+* MySQL and Redis should be installed and configured approprialy. 
+
+* GULP should be installed too.
+```
+npm i gulp gulp-cli gulp-multi-process npm
+```
+### Installing
+
+Execute the following in order to install dependencies, run the automated tests and bootstrap the servers.  
+```
+$(npm bin)/gulp
+
+```
+
+## Built With
+
+### Backend 
+
+* NodeJS
+* Express.js
+* MySQL - Main database
+* Redis - Used for user's tokens invalidation. 
+
+### Frontend
+
+* Angular
+* Angular Material
+* HTML5 and CSS
+
+### Test Automation
+
+* Jest
+
+### Building Automation
+
+* GULP
+
+## Team members
+
+| Name                        | github user name                                         |
+| --------------------------- |--------------------------------------------------------- |
+|Alex Kafiris                 |[alexkaf](https://github.com/alexkaf)                     |
+|Eleftherios Kanavakis        |[filmnoirprod](https://github.com/filmnoirprod)           |
+|Manolis Vasilakis            |[manolisvasilakis](https://github.com/manolisvasilakis)   |
+|Constantinos Karouzos        |[ckarouzos](https://github.com/ckarouzos)                 |
+|Manos Zaranis                |[manzar96](https://github.com/manzar96)                   |
+|Konstantinos Alexakis        |[konAlexakis](https://github.com/konAlexakis)             |
+
+## Desktop overview 
   
 
 ### Application's Main Page
