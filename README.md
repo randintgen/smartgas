@@ -66,7 +66,7 @@ $(npm bin)/gulp
 | Name                        | github user name                                         |
 | --------------------------- |--------------------------------------------------------- |
 |Alex Kafiris                 |[alexkaf](https://github.com/alexkaf)                     |
-|Eleftherios Kanavakis        |[filmnoirprod](https://github.com/filmnoirprod)           |
+|Eleftherios Kanavakis        |[randintgen](https://github.com/randintgen)               |
 |Manolis Vasilakis            |[manolisvasilakis](https://github.com/manolisvasilakis)   |
 |Constantinos Karouzos        |[ckarouzos](https://github.com/ckarouzos)                 |
 |Manos Zaranis                |[manzar96](https://github.com/manzar96)                   |
